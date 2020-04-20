@@ -1,5 +1,4 @@
 Feature: Changing theme.
-  Site: StackOverflow.
 
   Scenario: Theme changes from Light to Dark.
     Given I am on the main page.
