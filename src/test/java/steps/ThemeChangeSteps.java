@@ -33,4 +33,15 @@ public class ThemeChangeSteps extends RunTest {
     logInPage.navigateToLogin();
     logInPage.login();
   }
+
+  @When("I enable keyboard shortcuts.")
+  public void i_enable_keyboard_shortcuts() {
+    driver.findElement(userPreferencesPage.getUiElement("keyboard-shortcuts")).click();
+    userPreferencesPage.inputHotKeys();
+  }
+
+  @Then("current page is changed to home page.")
+  public void current_page_is_changed_to_home_page() {
+    Assert.assertEquals("https://stackoverflow.com/", driver.getCurrentUrl());
+  }
 }
