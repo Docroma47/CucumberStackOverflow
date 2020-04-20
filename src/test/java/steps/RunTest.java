@@ -38,7 +38,6 @@ public class RunTest {
     FirefoxOptions firefoxOptions = new FirefoxOptions();
     firefoxOptions.setBinary(firefoxBinary);
     driver = new FirefoxDriver(firefoxOptions);
-//    driver = new FirefoxDriver();
     driver.manage().timeouts().implicitlyWait(15, SECONDS);
     driver.manage().window().maximize();
     userPreferencesPage = new UserPreferencesPage(driver);

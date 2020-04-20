@@ -6,7 +6,7 @@ import org.openqa.selenium.*;
 import static java.util.Map.of;
 
 public class UserPreferencesPage {
-  private static WebDriver driver;
+  private WebDriver driver;
 
   private Map<String, String> uiElements = of(
       "Preference", "//a[text()='preferences']",
@@ -35,7 +35,7 @@ public class UserPreferencesPage {
     return driver.findElement(By.xpath("//body")).getCssValue("background-color");
   }
 
-  public void goToProfile() {
+  public void navigateToProfile() {
     navigateToPage(getUiElement("Profile"));
     navigateToPage(getUiElement("Edit_profile"));
   }

@@ -24,7 +24,7 @@ public class ThemeChangeSteps extends RunTest {
 
   @When("I navigate to the user preferences page.")
   public void i_navigate_to_the_user_preferences_page() {
-    userPreferencesPage.goToProfile();
+    userPreferencesPage.navigateToProfile();
     userPreferencesPage.navigateToPreferences();
   }
 

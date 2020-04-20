@@ -7,8 +7,8 @@ import org.openqa.selenium.*;
 import static java.util.Map.of;
 
 public class LogInPage {
-  private static WebDriver driver;
-  private static HashMap<String, String> pageUrls = new HashMap ();
+  private WebDriver driver;
+  private HashMap<String, String> pageUrls = new HashMap();
 
   private Map<String, String> uiElements = of(
       "Log_in", "//header//li[@class='-ctas']//a[1]",

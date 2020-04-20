@@ -4,8 +4,8 @@ import java.util.HashMap;
 import org.openqa.selenium.WebDriver;
 
 public class MainPage {
-  private static WebDriver driver;
-  private static HashMap<String, String> pageUrls = new HashMap ();
+  private WebDriver driver;
+  private HashMap<String, String> pageUrls = new HashMap();
 
   public MainPage(WebDriver driver) {
     this.driver = driver;
