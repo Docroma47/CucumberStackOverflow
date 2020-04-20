@@ -1,5 +1,6 @@
 package steps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -37,11 +38,15 @@ public class ThemeChangeSteps extends RunTest {
   @When("I enable keyboard shortcuts.")
   public void i_enable_keyboard_shortcuts() {
     driver.findElement(userPreferencesPage.getUiElement("keyboard-shortcuts")).click();
-    userPreferencesPage.inputHotKeys();
   }
 
   @Then("current page is changed to home page.")
   public void current_page_is_changed_to_home_page() {
     Assert.assertEquals("https://stackoverflow.com/", driver.getCurrentUrl());
+  }
+
+  @And("I press hot keys G and H.")
+  public void i_press_hot_keys_G_and_H() {
+    userPreferencesPage.inputHotKeysGAndH();
   }
 }
