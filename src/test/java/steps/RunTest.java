@@ -20,7 +20,9 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 )
 public class RunTest {
   public static WebDriver driver;
-  public static UserOptionsPage userOptions;
+  public static UserPreferencesPage userPreferencesPage;
+  public static LogInPage logInPage;
+  public static MainPage mainPage;
 
   @BeforeClass
   public static void setupDriver() {
@@ -39,7 +41,9 @@ public class RunTest {
 //    driver = new FirefoxDriver();
     driver.manage().timeouts().implicitlyWait(15, SECONDS);
     driver.manage().window().maximize();
-    userOptions = new UserOptionsPage(driver);
+    userPreferencesPage = new UserPreferencesPage(driver);
+    logInPage = new LogInPage(driver);
+    mainPage = new MainPage(driver);
   }
 
   @AfterClass
