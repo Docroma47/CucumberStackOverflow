@@ -15,7 +15,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-    features = {"src/test/java/features"},
+    features = {"src/test/java/feature"},
     strict = false
 )
 public class RunTest {
@@ -31,6 +31,8 @@ public class RunTest {
 
     if ((System.getProperty("os.name").substring(0, 3)).equals("Lin")) {
       System.setProperty("webdriver.gecko.driver", "Drivers/Linux/geckodriver");
+    } else if ((System.getProperty("os.name").substring(0, 3)).equals("Mac")){
+      System.setProperty("webdriver.gecko.driver", "Drivers/MacOs/geckodriver.exe");
     } else {
       System.setProperty("webdriver.gecko.driver", "Drivers\\Windows\\geckodriver.exe");
     }
