@@ -32,7 +32,7 @@ public class RunTest {
     if ((System.getProperty("os.name").substring(0, 3)).equals("Lin")) {
       System.setProperty("webdriver.gecko.driver", "Drivers/Linux/geckodriver");
     } else if ((System.getProperty("os.name").substring(0, 3)).equals("Mac")){
-      System.setProperty("webdriver.gecko.driver", "Drivers/MacOs/geckodriver.exe");
+      System.setProperty("webdriver.gecko.driver", "Drivers/MacOs/geckodriver");
     } else {
       System.setProperty("webdriver.gecko.driver", "Drivers\\Windows\\geckodriver.exe");
     }
