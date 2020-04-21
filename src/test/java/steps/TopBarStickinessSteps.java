@@ -24,7 +24,7 @@ public class TopBarStickinessSteps extends RunTest{
 
   @And("I scroll to the button.")
   public void i_scroll_to_the_button() {
-    JavascriptExecutor jse = (JavascriptExecutor) driver;
-    jse.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(userPreferencesPage.getUiElement("Start-download-button")));
+    JavascriptExecutor js = ((JavascriptExecutor) driver);
+    js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
   }
 }
