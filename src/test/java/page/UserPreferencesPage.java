@@ -15,8 +15,7 @@ public class UserPreferencesPage {
       "Dark-theme", "//input[@id='enableForcedDarkmode']",
       "Keyboard-shortcuts", "//input[@id='keyboardShortcuts']",
       "Disabling", "/html/body/header",
-      "Top-bar-stickiness", "//*[@id='fixedHeader']",
-      "New", "/html/body/header/div/div[1]/a[2]/span"
+      "Top-bar-stickiness", "//*[@id='fixedHeader']"
   );
 
   public UserPreferencesPage(WebDriver driver) {
