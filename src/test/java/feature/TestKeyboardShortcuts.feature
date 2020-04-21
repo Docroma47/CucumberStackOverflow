@@ -1,5 +1,5 @@
 Feature: Enable keyboard shortcuts.
-  The user is log in on the site.
+  The user is logged in on the site
 
   Scenario: If keyboard shortcuts are enabled, then I can navigate to home page using a shortcut ("G" + "H").
     Given I navigate to the user preferences page.
