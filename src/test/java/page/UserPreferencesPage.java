@@ -10,9 +10,10 @@ public class UserPreferencesPage {
 
   private Map<String, String> uiElements = of(
       "Preference", "//a[text()='preferences']",
-      "Edit_profile", "//a[text()='Edit profile and settings']",
+      "Edit-profile", "//a[text()='Edit profile and settings']",
       "Profile", "//a[@class='my-profile js-gps-track']",
-      "Dark-theme", "//input[@id='enableForcedDarkmode']"
+      "Dark-theme", "//input[@id='enableForcedDarkmode']",
+      "Keyboard-shortcuts", "//input[@id='keyboardShortcuts']"
   );
 
   public UserPreferencesPage(WebDriver driver) {
@@ -37,6 +38,12 @@ public class UserPreferencesPage {
 
   public void navigateToProfile() {
     navigateToPage(getUiElement("Profile"));
-    navigateToPage(getUiElement("Edit_profile"));
+    navigateToPage(getUiElement("Edit-profile"));
+  }
+
+  public void inputHotKeysGAndH() {
+    driver.findElement(By.tagName("body")).sendKeys(Keys.SHIFT + "?");
+    driver.findElement(By.tagName("body")).sendKeys("G");
+    driver.findElement(By.tagName("body")).sendKeys("H");
   }
 }
