@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -52,5 +53,22 @@ public class ThemeChangeSteps extends RunTest {
   @And("I press hot keys G and H.")
   public void i_press_hot_keys_G_and_H() {
     userPreferencesPage.inputHotKeysGAndH();
+  }
+
+  @When("I enable Top bar stickiness.")
+  public void i_enable_top_bar_stickiness() {
+    driver.findElement(userPreferencesPage.getUiElement("Top-bar-stickiness")).click();
+  }
+
+  @Then("Top bar is not shown.")
+  public void top_bar_is_not_shown() {
+    int length = driver.findElement(userPreferencesPage.getUiElement("Disabling")).getAttribute("class").length();
+    Assert.assertEquals("twork", driver.findElement(userPreferencesPage.getUiElement("Disabling")).getAttribute("class").substring(length - 5, length));
+  }
+
+  @And("I scroll down.")
+  public void i_scroll_down() {
+    JavascriptExecutor jse = (JavascriptExecutor) driver;
+    jse.executeScript("window.scrollBy(0, 2000)", "");
   }
 }
