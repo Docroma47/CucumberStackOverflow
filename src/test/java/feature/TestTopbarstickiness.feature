@@ -4,5 +4,5 @@ Feature: Disable top bar stickiness.
   Scenario: Top bar stickiness changes from enabled to disabled.
     Given I navigate to the user preferences page.
     When I enable Top bar stickiness.
-    And I scroll to the bottom.
+    And I scroll to the buttom.
     Then Top bar is not shown.
