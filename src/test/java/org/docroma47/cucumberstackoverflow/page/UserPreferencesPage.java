@@ -57,7 +57,7 @@ public class UserPreferencesPage {
 
   public void toggleKeyboardShortcuts(boolean enabled) {
     WebElement keyboard = driver.findElement(getUiElement("Keyboard-shortcuts"));
-    if (!keyboard.isSelected() && enabled == true || keyboard.isSelected() && enabled == false) {
+    if (!keyboard.isSelected() && enabled || keyboard.isSelected() && !enabled) {
       keyboard.click();
     }
   }
