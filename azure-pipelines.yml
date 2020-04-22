@@ -37,9 +37,11 @@ steps:
     findBugsRunAnalysis: false # Optional
 - task: PublishCucumberReport@1
   displayName: 'Publish Cucumber Report'
+  condition: succeededOrFailed()
   inputs:
     jsonDir: ./results
     outputPath: ./results
     name: 'Functional Tests'
     title: Cucumber tests
+    theme: 'simple'
 
