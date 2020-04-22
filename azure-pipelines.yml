@@ -38,8 +38,8 @@ steps:
 - task: PublishCucumberReport@1
   displayName: 'Publish Cucumber Report'
   inputs:
-    jsonDir: ./results/cucumber
-    outputPath: ./results/cucumber
+    jsonDir: ./results
+    outputPath: ./results
     name: 'Functional Tests'
     title: Cucumber tests
 
