@@ -35,4 +35,11 @@ steps:
     checkStyleRunAnalysis: false # Optional
     pmdRunAnalysis: false # Optional
     findBugsRunAnalysis: false # Optional
+- task: PublishCucumberReport@1
+  displayName: 'Publish Cucumber Report'
+  inputs:
+    jsonDir: ./results
+    outputPath: ./results
+    name: 'Functional Tests'
+    title: Cucumber tests
 

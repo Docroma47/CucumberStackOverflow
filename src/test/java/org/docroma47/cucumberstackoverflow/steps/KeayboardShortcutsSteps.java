@@ -1,13 +1,21 @@
-package steps;
+package org.docroma47.cucumberstackoverflow.steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.docroma47.cucumberstackoverflow.page.UserPreferencesPage;
 import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class KeayboardShortcutsSteps extends RunTest{
+public class KeayboardShortcutsSteps {
+
+  @Autowired
+  private WebDriver driver;
+  @Autowired
+  private UserPreferencesPage userPreferencesPage;
 
   @When("I enable keyboard shortcuts.")
   public void i_enable_keyboard_shortcuts() {

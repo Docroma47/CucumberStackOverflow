@@ -1,14 +1,18 @@
-package page;
-import java.util.HashMap;
+package org.docroma47.cucumberstackoverflow.page;
 import java.util.Map;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import static java.util.Map.of;
 
+@Component
 public class LogInPage {
+
+  @Autowired
   private WebDriver driver;
-  private HashMap<String, String> pageUrls = new HashMap();
 
   private Map<String, String> uiElements = of(
       "Log_in", "//header//li[@class='-ctas']//a[1]",
@@ -19,7 +23,6 @@ public class LogInPage {
 
   public LogInPage(WebDriver driver) {
     this.driver = driver;
-    pageUrls.put("Home_page", "https://stackoverflow.com/");
   }
 
   public By getUiElement(String key) {

@@ -1,20 +1,27 @@
-package steps;
+package org.docroma47.cucumberstackoverflow.steps;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.docroma47.cucumberstackoverflow.page.LogInPage;
+import org.docroma47.cucumberstackoverflow.page.UserPreferencesPage;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class ThemeChangeSteps extends RunTest {
+public class ThemeChangeSteps {
 
-  @Given("I am on the main page.")
-  public void i_am_on_the_main_page() {
-    driver.get("https://stackoverflow.com/");
-  }
+  @Autowired
+  private WebDriver driver;
+  @Autowired
+  private UserPreferencesPage userPreferencesPage;
+  @Autowired
+  private LogInPage logInPage;
+
 
   @When("I switch Theme to Dark.")
   public void i_switch_theme_to_dark() {
