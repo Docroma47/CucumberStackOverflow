@@ -18,6 +18,7 @@ public class UserPreferencesPage {
       "Edit-profile", "//a[text()='Edit profile and settings']",
       "Profile", "//a[@class='my-profile js-gps-track']",
       "Dark-theme", "//input[@id='enableForcedDarkmode']",
+      "Light-theme", "//input[@id='enableForcedLightmode']",
       "Keyboard-shortcuts", "//input[@id='keyboardShortcuts']",
       "Top-bar-xpath", "/html/body/header",
       "Top-bar-stickiness", "//*[@id='fixedHeader']",
@@ -55,10 +56,26 @@ public class UserPreferencesPage {
     driver.findElement(By.tagName("body")).sendKeys("H");
   }
 
-  public void toggleKeyboardShortcuts(boolean enabled) {
+  public void setKeyboardShortcuts(boolean enabled) {
     WebElement keyboard = driver.findElement(getUiElement("Keyboard-shortcuts"));
     if (!keyboard.isSelected() && enabled || keyboard.isSelected() && !enabled) {
       keyboard.click();
     }
+  }
+
+  public void setTopBarStickiness(boolean enabled) {
+    WebElement topBarStickiness = driver.findElement(getUiElement("Top-bar-stickiness"));
+    if (!topBarStickiness.isSelected() && enabled || topBarStickiness.isSelected() && !enabled) {
+      topBarStickiness.click();
+    }
+  }
+
+  public void setTheme(String theme) {
+    WebElement setTheme = driver.findElement(getUiElement(theme));
+    setTheme.click();
+  }
+
+  public Boolean isTopBarVisible() {
+    return driver.findElement(getUiElement("Top-bar-xpath")).getAttribute("class").contains("fixed");
   }
 }

@@ -19,12 +19,12 @@ public class KeyboardShortcutsSteps {
 
   @When("I enable keyboard shortcuts.")
   public void i_enable_keyboard_shortcuts() {
-    userPreferencesPage.toggleKeyboardShortcuts(true);
+    userPreferencesPage.setKeyboardShortcuts(true);
   }
 
   @When("I disable keyboard shortcuts.")
   public void i_disable_keyboard_shortcuts() {
-    userPreferencesPage.toggleKeyboardShortcuts(false);
+    userPreferencesPage.setKeyboardShortcuts(false);
   }
 
   @Then("current page is changed to home page.")
