@@ -4,6 +4,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ThemeChangeSteps extends RunTest {
 
@@ -19,6 +23,9 @@ public class ThemeChangeSteps extends RunTest {
 
   @Then("current theme is changed to Dark theme.")
   public void current_theme_is_changed_to_dark_theme() {
+    WebDriverWait wait = new WebDriverWait(driver, 10);
+    WebElement webElement = driver.findElement(By.xpath("//body"));
+    wait.until(ExpectedConditions.attributeToBe(webElement, "background-color", "rgb(45, 45, 45)"));
     Assert.assertEquals("rgb(45, 45, 45)", userPreferencesPage.getPageColor());
   }
 
