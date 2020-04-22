@@ -1,5 +1,7 @@
 package org.docroma47.cucumberstackoverflow.steps;
 
+import java.nio.file.Path;
+
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
@@ -25,8 +27,11 @@ public class CommonSteps {
   @After
   public void embedScreenshotOnFail(Scenario scenario) {
     if (scenario.isFailed()) {
-      byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+      TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+      byte[] screenshot = takesScreenshot.getScreenshotAs(OutputType.BYTES);
       scenario.embed(screenshot, "image/png", "Failure screenshot: " + scenario.getName());
+      takesScreenshot.getScreenshotAs(OutputType.FILE).renameTo(
+          Path.of("results/" + scenario.getName() + ".png").toFile());
     }
   }
 
