@@ -13,7 +13,10 @@ public class UserPreferencesPage {
       "Edit-profile", "//a[text()='Edit profile and settings']",
       "Profile", "//a[@class='my-profile js-gps-track']",
       "Dark-theme", "//input[@id='enableForcedDarkmode']",
-      "Keyboard-shortcuts", "//input[@id='keyboardShortcuts']"
+      "Keyboard-shortcuts", "//input[@id='keyboardShortcuts']",
+      "Top-bar-xpath", "/html/body/header",
+      "Top-bar-stickiness", "//*[@id='fixedHeader']",
+      "Start-download-button", "//button[text()='Start download']"
   );
 
   public UserPreferencesPage(WebDriver driver) {

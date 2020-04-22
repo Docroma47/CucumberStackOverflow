@@ -1,10 +1,11 @@
 package steps;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,6 +23,9 @@ public class ThemeChangeSteps extends RunTest {
 
   @Then("current theme is changed to Dark theme.")
   public void current_theme_is_changed_to_dark_theme() {
+    WebDriverWait wait = new WebDriverWait(driver, 10);
+    WebElement webElement = driver.findElement(By.xpath("//body"));
+    wait.until(ExpectedConditions.attributeToBe(webElement, "background-color", "rgb(45, 45, 45)"));
     Assert.assertEquals("rgb(45, 45, 45)", userPreferencesPage.getPageColor());
   }
 
@@ -37,20 +41,4 @@ public class ThemeChangeSteps extends RunTest {
     logInPage.login();
   }
 
-  @When("I enable keyboard shortcuts.")
-  public void i_enable_keyboard_shortcuts() {
-    driver.findElement(userPreferencesPage.getUiElement("Keyboard-shortcuts")).click();
-  }
-
-  @Then("current page is changed to home page.")
-  public void current_page_is_changed_to_home_page() {
-    WebDriverWait wait = new WebDriverWait(driver, 2);
-    wait.until(ExpectedConditions.urlToBe("https://stackoverflow.com/"));
-    Assert.assertEquals("https://stackoverflow.com/", driver.getCurrentUrl());
-  }
-
-  @And("I press hot keys G and H.")
-  public void i_press_hot_keys_G_and_H() {
-    userPreferencesPage.inputHotKeysGAndH();
-  }
 }
