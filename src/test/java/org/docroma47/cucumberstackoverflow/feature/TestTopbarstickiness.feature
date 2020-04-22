@@ -1,8 +1,7 @@
 Feature: Disable top bar stickiness.
-  The user is logged in on the site
 
   Scenario: Top bar stickiness changes from enabled to disabled.
-    Given I am on the main page.
+    Given I am logged in as a regular user.
     And I navigate to the user preferences page.
     When I enable Top bar stickiness.
     And I scroll to the bottom.

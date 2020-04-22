@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import org.docroma47.cucumberstackoverflow.page.UserPreferencesPage;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +20,18 @@ public class KeyboardShortcutsSteps {
 
   @When("I enable keyboard shortcuts.")
   public void i_enable_keyboard_shortcuts() {
-    if (!driver.findElement(userPreferencesPage.getUiElement("Keyboard-shortcuts")).isSelected()) {
-      driver.findElement(userPreferencesPage.getUiElement("Keyboard-shortcuts")).click();
+    WebElement keyboard = driver.findElement(userPreferencesPage.getUiElement("Keyboard-shortcuts"));
+    if (!keyboard.isSelected()) {
+      keyboard.click();
     }
 
   }
 
   @When("I disable keyboard shortcuts.")
   public void i_disable_keyboard_shortcuts() {
-    if (driver.findElement(userPreferencesPage.getUiElement("Keyboard-shortcuts")).isSelected()) {
-      driver.findElement(userPreferencesPage.getUiElement("Keyboard-shortcuts")).click();
+    WebElement keyboard = driver.findElement(userPreferencesPage.getUiElement("Keyboard-shortcuts"));
+    if (keyboard.isSelected()) {
+      keyboard.click();
     }
   }
 
@@ -42,8 +45,11 @@ public class KeyboardShortcutsSteps {
   @Then("current page is preferences page.")
   public void current_page_is_preferences_page() {
     WebDriverWait wait = new WebDriverWait(driver, 2);
-    wait.until(ExpectedConditions.urlToBe("https://stackoverflow.com/users/preferences/13143191"));
-    Assert.assertEquals("https://stackoverflow.com/users/preferences/13143191", driver.getCurrentUrl());
+    if (driver.getCurrentUrl().contains("preferences")) {
+      Assert.assertTrue(true);
+    } else {
+      Assert.assertTrue(false);
+    }
   }
 
   @And("I press hot keys G and H.")
