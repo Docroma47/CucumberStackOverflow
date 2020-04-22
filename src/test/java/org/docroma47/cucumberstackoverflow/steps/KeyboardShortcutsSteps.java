@@ -19,17 +19,12 @@ public class KeyboardShortcutsSteps {
 
   @When("I enable keyboard shortcuts.")
   public void i_enable_keyboard_shortcuts() {
-    if (!driver.findElement(userPreferencesPage.getUiElement("Keyboard-shortcuts")).isSelected()) {
-      driver.findElement(userPreferencesPage.getUiElement("Keyboard-shortcuts")).click();
-    }
-
+    userPreferencesPage.toggleKeyboardShortcuts(true);
   }
 
   @When("I disable keyboard shortcuts.")
   public void i_disable_keyboard_shortcuts() {
-    if (driver.findElement(userPreferencesPage.getUiElement("Keyboard-shortcuts")).isSelected()) {
-      driver.findElement(userPreferencesPage.getUiElement("Keyboard-shortcuts")).click();
-    }
+    userPreferencesPage.toggleKeyboardShortcuts(false);
   }
 
   @Then("current page is changed to home page.")
@@ -41,9 +36,7 @@ public class KeyboardShortcutsSteps {
 
   @Then("current page is preferences page.")
   public void current_page_is_preferences_page() {
-    WebDriverWait wait = new WebDriverWait(driver, 2);
-    wait.until(ExpectedConditions.urlToBe("https://stackoverflow.com/users/preferences/13143191"));
-    Assert.assertEquals("https://stackoverflow.com/users/preferences/13143191", driver.getCurrentUrl());
+    Assert.assertTrue(driver.getCurrentUrl().contains("preferences"));
   }
 
   @And("I press hot keys G and H.")

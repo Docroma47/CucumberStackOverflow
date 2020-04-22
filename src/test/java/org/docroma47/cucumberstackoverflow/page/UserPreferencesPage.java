@@ -54,4 +54,11 @@ public class UserPreferencesPage {
     driver.findElement(By.tagName("body")).sendKeys("G");
     driver.findElement(By.tagName("body")).sendKeys("H");
   }
+
+  public void toggleKeyboardShortcuts(boolean enabled) {
+    WebElement keyboard = driver.findElement(getUiElement("Keyboard-shortcuts"));
+    if (!keyboard.isSelected() && enabled || keyboard.isSelected() && !enabled) {
+      keyboard.click();
+    }
+  }
 }

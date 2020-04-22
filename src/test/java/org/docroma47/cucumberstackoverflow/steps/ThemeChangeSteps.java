@@ -45,6 +45,7 @@ public class ThemeChangeSteps {
 
   @Given("I am logged in as a regular user.")
   public void i_am_logged_in_as_a_regular_user() {
+    driver.get("https://stackoverflow.com/");
     Cookie authCookie = driver.manage().getCookieNamed("acct");
     if (authCookie == null) {
       logInPage.navigateToLogin();
