@@ -26,12 +26,12 @@ public class ThemeChangeSteps {
 
   @When("I switch Theme to Dark.")
   public void i_switch_theme_to_dark() {
-    userPreferencesPage.toggleTheme("Dark-theme");
+    userPreferencesPage.setTheme("Dark-theme");
   }
 
   @When("I switch Theme to Light.")
   public void i_switch_theme_to_light() {
-    userPreferencesPage.toggleTheme("Light-theme");
+    userPreferencesPage.setTheme("Light-theme");
   }
 
   @Then("current theme is changed to Dark theme.")

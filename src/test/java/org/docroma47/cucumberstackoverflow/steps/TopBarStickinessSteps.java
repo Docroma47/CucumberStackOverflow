@@ -18,24 +18,23 @@ public class TopBarStickinessSteps {
 
   @When("I enable top bar stickiness.")
   public void i_enable_top_bar_stickiness() {
-    userPreferencesPage.toggleTopBarStickiness(true);
+    userPreferencesPage.setTopBarStickiness(true);
   }
 
   @When("I disable top bar stickiness.")
   public void i_disable_top_bar_stickiness() {
-    userPreferencesPage.toggleTopBarStickiness(false);
+    userPreferencesPage.setTopBarStickiness(false);
   }
 
   @Then("Top bar is not shown.")
   public void top_bar_is_not_shown() {
-    userPreferencesPage.isVisibleTopBar();
+    userPreferencesPage.isTopBarVisible();
   }
 
   @Then("Top bar is shown.")
   public void top_bar_is_shown() {
-    userPreferencesPage.isVisibleTopBar();
+    userPreferencesPage.isTopBarVisible();
   }
-
 
   @And("I scroll to the bottom.")
   public void i_scroll_to_the_bottom() {

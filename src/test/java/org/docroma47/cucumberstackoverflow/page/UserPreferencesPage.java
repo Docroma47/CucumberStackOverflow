@@ -56,26 +56,26 @@ public class UserPreferencesPage {
     driver.findElement(By.tagName("body")).sendKeys("H");
   }
 
-  public void toggleKeyboardShortcuts(boolean enabled) {
+  public void setKeyboardShortcuts(boolean enabled) {
     WebElement keyboard = driver.findElement(getUiElement("Keyboard-shortcuts"));
     if (!keyboard.isSelected() && enabled || keyboard.isSelected() && !enabled) {
       keyboard.click();
     }
   }
 
-  public void toggleTopBarStickiness(boolean enabled) {
+  public void setTopBarStickiness(boolean enabled) {
     WebElement topBarStickiness = driver.findElement(getUiElement("Top-bar-stickiness"));
     if (!topBarStickiness.isSelected() && enabled || topBarStickiness.isSelected() && !enabled) {
       topBarStickiness.click();
     }
   }
 
-  public void toggleTheme(String colorTheme) {
-    WebElement theme = driver.findElement(getUiElement(colorTheme));
-    theme.click();
+  public void setTheme(String theme) {
+    WebElement setTheme = driver.findElement(getUiElement(theme));
+    setTheme.click();
   }
 
-  public Boolean isVisibleTopBar() {
+  public Boolean isTopBarVisible() {
     return driver.findElement(getUiElement("Top-bar-xpath")).getAttribute("class").contains("fixed");
   }
 }
