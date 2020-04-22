@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class KeayboardShortcutsSteps extends RunTest{
+public class KeyboardShortcutsSteps extends RunTest{
 
   @When("I enable keyboard shortcuts.")
   public void i_enable_keyboard_shortcuts() {
