@@ -7,6 +7,7 @@ import org.docroma47.cucumberstackoverflow.page.LogInPage;
 import org.docroma47.cucumberstackoverflow.page.UserPreferencesPage;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -44,8 +45,13 @@ public class ThemeChangeSteps {
 
   @Given("I am logged in as a regular user.")
   public void i_am_logged_in_as_a_regular_user() {
-    logInPage.navigateToLogin();
-    logInPage.login();
+    Cookie authCookie = driver.manage().getCookieNamed("acct");
+    if (authCookie == null) {
+      logInPage.navigateToLogin();
+      logInPage.login();
+    }
+    authCookie = driver.manage().getCookieNamed("acct");
+    Assert.assertNotNull(authCookie);
   }
 
 }
