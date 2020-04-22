@@ -26,4 +26,15 @@ public class KeayboardShortcutsSteps extends RunTest{
     userPreferencesPage.inputHotKeysGAndH();
   }
 
+  @When("If keyboard shortcuts are enabled, I disable keyboard shortcuts.")
+  public void if_keyboard_shortcuts_are_enabled_i_disable_keyboard_shortcuts() {
+    if (driver.findElement(userPreferencesPage.getUiElement("Keyboard-shortcuts")).isSelected()) {
+      driver.findElement(userPreferencesPage.getUiElement("Keyboard-shortcuts")).click();
+    }
+  }
+
+  @Then("checkbox is not selected.")
+  public void checkbox_is_not_selected() {
+    Assert.assertFalse(driver.findElement(userPreferencesPage.getUiElement("Keyboard-shortcuts")).isSelected());
+  }
 }

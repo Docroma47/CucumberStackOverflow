@@ -6,3 +6,9 @@ Feature: Enable keyboard shortcuts.
     When I enable keyboard shortcuts.
     And I press hot keys G and H.
     Then current page is changed to home page.
+
+  Scenario: If keyboard shortcuts are enabled, then I disable keyboard shortcuts.
+    Given I navigate to the user preferences page.
+    When If keyboard shortcuts are enabled, I disable keyboard shortcuts.
+    Then checkbox is not selected.
+
