@@ -1,6 +1,7 @@
 package org.docroma47.cucumberstackoverflow.page;
 import java.util.Map;
 
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,7 @@ public class UserPreferencesPage {
       "Edit-profile", "//a[text()='Edit profile and settings']",
       "Profile", "//a[@class='my-profile js-gps-track']",
       "Dark-theme", "//input[@id='enableForcedDarkmode']",
+      "Light-theme", "//input[@id='enableForcedLightmode']",
       "Keyboard-shortcuts", "//input[@id='keyboardShortcuts']",
       "Top-bar-xpath", "/html/body/header",
       "Top-bar-stickiness", "//*[@id='fixedHeader']",
@@ -60,5 +62,21 @@ public class UserPreferencesPage {
     if (!keyboard.isSelected() && enabled || keyboard.isSelected() && !enabled) {
       keyboard.click();
     }
+  }
+
+  public void toggleTopBarStickiness(boolean enabled) {
+    WebElement topBarStickiness = driver.findElement(getUiElement("Top-bar-stickiness"));
+    if (!topBarStickiness.isSelected() && enabled || topBarStickiness.isSelected() && !enabled) {
+      topBarStickiness.click();
+    }
+  }
+
+  public void toggleTheme(String colorTheme) {
+    WebElement theme = driver.findElement(getUiElement(colorTheme));
+    theme.click();
+  }
+
+  public Boolean isVisibleTopBar() {
+    return driver.findElement(getUiElement("Top-bar-xpath")).getAttribute("class").contains("fixed");
   }
 }

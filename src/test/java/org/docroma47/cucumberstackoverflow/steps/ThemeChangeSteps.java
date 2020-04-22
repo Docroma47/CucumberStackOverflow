@@ -26,7 +26,12 @@ public class ThemeChangeSteps {
 
   @When("I switch Theme to Dark.")
   public void i_switch_theme_to_dark() {
-    driver.findElement(userPreferencesPage.getUiElement("Dark-theme")).click();
+    userPreferencesPage.toggleTheme("Dark-theme");
+  }
+
+  @When("I switch Theme to Light.")
+  public void i_switch_theme_to_light() {
+    userPreferencesPage.toggleTheme("Light-theme");
   }
 
   @Then("current theme is changed to Dark theme.")
@@ -35,6 +40,14 @@ public class ThemeChangeSteps {
     WebElement webElement = driver.findElement(By.xpath("//body"));
     wait.until(ExpectedConditions.attributeToBe(webElement, "background-color", "rgb(45, 45, 45)"));
     Assert.assertEquals("rgb(45, 45, 45)", userPreferencesPage.getPageColor());
+  }
+
+  @Then("current theme is changed to Light theme.")
+  public void current_theme_is_changed_to_light_theme() {
+    WebDriverWait wait = new WebDriverWait(driver, 10);
+    WebElement webElement = driver.findElement(By.xpath("//body"));
+    wait.until(ExpectedConditions.attributeToBe(webElement, "background-color", "rgb(255, 255, 255)"));
+    Assert.assertEquals("rgb(255, 255, 255)", userPreferencesPage.getPageColor());
   }
 
   @When("I navigate to the user preferences page.")

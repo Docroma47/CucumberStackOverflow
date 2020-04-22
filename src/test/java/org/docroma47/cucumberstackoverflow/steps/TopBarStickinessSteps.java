@@ -17,19 +17,26 @@ public class TopBarStickinessSteps {
   @Autowired
   private UserPreferencesPage userPreferencesPage;
 
-  @When("I enable Top bar stickiness.")
+  @When("I enable top bar stickiness.")
   public void i_enable_top_bar_stickiness() {
-    driver.findElement(userPreferencesPage.getUiElement("Top-bar-stickiness")).click();
+    userPreferencesPage.toggleTopBarStickiness(true);
+  }
+
+  @When("I disable top bar stickiness.")
+  public void i_disable_top_bar_stickiness() {
+    userPreferencesPage.toggleTopBarStickiness(false);
   }
 
   @Then("Top bar is not shown.")
   public void top_bar_is_not_shown() {
-    if (driver.findElement(userPreferencesPage.getUiElement("Top-bar-xpath")).getAttribute("class").contains("fixed")) {
-      Assert.assertTrue(false);
-    } else {
-      Assert.assertTrue(true);
-    }
+    userPreferencesPage.isVisibleTopBar();
   }
+
+  @Then("Top bar is shown.")
+  public void top_bar_is_shown() {
+    userPreferencesPage.isVisibleTopBar();
+  }
+
 
   @And("I scroll to the bottom.")
   public void i_scroll_to_the_bottom() {
