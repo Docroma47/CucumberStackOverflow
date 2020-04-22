@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class KeayboardShortcutsSteps {
+public class KeyboardShortcutsSteps {
 
   @Autowired
   private WebDriver driver;
@@ -19,7 +19,12 @@ public class KeayboardShortcutsSteps {
 
   @When("I enable keyboard shortcuts.")
   public void i_enable_keyboard_shortcuts() {
-    driver.findElement(userPreferencesPage.getUiElement("Keyboard-shortcuts")).click();
+    userPreferencesPage.toggleKeyboardShortcuts(true);
+  }
+
+  @When("I disable keyboard shortcuts.")
+  public void i_disable_keyboard_shortcuts() {
+    userPreferencesPage.toggleKeyboardShortcuts(false);
   }
 
   @Then("current page is changed to home page.")
@@ -29,9 +34,19 @@ public class KeayboardShortcutsSteps {
     Assert.assertEquals("https://stackoverflow.com/", driver.getCurrentUrl());
   }
 
+  @Then("current page is preferences page.")
+  public void current_page_is_preferences_page() {
+    Assert.assertTrue(driver.getCurrentUrl().contains("preferences"));
+  }
+
   @And("I press hot keys G and H.")
   public void i_press_hot_keys_G_and_H() {
     userPreferencesPage.inputHotKeysGAndH();
+  }
+
+  @And("I refresh page.")
+  public void i_refresh_page() {
+    driver.navigate().refresh();
   }
 
 }
