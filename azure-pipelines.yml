@@ -43,4 +43,5 @@ steps:
     outputPath: ./results
     name: 'Functional Tests'
     title: Cucumber tests
+    theme: 'simple'
 
