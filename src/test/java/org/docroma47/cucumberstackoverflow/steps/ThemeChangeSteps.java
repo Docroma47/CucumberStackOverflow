@@ -3,6 +3,7 @@ package org.docroma47.cucumberstackoverflow.steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
 import org.docroma47.cucumberstackoverflow.page.LogInPage;
 import org.docroma47.cucumberstackoverflow.page.UserPreferencesPage;
 import org.junit.Assert;
@@ -13,7 +14,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 
 public class ThemeChangeSteps {
 
@@ -23,8 +23,8 @@ public class ThemeChangeSteps {
   private UserPreferencesPage userPreferencesPage;
   @Autowired
   private LogInPage logInPage;
-  @Value("${stackoverflow.baseUrl}")
-  private String baseUrl;
+  @Autowired
+  private StackoverflowProperties properties;
 
 
   @When("I switch Theme to Dark.")
@@ -61,7 +61,7 @@ public class ThemeChangeSteps {
 
   @Given("I am logged in as a regular user.")
   public void i_am_logged_in_as_a_regular_user() {
-    driver.get(baseUrl);
+    driver.get(properties.getBaseUrl());
     Cookie authCookie = driver.manage().getCookieNamed("acct");
     if (authCookie == null) {
       logInPage.navigateToLogin();
