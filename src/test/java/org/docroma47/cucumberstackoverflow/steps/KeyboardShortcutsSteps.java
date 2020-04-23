@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 public class KeyboardShortcutsSteps {
 
@@ -16,6 +17,8 @@ public class KeyboardShortcutsSteps {
   private WebDriver driver;
   @Autowired
   private UserPreferencesPage userPreferencesPage;
+  @Value("${stackoverflow.baseUrl}")
+  private String baseUrl;
 
   @When("I enable keyboard shortcuts.")
   public void i_enable_keyboard_shortcuts() {
@@ -30,8 +33,8 @@ public class KeyboardShortcutsSteps {
   @Then("current page is changed to home page.")
   public void current_page_is_changed_to_home_page() {
     WebDriverWait wait = new WebDriverWait(driver, 2);
-    wait.until(ExpectedConditions.urlToBe("https://stackoverflow.com/"));
-    Assert.assertEquals("https://stackoverflow.com/", driver.getCurrentUrl());
+    wait.until(ExpectedConditions.urlToBe(baseUrl));
+    Assert.assertEquals(baseUrl, driver.getCurrentUrl());
   }
 
   @Then("current page is preferences page.")

@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 public class ThemeChangeSteps {
 
@@ -22,6 +23,8 @@ public class ThemeChangeSteps {
   private UserPreferencesPage userPreferencesPage;
   @Autowired
   private LogInPage logInPage;
+  @Value("${stackoverflow.baseUrl}")
+  private String baseUrl;
 
 
   @When("I switch Theme to Dark.")
@@ -58,7 +61,7 @@ public class ThemeChangeSteps {
 
   @Given("I am logged in as a regular user.")
   public void i_am_logged_in_as_a_regular_user() {
-    driver.get("https://stackoverflow.com/");
+    driver.get(baseUrl);
     Cookie authCookie = driver.manage().getCookieNamed("acct");
     if (authCookie == null) {
       logInPage.navigateToLogin();

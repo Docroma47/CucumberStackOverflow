@@ -15,9 +15,9 @@ public class LogInPage {
   @Autowired
   private WebDriver driver;
   @Value("${stackoverflow.users.regular.username}")
-  String username;
+  private String username;
   @Value("${stackoverflow.users.regular.password}")
-  String password;
+  private String password;
 
   private Map<String, String> uiElements = of(
       "Log_in", "//header//li[@class='-ctas']//a[1]",
@@ -52,8 +52,6 @@ public class LogInPage {
   }
 
   public void login() {
-    System.out.println(username);
-    System.out.println(password);
     inputLoginDetails(username, password);
     clickSubmitButton();
   }

@@ -1,9 +1,9 @@
 package org.docroma47.cucumberstackoverflow.config;
 
 import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.firefox.FirefoxBinary;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
-//import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -24,13 +24,12 @@ public class CucumberConfiguration {
       System.setProperty("webdriver.gecko.driver", "Drivers\\Windows\\geckodriver.exe");
     }
 
-//    FirefoxBinary firefoxBinary = new FirefoxBinary();
-//    firefoxBinary.addCommandLineOptions("--headless");
-//
-//    FirefoxOptions firefoxOptions = new FirefoxOptions();
-//    firefoxOptions.setBinary(firefoxBinary);
-//    WebDriver driver = new FirefoxDriver(firefoxOptions);
-    WebDriver driver = new FirefoxDriver();
+    FirefoxBinary firefoxBinary = new FirefoxBinary();
+    firefoxBinary.addCommandLineOptions("--headless");
+
+    FirefoxOptions firefoxOptions = new FirefoxOptions();
+    firefoxOptions.setBinary(firefoxBinary);
+    WebDriver driver = new FirefoxDriver(firefoxOptions);
     driver.manage().timeouts().implicitlyWait(15, SECONDS);
     driver.manage().window().maximize();
     return driver;
