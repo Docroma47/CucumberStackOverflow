@@ -1,10 +1,11 @@
 package org.docroma47.cucumberstackoverflow.page;
+
 import java.util.Map;
 
+import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import static java.util.Map.of;
@@ -14,10 +15,8 @@ public class LogInPage {
 
   @Autowired
   private WebDriver driver;
-  @Value("${stackoverflow.users.regular.username}")
-  private String username;
-  @Value("${stackoverflow.users.regular.password}")
-  private String password;
+  @Autowired
+  private StackoverflowProperties properties;
 
   private Map<String, String> uiElements = of(
       "Log_in", "//header//li[@class='-ctas']//a[1]",
@@ -52,7 +51,8 @@ public class LogInPage {
   }
 
   public void login() {
-    inputLoginDetails(username, password);
+    StackoverflowProperties.User user = properties.getUsers().get("regular");
+    inputLoginDetails(user.getUsername(), user.getPassword());
     clickSubmitButton();
   }
 

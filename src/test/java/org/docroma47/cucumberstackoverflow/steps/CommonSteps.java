@@ -6,11 +6,11 @@ import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import org.docroma47.cucumberstackoverflow.config.CucumberConfiguration;
+import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 // This class should contain at least one step in order to force cucumber to auto-load all other steps
@@ -19,12 +19,12 @@ public class CommonSteps {
 
   @Autowired
   private WebDriver driver;
-  @Value("${stackoverflow.baseUrl}")
-  private String baseUrl;
+  @Autowired
+  private StackoverflowProperties properties;
 
   @Given("I am on the main page.")
   public void i_am_on_the_main_page() {
-    driver.get(baseUrl);
+    driver.get(properties.getBaseUrl());
   }
 
   @After
