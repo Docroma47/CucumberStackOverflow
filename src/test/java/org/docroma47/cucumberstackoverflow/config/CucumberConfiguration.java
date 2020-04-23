@@ -4,12 +4,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
+@EnableConfigurationProperties({ StackoverflowProperties.class })
 @ComponentScan(basePackages = "org.docroma47.cucumberstackoverflow")
 @Configuration
 public class CucumberConfiguration {
