@@ -1,0 +1,9 @@
+stackoverflow:
+  baseUrl: https://stackoverflow.com/
+  users:
+    regular:
+      username: romakolotov47@gmail.com
+      password: 79213980538r
+    admin:
+      username:
+      password:
