@@ -4,7 +4,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.docroma47.cucumberstackoverflow.page.UserPreferencesPage;
-import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +16,24 @@ public class TopBarStickinessSteps {
   @Autowired
   private UserPreferencesPage userPreferencesPage;
 
-  @When("I enable Top bar stickiness.")
+  @When("I enable top bar stickiness.")
   public void i_enable_top_bar_stickiness() {
-    driver.findElement(userPreferencesPage.getUiElement("Top-bar-stickiness")).click();
+    userPreferencesPage.setTopBarStickiness(true);
+  }
+
+  @When("I disable top bar stickiness.")
+  public void i_disable_top_bar_stickiness() {
+    userPreferencesPage.setTopBarStickiness(false);
   }
 
   @Then("Top bar is not shown.")
   public void top_bar_is_not_shown() {
-    if (driver.findElement(userPreferencesPage.getUiElement("Top-bar-xpath")).getAttribute("class").contains("fixed")) {
-      Assert.assertTrue(false);
-    } else {
-      Assert.assertTrue(true);
-    }
+    userPreferencesPage.isTopBarVisible();
+  }
+
+  @Then("Top bar is shown.")
+  public void top_bar_is_shown() {
+    userPreferencesPage.isTopBarVisible();
   }
 
   @And("I scroll to the bottom.")
