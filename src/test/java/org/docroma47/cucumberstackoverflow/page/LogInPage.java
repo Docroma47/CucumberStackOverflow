@@ -50,8 +50,8 @@ public class LogInPage {
     driver.findElement(getUiElement("Submit")).click();
   }
 
-  public void login() {
-    StackoverflowProperties.User user = properties.getUsers().get("regular");
+  public void login(String whichUser) {
+    StackoverflowProperties.User user = properties.getUsers().get(whichUser);
     inputLoginDetails(user.getUsername(), user.getPassword());
     clickSubmitButton();
   }

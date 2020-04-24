@@ -59,13 +59,13 @@ public class ThemeChangeSteps {
     userPreferencesPage.navigateToPreferences();
   }
 
-  @Given("I am logged in as a regular user.")
-  public void i_am_logged_in_as_a_regular_user() {
+  @Given("I am logged in as a {string} user.")
+  public void i_am_logged_in_as_a_regular_user(String whichUser) {
     driver.get(properties.getBaseUrl());
     Cookie authCookie = driver.manage().getCookieNamed("acct");
     if (authCookie == null) {
       logInPage.navigateToLogin();
-      logInPage.login();
+      logInPage.login(whichUser);
     }
     authCookie = driver.manage().getCookieNamed("acct");
     Assert.assertNotNull(authCookie);
