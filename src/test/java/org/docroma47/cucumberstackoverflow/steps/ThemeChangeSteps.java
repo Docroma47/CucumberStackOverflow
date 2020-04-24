@@ -61,12 +61,15 @@ public class ThemeChangeSteps {
 
   @Given("I am logged in as a {string} user.")
   public void i_am_logged_in_as_a_regular_user(String whichUser) {
+    WebDriverWait wait = new WebDriverWait(driver, 5, 5);
     driver.get(properties.getBaseUrl());
     Cookie authCookie = driver.manage().getCookieNamed("acct");
     if (authCookie == null) {
       logInPage.navigateToLogin();
       logInPage.login(whichUser);
     }
+
+    wait.until(ExpectedConditions.urlToBe(properties.getBaseUrl()));
     authCookie = driver.manage().getCookieNamed("acct");
     Assert.assertNotNull(authCookie);
   }
