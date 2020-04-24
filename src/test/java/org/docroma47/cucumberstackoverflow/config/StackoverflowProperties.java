@@ -10,11 +10,17 @@ import org.springframework.boot.context.properties.ConstructorBinding;
 public class StackoverflowProperties {
 
   private final String baseUrl;
+  private final String logoutUrl;
   private final Map<String, User> users;
 
-  public StackoverflowProperties(String baseUrl, Map<String, User> users) {
+  public StackoverflowProperties(String baseUrl, Map<String, User> users, String logoutUrl) {
     this.baseUrl = baseUrl;
+    this.logoutUrl = logoutUrl;
     this.users = users;
+  }
+
+  public String getLogoutUrl() {
+    return logoutUrl;
   }
 
   public String getBaseUrl() {

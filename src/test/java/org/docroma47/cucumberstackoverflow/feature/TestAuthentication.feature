@@ -1,13 +1,13 @@
 Feature: Authentication.
 
-  @out
+  @LogoutRequired
   Scenario Outline: User full name check.
-    Given I am logged in as a "<fullName>" user.
+    Given I am logged in as a "<userType>" user.
     When I navigate to the user profile page.
     And I scroll to the bottom.
     Then current full name is "<fullName>".
 
     Examples:
-      | fullName |
-      | regular  |
-      | admin    |
+      | userType | fullName |
+      | regular  | regular  |
+      | admin    | admin    |

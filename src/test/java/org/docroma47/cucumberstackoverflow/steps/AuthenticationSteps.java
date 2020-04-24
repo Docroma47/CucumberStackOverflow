@@ -6,7 +6,6 @@ import io.cucumber.java.en.When;
 import org.docroma47.cucumberstackoverflow.page.LogInPage;
 import org.docroma47.cucumberstackoverflow.page.UserPreferencesPage;
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -32,13 +31,11 @@ public class AuthenticationSteps {
     WebDriverWait wait = new WebDriverWait(driver, 2);
     WebElement realName = driver.findElement(userPreferencesPage.getUiElement("Real-name"));
     wait.until(ExpectedConditions.visibilityOf(driver.findElement(userPreferencesPage.getUiElement("Real-name"))));
-    Assert.assertEquals(username, realName.getAttribute("value"));
+    Assert.assertEquals(username, realName.getAttribute("value").toLowerCase());
   }
 
-  @After(value = "@out")
-  public void logOutOfProfile() {
-    JavascriptExecutor js = ((JavascriptExecutor) driver);
-    js.executeScript("window.scrollTo(5000, document.body.scrollHeight)");
+  @After(value = "@LogoutRequired")
+  public void logout() {
     logInPage.logout();
   }
 }
