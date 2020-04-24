@@ -26,7 +26,6 @@ public class ThemeChangeSteps {
   @Autowired
   private StackoverflowProperties properties;
 
-
   @When("I switch Theme to Dark.")
   public void i_switch_theme_to_dark() {
     userPreferencesPage.setTheme("Dark-theme");
@@ -59,14 +58,17 @@ public class ThemeChangeSteps {
     userPreferencesPage.navigateToPreferences();
   }
 
-  @Given("I am logged in as a regular user.")
-  public void i_am_logged_in_as_a_regular_user() {
+  @Given("I am logged in as a {string} user.")
+  public void i_am_logged_in_as_a_regular_user(String whichUser) {
+    WebDriverWait wait = new WebDriverWait(driver, 5, 5);
     driver.get(properties.getBaseUrl());
     Cookie authCookie = driver.manage().getCookieNamed("acct");
     if (authCookie == null) {
       logInPage.navigateToLogin();
-      logInPage.login();
+      logInPage.login(whichUser);
     }
+
+    wait.until(ExpectedConditions.urlToBe(properties.getBaseUrl()));
     authCookie = driver.manage().getCookieNamed("acct");
     Assert.assertNotNull(authCookie);
   }

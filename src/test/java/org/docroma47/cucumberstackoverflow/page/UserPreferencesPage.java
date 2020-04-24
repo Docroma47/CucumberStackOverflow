@@ -22,7 +22,8 @@ public class UserPreferencesPage {
       "Keyboard-shortcuts", "//input[@id='keyboardShortcuts']",
       "Top-bar-xpath", "/html/body/header",
       "Top-bar-stickiness", "//*[@id='fixedHeader']",
-      "Start-download-button", "//button[text()='Start download']"
+      "Start-download-button", "//button[text()='Start download']",
+      "Real-name", "//*[@id='RealName']"
   );
 
   public UserPreferencesPage(WebDriver driver) {
@@ -78,4 +79,5 @@ public class UserPreferencesPage {
   public Boolean isTopBarVisible() {
     return driver.findElement(getUiElement("Top-bar-xpath")).getAttribute("class").contains("fixed");
   }
+
 }
