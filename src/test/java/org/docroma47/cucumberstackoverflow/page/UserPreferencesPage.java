@@ -76,7 +76,7 @@ public class UserPreferencesPage {
     setTheme.click();
   }
 
-  public Boolean isTopBarVisible() {
+  public Boolean isTopBarFixed() {
     return driver.findElement(getUiElement("Top-bar-xpath")).getAttribute("class").contains("fixed");
   }
 
