@@ -22,7 +22,8 @@ public class LogInPage {
       "Log_in", "//header//li[@class='-ctas']//a[1]",
       "Field_email", "//input[@id='email']",
       "Field_password", "//input[@id='password']",
-      "Submit", "//*[@id='submit-button']"
+      "Submit", "//*[@id='submit-button']",
+      "Logout", "//button[text()='Log out']"
   );
 
   public LogInPage(WebDriver driver) {
@@ -42,6 +43,10 @@ public class LogInPage {
     inputText(getUiElement("Field_password"), password);
   }
 
+  private void clickOn(By xpath) {
+    driver.findElement(xpath).click();
+  }
+
   public void navigateToLogin() {
     driver.findElement(getUiElement("Log_in")).click();
   }
@@ -54,6 +59,11 @@ public class LogInPage {
     StackoverflowProperties.User user = properties.getUsers().get(whichUser);
     inputLoginDetails(user.getUsername(), user.getPassword());
     clickSubmitButton();
+  }
+
+  public void logout() {
+    driver.get(properties.getBaseUrl() + "/users/logout");
+    clickOn(getUiElement("Logout"));
   }
 
 }

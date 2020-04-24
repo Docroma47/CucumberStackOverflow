@@ -26,7 +26,6 @@ public class ThemeChangeSteps {
   @Autowired
   private StackoverflowProperties properties;
 
-
   @When("I switch Theme to Dark.")
   public void i_switch_theme_to_dark() {
     userPreferencesPage.setTheme("Dark-theme");
