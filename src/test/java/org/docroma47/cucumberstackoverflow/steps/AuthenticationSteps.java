@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class UsernameSteps {
+public class AuthenticationSteps {
 
   @Autowired
   private WebDriver driver;
@@ -27,7 +27,7 @@ public class UsernameSteps {
     userPreferencesPage.navigateToProfile();
   }
 
-  @Then("current username is {string}.")
+  @Then("current full name is {string}.")
   public void current_username_is(String username) {
     WebDriverWait wait = new WebDriverWait(driver, 2);
     WebElement realName = driver.findElement(userPreferencesPage.getUiElement("Real-name"));
@@ -36,7 +36,7 @@ public class UsernameSteps {
   }
 
   @After(value = "@out")
-  public void outProfile() {
+  public void logOutOfProfile() {
     JavascriptExecutor js = ((JavascriptExecutor) driver);
     js.executeScript("window.scrollTo(5000, document.body.scrollHeight)");
     logInPage.logout();

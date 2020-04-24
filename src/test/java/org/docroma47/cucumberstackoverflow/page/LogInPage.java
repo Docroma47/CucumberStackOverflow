@@ -23,8 +23,6 @@ public class LogInPage {
       "Field_email", "//input[@id='email']",
       "Field_password", "//input[@id='password']",
       "Submit", "//*[@id='submit-button']",
-      "Menubar", "//div[@role='menubar']/ol/li[6]",
-      "Log_out", "//a[text()='log out']",
       "Logout", "//button[text()='Log out']"
   );
 
@@ -45,7 +43,7 @@ public class LogInPage {
     inputText(getUiElement("Field_password"), password);
   }
 
-  private void navigateToPage(By xpath) {
+  private void clickOn(By xpath) {
     driver.findElement(xpath).click();
   }
 
@@ -64,9 +62,8 @@ public class LogInPage {
   }
 
   public void logout() {
-    navigateToPage(getUiElement("Menubar"));
-    navigateToPage(getUiElement("Log_out"));
-    navigateToPage(getUiElement("Logout"));
+    driver.get("https://stackoverflow.com/users/logout");
+    clickOn(getUiElement("Logout"));
   }
 
 }

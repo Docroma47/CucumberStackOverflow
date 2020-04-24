@@ -2,12 +2,12 @@ Feature: Authentication.
 
   @out
   Scenario Outline: User full name check.
-    Given I am logged in as a "<username>" user.
+    Given I am logged in as a "<fullName>" user.
     When I navigate to the user profile page.
     And I scroll to the bottom.
-    Then current username is "<username>".
+    Then current full name is "<fullName>".
 
     Examples:
-      | username |
+      | fullName |
       | regular  |
       | admin    |
