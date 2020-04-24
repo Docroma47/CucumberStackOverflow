@@ -1,6 +1,5 @@
 stackoverflow:
   baseUrl: https://stackoverflow.com/
-  logoutUrl: https://stackoverflow.com/users/logout
   users:
     regular:
       username: romakolotov47@gmail.com

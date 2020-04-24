@@ -9,5 +9,5 @@ Feature: Authentication.
 
     Examples:
       | userType | fullName |
-      | regular  | regular  |
-      | admin    | admin    |
+      | regular  | Regular  |
+      | admin    | Admin    |

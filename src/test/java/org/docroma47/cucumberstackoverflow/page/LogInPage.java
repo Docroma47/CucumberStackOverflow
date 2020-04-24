@@ -62,7 +62,7 @@ public class LogInPage {
   }
 
   public void logout() {
-    driver.get(properties.getLogoutUrl());
+    driver.get(properties.getBaseUrl() + "/users/logout");
     clickOn(getUiElement("Logout"));
   }
 

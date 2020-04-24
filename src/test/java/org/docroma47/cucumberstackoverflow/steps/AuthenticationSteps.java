@@ -31,7 +31,7 @@ public class AuthenticationSteps {
     WebDriverWait wait = new WebDriverWait(driver, 2);
     WebElement realName = driver.findElement(userPreferencesPage.getUiElement("Real-name"));
     wait.until(ExpectedConditions.visibilityOf(driver.findElement(userPreferencesPage.getUiElement("Real-name"))));
-    Assert.assertEquals(username, realName.getAttribute("value").toLowerCase());
+    Assert.assertEquals(username, realName.getAttribute("value"));
   }
 
   @After(value = "@LogoutRequired")
