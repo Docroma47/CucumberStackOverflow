@@ -10,17 +10,13 @@ steps:
 - task: DownloadSecureFile@1
   name: Agent
   inputs:
-    secureFile: 'application.yml'
-- script: |
-    echo Installing $(Agent.TempDirectory)
-    sudo chown root:root $(Agent.TempDirectory)
-    sudo chmod a+r $(Agent.TempDirectory)
-    sudo ln -s -t /etc/ssl/certs/ $(Agent.TempDirectory)
+    secureFile: 'application'
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml' 
     goals: 'package' # Optional
-    options: # Optional
+    options: -Dspring.config.location=$(Agent.TempDirectory.application.yml) # Optional
     publishJUnitResults: true 
     testResultsFiles: '**/surefire-reports/TEST-*.xml' # Required when publishJUnitResults == True
     testRunTitle: # Optional
