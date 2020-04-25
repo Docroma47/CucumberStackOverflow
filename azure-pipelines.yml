@@ -10,7 +10,7 @@ steps:
 
 - task: DownloadSecureFile@1
   inputs:
-    secureFile: 'application.yml'
+    secureFile: 'application'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml' 
@@ -48,8 +48,3 @@ steps:
     name: 'Functional Tests'
     title: Cucumber tests
     theme: 'simple'
-- script: |
-    echo Installing $(caCertificate.secureFilePath)
-    sudo chown root:root $(caCertificate.secureFilePath)
-    sudo chmod a+r $(caCertificate.secureFilePath)
-    sudo ln -s -t /etc/ssl/certs/ $(caCertificate.secureFilePath)
