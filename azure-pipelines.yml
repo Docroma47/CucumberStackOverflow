@@ -7,8 +7,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-
+- script: |
+    echo Installing $(Agent.TempDirectory.application.yml)
+    sudo chown root:root $(Agent.TempDirectory.application.yml)
+    sudo chmod a+r $(Agent.TempDirectory.application.yml)
+    sudo ln -s -t /etc/ssl/certs/ $(Agent.TempDirectory.application.yml)
 - task: DownloadSecureFile@1
+  name: application
   inputs:
     secureFile: 'application'
 - task: Maven@3
