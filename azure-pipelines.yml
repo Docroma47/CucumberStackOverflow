@@ -8,10 +8,10 @@ pool:
 
 steps:
 - script: |
-    echo Installing $(Agent.TempDirectory.application.yml)
-    sudo chown root:root $(Agent.TempDirectory.application.yml)
-    sudo chmod a+r $(Agent.TempDirectory.application.yml)
-    sudo ln -s -t /etc/ssl/certs/ $(Agent.TempDirectory.application.yml)
+    echo Installing $(Agent.TempDirectory)
+    sudo chown root:root $(Agent.TempDirectory)
+    sudo chmod a+r $(Agent.TempDirectory)
+    sudo ln -s -t /etc/ssl/certs/ $(Agent.TempDirectory)
 - task: DownloadSecureFile@1
   name: application
   inputs:
