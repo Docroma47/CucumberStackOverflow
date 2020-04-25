@@ -7,11 +7,15 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: DownloadSecureFile@1
+  name: Agent
+  inputs:
+    secureFile: 'application-secrets.yml'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml' 
     goals: 'package' # Optional
-    options: # Optional
+    options: -Dspring.config.location=classpath:/,$(Agent.secureFilePath) # Optional
     publishJUnitResults: true 
     testResultsFiles: '**/surefire-reports/TEST-*.xml' # Required when publishJUnitResults == True
     testRunTitle: # Optional
@@ -44,4 +48,3 @@ steps:
     name: 'Functional Tests'
     title: Cucumber tests
     theme: 'simple'
-
