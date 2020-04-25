@@ -16,7 +16,7 @@ steps:
   inputs:
     mavenPomFile: 'pom.xml' 
     goals: 'package' # Optional
-    options: -Dspring.config.location=$(Agent.TempDirectory.application.yml) # Optional
+    options: -Dspring.config.location=$(Agent.secureFilePath) # Optional
     publishJUnitResults: true 
     testResultsFiles: '**/surefire-reports/TEST-*.xml' # Required when publishJUnitResults == True
     testRunTitle: # Optional
