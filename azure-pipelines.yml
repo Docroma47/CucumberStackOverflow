@@ -10,7 +10,7 @@ steps:
 - task: DownloadSecureFile@1
   name: Agent
   inputs:
-    secureFile: 'application.yml'
+    secureFile: 'application'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml' 
