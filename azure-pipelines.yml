@@ -44,4 +44,6 @@ steps:
     name: 'Functional Tests'
     title: Cucumber tests
     theme: 'simple'
-
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'application.yml'
