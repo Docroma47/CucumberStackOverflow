@@ -8,7 +8,7 @@ pool:
 
 steps:
 - task: DownloadSecureFile@1
-  name: application
+  name: Agent
   inputs:
     secureFile: 'application.yml'
 - script: |
