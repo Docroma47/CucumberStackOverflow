@@ -100,15 +100,7 @@ public class UserPreferencesPage {
         return driver.findElement(getUiElement("Recent-tags")).isDisplayed();
       }
     } else {
-      return false;
-    }
-  }
-
-  public boolean isHotNetworkQuestionsShown(boolean shown) {
-    if (shown) {
       return driver.findElement(getUiElement("Hot-network-questions")).isDisplayed();
-    } else {
-      return false;
     }
   }
 }

@@ -14,4 +14,4 @@ Feature: Show/hide hot network questions.
     When I diasble 'Hide hot network questions'.
     And I navigate to the main page.
     And I scroll to the middle page.
-    Then 'Hot Network Questions' is shown.
+    Then 'Hot Network Questions' is not hidden.
