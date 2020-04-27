@@ -84,7 +84,7 @@ public class UserPreferencesPage {
     return driver.findElement(getUiElement("Top-bar-xpath")).getAttribute("class").contains("fixed");
   }
 
-  public void setLeftNavigation(boolean enabled) {
+  public void setHideLeftNavigation(boolean enabled) {
     WebElement keyboard = driver.findElement(getUiElement("hide-Left-navigation"));
     if (!keyboard.isSelected() && enabled || keyboard.isSelected() && !enabled) {
       keyboard.click();

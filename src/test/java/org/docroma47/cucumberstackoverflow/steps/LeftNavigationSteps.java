@@ -16,7 +16,7 @@ public class LeftNavigationSteps {
 
   @When("I disable 'Hide left navigation'.")
   public void i_disable_hide_left_navigation() {
-    userPreferencesPage.setLeftNavigation(false);
+    userPreferencesPage.setHideLeftNavigation(false);
   }
 
   @Then("left navigation panel is not hidden.")
@@ -26,7 +26,7 @@ public class LeftNavigationSteps {
 
   @When("I enable 'Hide left navigation'.")
   public void i_enable_hide_left_navigation() {
-    userPreferencesPage.setLeftNavigation(true);
+    userPreferencesPage.setHideLeftNavigation(true);
   }
 
   @Then("left navigation panel is hidden.")
