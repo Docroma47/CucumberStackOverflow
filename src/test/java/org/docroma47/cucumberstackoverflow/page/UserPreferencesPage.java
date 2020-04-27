@@ -92,15 +92,23 @@ public class UserPreferencesPage {
     }
   }
 
-  public WebElement isHotNetworkQuestionsHidden(boolean enable) {
-    if (!enable) {
-      return driver.findElement(getUiElement("Hot-network-questions"));
-    } else {
+  public boolean isHotNetworkQuestionsHidden(boolean hidden) {
+    if (hidden) {
       if (driver.findElement(getUiElement("Recent-badges")).isDisplayed()) {
-        return driver.findElement(getUiElement("Recent-badges"));
+        return driver.findElement(getUiElement("Recent-badges")).isDisplayed();
       } else {
-        return driver.findElement(getUiElement("Recent-tags"));
+        return driver.findElement(getUiElement("Recent-tags")).isDisplayed();
       }
+    } else {
+      return false;
+    }
+  }
+
+  public boolean isHotNetworkQuestionsShown(boolean shown) {
+    if (shown) {
+      return driver.findElement(getUiElement("Hot-network-questions")).isDisplayed();
+    } else {
+      return false;
     }
   }
 }
