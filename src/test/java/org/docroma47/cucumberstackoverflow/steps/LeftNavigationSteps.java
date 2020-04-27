@@ -21,7 +21,7 @@ public class LeftNavigationSteps {
 
   @Then("left navigation panel is not hidden.")
   public void left_navigation_panel_is_not_hidden() {
-    Assert.assertFalse(userPreferencesPage.isLeftNavigationPanelHidden());
+    Assert.assertTrue(userPreferencesPage.isLeftNavigationPanelHidden());
   }
 
   @When("I enable 'Hide left navigation'.")
@@ -31,6 +31,6 @@ public class LeftNavigationSteps {
 
   @Then("left navigation panel is hidden.")
   public void left_navigation_panel_is_hidden() {
-    Assert.assertTrue(userPreferencesPage.isLeftNavigationPanelHidden());
+    Assert.assertFalse(userPreferencesPage.isLeftNavigationPanelHidden());
   }
 }
