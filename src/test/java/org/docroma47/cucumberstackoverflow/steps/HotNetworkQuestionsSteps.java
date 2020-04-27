@@ -21,7 +21,7 @@ public class HotNetworkQuestionsSteps {
 
   @When("I diasble 'Hide hot network questions'.")
   public void i_diasble_hide_hot_network_questions() {
-    userPreferencesPage.setHotNetworkQuestions(false);
+    userPreferencesPage.setHideHotNetworkQuestions(false);
   }
 
   @Then("'Hot Network Questions' is not hidden.")
@@ -31,7 +31,7 @@ public class HotNetworkQuestionsSteps {
 
   @When("I enable 'Hide hot network questions'.")
   public void i_enable_hide_hot_network_questions() {
-    userPreferencesPage.setHotNetworkQuestions(true);
+    userPreferencesPage.setHideHotNetworkQuestions(true);
   }
 
   @Then("'Hot Network Questions' is hidden.")

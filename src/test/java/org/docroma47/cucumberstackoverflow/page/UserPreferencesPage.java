@@ -85,7 +85,7 @@ public class UserPreferencesPage {
     return driver.findElement(getUiElement("Top-bar-xpath")).getAttribute("class").contains("fixed");
   }
 
-  public void setHotNetworkQuestions(boolean enabled) {
+  public void setHideHotNetworkQuestions(boolean enabled) {
     WebElement keyboard = driver.findElement(getUiElement("hide-Hot-network-questions"));
     if (!keyboard.isSelected() && enabled || keyboard.isSelected() && !enabled) {
       keyboard.click();
