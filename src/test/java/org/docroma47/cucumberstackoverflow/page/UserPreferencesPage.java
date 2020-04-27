@@ -85,9 +85,9 @@ public class UserPreferencesPage {
   }
 
   public void setHideLeftNavigation(boolean enabled) {
-    WebElement keyboard = driver.findElement(getUiElement("hide-Left-navigation"));
-    if (!keyboard.isSelected() && enabled || keyboard.isSelected() && !enabled) {
-      keyboard.click();
+    WebElement hideLeftNavigation = driver.findElement(getUiElement("hide-Left-navigation"));
+    if (!hideLeftNavigation.isSelected() && enabled || hideLeftNavigation.isSelected() && !enabled) {
+      hideLeftNavigation.click();
     }
   }
 
