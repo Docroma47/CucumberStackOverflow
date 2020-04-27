@@ -1,6 +1,6 @@
 Feature: Saved job searches.
 
-  Scenario: Navigate to the saved job searches.
+  Scenario: Navigate to the 'Saved Jobs Searches'.
     Given I am logged in as a "regular" user.
-    And I navigate to the saved job searches.
-    Then current page is saved job searches.
+    And I navigate to the 'Saved Jobs Searches'.
+    Then current page is 'Saved Jobs Searches'.

@@ -16,12 +16,12 @@ public class CompaniesSteps {
   @Autowired
   private StackoverflowProperties properties;
 
-  @When("I navigate to the companies.")
+  @When("I navigate to the 'Companies'.")
   public void i_navigate_to_the_companies() {
     companiesPage.navigateToCompanies();
   }
 
-  @Then("current page is companies.")
+  @Then("current page is 'Companies'.")
   public void current_page_is_companies() {
     Assert.assertTrue(driver.findElement(companiesPage.getUiElement("Text-field-left")).isDisplayed());
     Assert.assertTrue(driver.findElement(companiesPage.getUiElement("Text-field-right")).isDisplayed());

@@ -13,12 +13,12 @@ public class ApplicationsSteps {
   @Autowired
   private ApplicationsPage applicationsPage;
 
-  @When("I navigate to the applications.")
+  @When("I navigate to the 'Applications'.")
   public void i_navigate_to_the_applications() {
     applicationsPage.navigateToApplications();
   }
 
-  @Then("current page is applications.")
+  @Then("current page is 'Applications'.")
   public void current_page_is_applications() {
     Assert.assertEquals("Display jobs you may have applied to", applicationsPage.getLabel());
     Assert.assertTrue(driver.findElement(applicationsPage.getUiElement("Display-jobs-checkbox")).isSelected());

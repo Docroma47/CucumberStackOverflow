@@ -16,12 +16,12 @@ public class JobsSteps {
   @Autowired
   private StackoverflowProperties properties;
 
-  @When("I navigate to the jobs.")
+  @When("I navigate to the 'Jobs'.")
   public void i_navigate_to_the_jobs() {
     jobsPage.navigateToJobs();
   }
 
-  @Then("current page is jobs.")
+  @Then("current page is 'Jobs'.")
   public void current_page_is_jobs() {
     Assert.assertTrue(driver.findElement(jobsPage.getUiElement("Text-field-left")).isDisplayed());
     Assert.assertTrue(driver.findElement(jobsPage.getUiElement("Text-field-right")).isDisplayed());

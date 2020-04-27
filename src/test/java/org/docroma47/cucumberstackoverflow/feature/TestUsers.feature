@@ -1,6 +1,6 @@
 Feature: Users.
 
-  Scenario: Navigate to the users.
+  Scenario: Navigate to the 'Users'.
     Given I am logged in as a "regular" user.
-    And I navigate to the users.
-    Then current page is users.
+    And I navigate to the 'Users'.
+    Then current page is 'Users'.
