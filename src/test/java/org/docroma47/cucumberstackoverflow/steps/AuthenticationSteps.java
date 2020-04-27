@@ -26,7 +26,7 @@ public class AuthenticationSteps {
     userPreferencesPage.navigateToProfile();
   }
 
-  @Then("current full name is {string}.")
+  @Then("current 'Full name' is {string}.")
   public void current_username_is(String username) {
     WebDriverWait wait = new WebDriverWait(driver, 2);
     WebElement realName = driver.findElement(userPreferencesPage.getUiElement("Real-name"));

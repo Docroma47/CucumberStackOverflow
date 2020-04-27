@@ -17,22 +17,22 @@ public class TopBarStickinessSteps {
   @Autowired
   private UserPreferencesPage userPreferencesPage;
 
-  @When("I enable top bar stickiness.")
+  @When("I enable 'Disable top bar stickiness'")
   public void i_enable_top_bar_stickiness() {
     userPreferencesPage.setTopBarStickiness(true);
   }
 
-  @When("I disable top bar stickiness.")
+  @When("I disable 'Disable top bar stickiness'.")
   public void i_disable_top_bar_stickiness() {
     userPreferencesPage.setTopBarStickiness(false);
   }
 
-  @Then("Top bar is not fixed.")
+  @Then("'Top bar' is not fixed.")
   public void top_bar_is_not_fixed() {
     Assert.assertFalse(userPreferencesPage.isTopBarFixed());
   }
 
-  @Then("Top bar is fixed.")
+  @Then("'Top bar' is fixed.")
   public void top_bar_is_fixed() {
     Assert.assertTrue(userPreferencesPage.isTopBarFixed());
   }

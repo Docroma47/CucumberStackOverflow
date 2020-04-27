@@ -26,17 +26,17 @@ public class ThemeChangeSteps {
   @Autowired
   private StackoverflowProperties properties;
 
-  @When("I switch Theme to Dark.")
+  @When("I switch Theme to 'Dark'.")
   public void i_switch_theme_to_dark() {
     userPreferencesPage.setTheme("Dark-theme");
   }
 
-  @When("I switch Theme to Light.")
+  @When("I switch Theme to 'Light'.")
   public void i_switch_theme_to_light() {
     userPreferencesPage.setTheme("Light-theme");
   }
 
-  @Then("current theme is changed to Dark theme.")
+  @Then("current theme is changed to 'Dark' theme.")
   public void current_theme_is_changed_to_dark_theme() {
     WebDriverWait wait = new WebDriverWait(driver, 10);
     WebElement webElement = driver.findElement(By.xpath("//body"));
@@ -44,7 +44,7 @@ public class ThemeChangeSteps {
     Assert.assertEquals("rgb(45, 45, 45)", userPreferencesPage.getPageColor());
   }
 
-  @Then("current theme is changed to Light theme.")
+  @Then("current theme is changed to 'Light' theme.")
   public void current_theme_is_changed_to_light_theme() {
     WebDriverWait wait = new WebDriverWait(driver, 10);
     WebElement webElement = driver.findElement(By.xpath("//body"));
@@ -52,7 +52,7 @@ public class ThemeChangeSteps {
     Assert.assertEquals("rgb(255, 255, 255)", userPreferencesPage.getPageColor());
   }
 
-  @When("I navigate to the user preferences page.")
+  @When("I navigate to the user 'Preferences' page.")
   public void i_navigate_to_the_user_preferences_page() {
     userPreferencesPage.navigateToProfile();
     userPreferencesPage.navigateToPreferences();

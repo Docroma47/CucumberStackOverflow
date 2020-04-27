@@ -20,29 +20,29 @@ public class KeyboardShortcutsSteps {
   @Autowired
   private StackoverflowProperties properties;
 
-  @When("I enable keyboard shortcuts.")
+  @When("I enable 'Enable keyboard shortcuts'.")
   public void i_enable_keyboard_shortcuts() {
     userPreferencesPage.setKeyboardShortcuts(true);
   }
 
-  @When("I disable keyboard shortcuts.")
+  @When("I disable 'Enable keyboard shortcuts'.")
   public void i_disable_keyboard_shortcuts() {
     userPreferencesPage.setKeyboardShortcuts(false);
   }
 
-  @Then("current page is changed to home page.")
+  @Then("current page is changed to 'Home' page.")
   public void current_page_is_changed_to_home_page() {
     WebDriverWait wait = new WebDriverWait(driver, 2);
     wait.until(ExpectedConditions.urlToBe(properties.getBaseUrl()));
     Assert.assertEquals(properties.getBaseUrl(), driver.getCurrentUrl());
   }
 
-  @Then("current page is preferences page.")
+  @Then("current page is 'Preferences' page.")
   public void current_page_is_preferences_page() {
     Assert.assertTrue(driver.getCurrentUrl().contains("preferences"));
   }
 
-  @And("I press hot keys G and H.")
+  @And("I press hot keys 'G' and 'H'.")
   public void i_press_hot_keys_G_and_H() {
     userPreferencesPage.inputHotKeysGAndH();
   }
