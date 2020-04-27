@@ -16,7 +16,7 @@ public class QuestionsPage {
 
   private Map<String, String> uiElements = of(
       "Questions", "//*[@id='nav-questions']",
-      "Text", "//h1"
+      "Title", "//*[@id='content']//*[contains (@class, 'fs-headline1')]"
   );
 
   public QuestionsPage(WebDriver driver) {
@@ -27,8 +27,8 @@ public class QuestionsPage {
     return By.xpath(uiElements.get(key));
   }
 
-  public String getTextPage() {
-    return driver.findElement(getUiElement("Text")).getText();
+  public String getTitle() {
+    return driver.findElement(getUiElement("Title")).getText();
   }
 
   public void navigateToQuestions() {

@@ -16,7 +16,7 @@ public class TagsPage {
 
   private Map<String, String> uiElements = of(
       "Tags", "//*[@id='nav-tags']",
-      "Text", "//h1"
+      "Title", "//*[@id='content']//*[contains (@class, 'fs-headline1')]"
   );
 
   public TagsPage(WebDriver driver) {
@@ -27,8 +27,8 @@ public class TagsPage {
     return By.xpath(uiElements.get(key));
   }
 
-  public String getTextPage() {
-    return driver.findElement(getUiElement("Text")).getText();
+  public String getTitle() {
+    return driver.findElement(getUiElement("Title")).getText();
   }
 
   public void navigateToTags() {

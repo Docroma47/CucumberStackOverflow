@@ -13,13 +13,14 @@ public class SavedJobsSteps {
   @Autowired
   private SavedJobsPage savedJobsPage;
 
-  @When("I navigate to the saved jobs page.")
-  public void i_navigate_to_the_saved_jobs_page() {
+  @When("I navigate to the saved jobs.")
+  public void i_navigate_to_the_saved_jobs() {
     savedJobsPage.navigateToSavedJobs();
   }
 
-  @Then("current page is saved jobs page.")
-  public void current_page_is_saved_jobs_page() {
-    Assert.assertEquals("Browse jobs", savedJobsPage.getTextPage());
+  @Then("current page is saved jobs.")
+  public void current_page_is_saved_jobs() {
+    Assert.assertTrue(driver.findElement(savedJobsPage.getUiElement("Button-browse-jobs")).isDisplayed());
+    Assert.assertTrue(driver.findElement(savedJobsPage.getUiElement("Svg-icon")).isDisplayed());
   }
 }

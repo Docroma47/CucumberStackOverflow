@@ -13,13 +13,13 @@ public class MessagesSteps {
   @Autowired
   private MessagesPage messagesPage;
 
-  @When("I navigate to the messages page.")
-  public void i_navigate_to_the_messages_page() {
+  @When("I navigate to the messages.")
+  public void i_navigate_to_the_messages() {
     messagesPage.navigateToMessages();
   }
 
-  @Then("current page is messages page.")
-  public void current_page_is_messages_page() {
-    Assert.assertEquals("Messages", messagesPage.getTextPage());
+  @Then("current page is messages.")
+  public void current_page_is_messages() {
+    Assert.assertEquals("Messages", messagesPage.getTitle());
   }
 }

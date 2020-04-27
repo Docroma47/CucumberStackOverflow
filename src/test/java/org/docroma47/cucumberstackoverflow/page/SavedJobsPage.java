@@ -17,19 +17,16 @@ public class SavedJobsPage {
   private Map<String, String> uiElements = of(
       "Jobs", "//*[@id='nav-jobs']",
       "SavedJobs", "//*[@id='TabSavedJobs']",
-      "Text", "//a[text()='Browse jobs']"
+      "Svg-icon", "//*[@id='content']//*[@class='svg-icon native ']",
+      "Button-browse-jobs", "//*[@id='content']//*[@class='s-btn s-btn__filled']"
   );
 
   public SavedJobsPage(WebDriver driver) {
     this.driver = driver;
   }
 
-  private By getUiElement(String key) {
+  public By getUiElement(String key) {
     return By.xpath(uiElements.get(key));
-  }
-
-  public String getTextPage() {
-    return driver.findElement(getUiElement("Text")).getText();
   }
 
   public void navigateToSavedJobs() {

@@ -13,14 +13,14 @@ public class ApplicationsSteps {
   @Autowired
   private ApplicationsPage applicationsPage;
 
-  @When("I navigate to the applications page.")
-  public void i_navigate_to_the_applications_page() {
+  @When("I navigate to the applications.")
+  public void i_navigate_to_the_applications() {
     applicationsPage.navigateToApplications();
   }
 
-  @Then("current page is applications page.")
-  public void current_page_is_applications_page() {
-    System.out.println(applicationsPage.getTextPage());
-    Assert.assertEquals("Display jobs you may have applied to", applicationsPage.getTextPage());
+  @Then("current page is applications.")
+  public void current_page_is_applications() {
+    Assert.assertEquals("Display jobs you may have applied to", applicationsPage.getLabel());
+    Assert.assertTrue(driver.findElement(applicationsPage.getUiElement("Display-jobs-checkbox")).isSelected());
   }
 }

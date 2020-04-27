@@ -17,19 +17,16 @@ public class CompaniesPage {
   private Map<String, String> uiElements = of(
       "Jobs", "//*[@id='nav-jobs']",
       "Companies", "//*[@id='TabCompanies']",
-      "Text", "//*[@id='q']"
+      "Text-field-left", "//*[@id='content']//*[@id='q']",
+      "Text-field-right", "//*[@id='content']//*[@id='l']"
   );
 
   public CompaniesPage(WebDriver driver) {
     this.driver = driver;
   }
 
-  private By getUiElement(String key) {
+  public By getUiElement(String key) {
     return By.xpath(uiElements.get(key));
-  }
-
-  public String getTextPage() {
-    return driver.findElement(getUiElement("Text")).getAttribute("placeholder");
   }
 
   public void navigateToCompanies() {

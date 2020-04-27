@@ -17,19 +17,20 @@ public class ApplicationsPage {
   private Map<String, String> uiElements = of(
       "Jobs", "//*[@id='nav-jobs']",
       "Applications", "//*[@id='TabApplication']",
-      "Text", "//label"
+      "Label-display-jobs", "//*[@id='content']//*[contains (@class, 's-label')]",
+      "Display-jobs-checkbox", "//*[@id='content']//*[@id='includeExternals']"
   );
 
   public ApplicationsPage(WebDriver driver) {
     this.driver = driver;
   }
 
-  private By getUiElement(String key) {
+  public By getUiElement(String key) {
     return By.xpath(uiElements.get(key));
   }
 
-  public String getTextPage() {
-    return driver.findElement(getUiElement("Text")).getText();
+  public String getLabel() {
+    return driver.findElement(getUiElement("Label-display-jobs")).getText();
   }
 
   public void navigateToApplications() {

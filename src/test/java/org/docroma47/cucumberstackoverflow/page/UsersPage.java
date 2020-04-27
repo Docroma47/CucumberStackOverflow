@@ -16,7 +16,7 @@ public class UsersPage {
 
   private Map<String, String> uiElements = of(
       "Users", "//*[@id='nav-users']",
-      "Text", "//h1"
+      "Title", "//*[@id='content']//*[contains (@class, 'fs-headline1')]"
   );
 
   public UsersPage(WebDriver driver) {
@@ -27,8 +27,8 @@ public class UsersPage {
     return By.xpath(uiElements.get(key));
   }
 
-  public String getTextPage() {
-    return driver.findElement(getUiElement("Text")).getText();
+  public String getTitle() {
+    return driver.findElement(getUiElement("Title")).getText();
   }
 
   public void navigateToUsers() {

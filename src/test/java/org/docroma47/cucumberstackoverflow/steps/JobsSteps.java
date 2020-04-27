@@ -2,6 +2,7 @@ package org.docroma47.cucumberstackoverflow.steps;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
 import org.docroma47.cucumberstackoverflow.page.JobsPage;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -12,14 +13,18 @@ public class JobsSteps {
   private WebDriver driver;
   @Autowired
   private JobsPage jobsPage;
+  @Autowired
+  private StackoverflowProperties properties;
 
-  @When("I navigate to the jobs page.")
-  public void i_navigate_to_the_jobs_page() {
+  @When("I navigate to the jobs.")
+  public void i_navigate_to_the_jobs() {
     jobsPage.navigateToJobs();
   }
 
-  @Then("current page is jobs page.")
-  public void current_page_is_jobs_page() {
-    Assert.assertEquals("Sort by:", jobsPage.getTextPage());
+  @Then("current page is jobs.")
+  public void current_page_is_jobs() {
+    Assert.assertTrue(driver.findElement(jobsPage.getUiElement("Text-field-left")).isDisplayed());
+    Assert.assertTrue(driver.findElement(jobsPage.getUiElement("Text-field-right")).isDisplayed());
+    Assert.assertEquals(properties.getBaseUrl() + "jobs", driver.getCurrentUrl());
   }
 }

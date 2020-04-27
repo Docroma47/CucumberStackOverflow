@@ -15,20 +15,17 @@ public class JobsPage {
   private WebDriver driver;
 
   private Map<String, String> uiElements = of(
-      "Jobs", "//*[@id='nav-jobs']",
-      "Text", "//*[@for='sort']"
+      "Jobs", "//*[@id='left-sidebar']//*[@id='nav-jobs']",
+      "Text-field-left", "//*[@id='content']//*[@id='q']",
+      "Text-field-right", "//*[@id='content']//*[@id='l']"
   );
 
   public JobsPage(WebDriver driver) {
     this.driver = driver;
   }
 
-  private By getUiElement(String key) {
+  public By getUiElement(String key) {
     return By.xpath(uiElements.get(key));
-  }
-
-  public String getTextPage() {
-    return driver.findElement(getUiElement("Text")).getText();
   }
 
   public void navigateToJobs() {

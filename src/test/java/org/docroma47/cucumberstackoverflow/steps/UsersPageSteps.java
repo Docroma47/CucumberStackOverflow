@@ -13,13 +13,13 @@ public class UsersPageSteps {
   @Autowired
   private UsersPage usersPage;
 
-  @When("I navigate to the users page.")
-  public void i_navigate_to_the_users_page() {
+  @When("I navigate to the users.")
+  public void i_navigate_to_the_users() {
     usersPage.navigateToUsers();
   }
 
-  @Then("current page is users page.")
-  public void current_page_is_users_page() {
-    Assert.assertEquals("Users", usersPage.getTextPage());
+  @Then("current page is users.")
+  public void current_page_is_users() {
+    Assert.assertEquals("Users", usersPage.getTitle());
   }
 }

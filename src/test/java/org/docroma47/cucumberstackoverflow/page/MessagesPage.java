@@ -17,7 +17,7 @@ public class MessagesPage {
   private Map<String, String> uiElements = of(
       "Jobs", "//*[@id='nav-jobs']",
       "Messages", "//*[@id='TabMessages']",
-      "Text", "//h1"
+      "Title", "//*[@id='content']//*[contains (@class, 'fs-headline1')]"
   );
 
   public MessagesPage(WebDriver driver) {
@@ -28,8 +28,8 @@ public class MessagesPage {
     return By.xpath(uiElements.get(key));
   }
 
-  public String getTextPage() {
-    return driver.findElement(getUiElement("Text")).getText();
+  public String getTitle() {
+    return driver.findElement(getUiElement("Title")).getText();
   }
 
   public void navigateToMessages() {
