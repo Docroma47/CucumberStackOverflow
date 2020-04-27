@@ -26,10 +26,8 @@ public class UserPreferencesPage {
       entry("Top-bar-stickiness", "//*[@id='fixedHeader']"),
       entry("Start-download-button", "//button[text()='Start download']"),
       entry("Real-name", "//*[@id='RealName']"),
-      entry("hide-Left-navigation", "//input[@id='flag-leftnav']"),
-      entry("Left-navigation-panel", "//div[@id='left-sidebar']"),
-      entry("hide-Hot-network-questions", "//input[@id='hotNetworkQuestions']"),
-      entry("Hot-network-questions", "//*[@id='hot-network-questions']")
+      entry("hide-Left-navigation", "//*[@id='mainbar']//*[@id='hotNetworkQuestions']"),
+      entry("Left-navigation-panel", "//*[@id='left-sidebar']")
   );
 
   public UserPreferencesPage(WebDriver driver) {
@@ -86,14 +84,14 @@ public class UserPreferencesPage {
     return driver.findElement(getUiElement("Top-bar-xpath")).getAttribute("class").contains("fixed");
   }
 
-  public void setHideLeftNavigation(boolean enabled) {
+  public void setLeftNavigation(boolean enabled) {
     WebElement keyboard = driver.findElement(getUiElement("hide-Left-navigation"));
     if (!keyboard.isSelected() && enabled || keyboard.isSelected() && !enabled) {
       keyboard.click();
     }
   }
 
-  public Boolean isLeftNavigationPanelHidden() {
+  public Boolean isLeftNavigationPanel() {//isLeftNavigationPanel + HiddenOrShown?()
     return driver.findElement(getUiElement("Left-navigation-panel")).isDisplayed();
   }
 }
