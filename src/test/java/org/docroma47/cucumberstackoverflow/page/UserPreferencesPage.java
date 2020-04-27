@@ -26,7 +26,7 @@ public class UserPreferencesPage {
       entry("Top-bar-stickiness", "//*[@id='fixedHeader']"),
       entry("Start-download-button", "//button[text()='Start download']"),
       entry("Real-name", "//*[@id='RealName']"),
-      entry("hide-Left-navigation", "//*[@id='mainbar']//*[@id='hotNetworkQuestions']"),
+      entry("hide-Left-navigation", "//*[@id='content']//*[@id='flag-leftnav']"),
       entry("Left-navigation-panel", "//*[@id='left-sidebar']")
   );
 
@@ -91,19 +91,7 @@ public class UserPreferencesPage {
     }
   }
 
-  public Boolean isLeftNavigationPanelHidden(boolean hidden) {
-    if (hidden) {
-      return driver.findElement(getUiElement("Left-navigation-panel")).isDisplayed();
-    } else {
-      return false;
-    }
-  }
-
-  public Boolean isLeftNavigationPanelShown(boolean shown) {
-    if (shown) {
-      return driver.findElement(getUiElement("Left-navigation-panel")).isDisplayed();
-    } else {
-      return false;
-    }
+  public Boolean isLeftNavigationPanelHidden() {
+    return driver.findElement(getUiElement("Left-navigation-panel")).isDisplayed();
   }
 }

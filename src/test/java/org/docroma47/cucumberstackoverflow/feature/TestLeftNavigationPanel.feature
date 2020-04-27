@@ -10,4 +10,4 @@ Feature: Show/hide left navigation panel.
     Given I am logged in as a "regular" user.
     And I navigate to the user preferences page.
     When I disable 'Hide left navigation'.
-    Then left navigation panel is shown.
+    Then left navigation panel is not hidden.
