@@ -14,23 +14,23 @@ public class LeftNavigationSteps {
   @Autowired
   private UserPreferencesPage userPreferencesPage;
 
-  @When("I disable left navigation.")
-  public void i_disable_left_navigation() {
+  @When("I disable 'Hide left navigation'.")
+  public void i_disable_hide_left_navigation() {
     userPreferencesPage.setLeftNavigation(false);
   }
 
-  @Then("left navigation is shown.")
-  public void left_navigation_is_shown() {
+  @Then("left navigation panel is shown.")
+  public void left_navigation_panel_is_shown() {
     Assert.assertTrue(userPreferencesPage.isLeftNavigationPanelShown(true));
   }
 
-  @When("I enable left navigation.")
-  public void i_enable_left_navigation() {
+  @When("I enable 'Hide left navigation'.")
+  public void i_enable_hide_left_navigation() {
     userPreferencesPage.setLeftNavigation(true);
   }
 
-  @Then("left navigation is hidden.")
-  public void left_navigation_is_hidden() {
+  @Then("left navigation panel is hidden.")
+  public void left_navigation_panel_is_hidden() {
     Assert.assertTrue(userPreferencesPage.isLeftNavigationPanelHidden(true));
   }
 }
