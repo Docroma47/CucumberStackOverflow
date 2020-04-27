@@ -19,22 +19,22 @@ public class HotNetworkQuestionsSteps {
   @Autowired
   private StackoverflowProperties properties;
 
-  @When("I diasble hide hot network questions.")
+  @When("I diasble 'Hide hot network questions'.")
   public void i_diasble_hide_hot_network_questions() {
     userPreferencesPage.setHotNetworkQuestions(false);
   }
 
-  @Then("hot network questions is shown.")
+  @Then("'Hot Network Questions' is shown.")
   public void hot_network_questions_is_shown() {
     Assert.assertTrue(userPreferencesPage.isHotNetworkQuestionsShown(true));
   }
 
-  @When("I enable hide hot network questions.")
+  @When("I enable 'Hide hot network questions'.")
   public void i_enable_hide_hot_network_questions() {
     userPreferencesPage.setHotNetworkQuestions(true);
   }
 
-  @Then("hot network questions is hidden.")
+  @Then("'Hot Network Questions' is hidden.")
   public void hot_network_questions_is_hidden() {
     Assert.assertTrue(userPreferencesPage.isHotNetworkQuestionsHidden(true));
   }
