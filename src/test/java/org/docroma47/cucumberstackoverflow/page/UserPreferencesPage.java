@@ -26,9 +26,7 @@ public class UserPreferencesPage {
       entry("Start-download-button", "//button[text()='Start download']"),
       entry("Real-name", "//*[@id='RealName']"),
       entry("hide-Hot-network-questions", "//input[@id='hotNetworkQuestions']"),
-      entry("Hot-network-questions", "//*[@id='sidebar']//*[@id='hot-network-questions']"),
-      entry("Recent-tags", "//*[@id='sidebar']//*[@id='h-recent-tags']"),
-      entry("Recent-badges", "//*[@id='sidebar']//*[@id='h-recent-badges']")
+      entry("Hot-network-questions", "//*[@id='sidebar']//*[@id='hot-network-questions']")
   );
 
   public UserPreferencesPage(WebDriver driver) {
@@ -92,7 +90,11 @@ public class UserPreferencesPage {
     }
   }
 
-  public boolean isHotNetworkQuestionsEmpty() {
-    return driver.findElements(getUiElement("Hot-network-questions")).isEmpty();
+  public boolean isHideHotNetworkQuestionsDisplayed(boolean displayed) {
+    if (displayed) {
+      return driver.findElement(getUiElement("Hot-network-questions")).isDisplayed();
+    } else {
+      return driver.findElements(getUiElement("Hot-network-questions")).isEmpty();
+    }
   }
 }

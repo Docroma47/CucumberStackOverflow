@@ -26,7 +26,7 @@ public class HotNetworkQuestionsSteps {
 
   @Then("'Hot Network Questions' is not hidden.")
   public void hot_network_questions_is_not_hidden() {
-    Assert.assertFalse(userPreferencesPage.isHotNetworkQuestionsEmpty());
+    Assert.assertTrue(userPreferencesPage.isHideHotNetworkQuestionsDisplayed(true));
   }
 
   @When("I enable 'Hide hot network questions'.")
@@ -36,7 +36,7 @@ public class HotNetworkQuestionsSteps {
 
   @Then("'Hot Network Questions' is hidden.")
   public void hot_network_questions_is_hidden() {
-    Assert.assertTrue(userPreferencesPage.isHotNetworkQuestionsEmpty());
+    Assert.assertTrue(userPreferencesPage.isHideHotNetworkQuestionsDisplayed(false));
   }
 
   @And("I navigate to the main page.")
