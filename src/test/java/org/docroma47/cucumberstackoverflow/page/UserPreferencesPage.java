@@ -91,7 +91,19 @@ public class UserPreferencesPage {
     }
   }
 
-  public Boolean isLeftNavigationPanel() {//isLeftNavigationPanel + HiddenOrShown?()
-    return driver.findElement(getUiElement("Left-navigation-panel")).isDisplayed();
+  public Boolean isLeftNavigationPanelHidden(boolean hidden) {
+    if (hidden) {
+      return driver.findElement(getUiElement("Left-navigation-panel")).isDisplayed();
+    } else {
+      return false;
+    }
+  }
+
+  public Boolean isLeftNavigationPanelShown(boolean shown) {
+    if (shown) {
+      return driver.findElement(getUiElement("Left-navigation-panel")).isDisplayed();
+    } else {
+      return false;
+    }
   }
 }
