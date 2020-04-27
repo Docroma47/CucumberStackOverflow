@@ -92,15 +92,7 @@ public class UserPreferencesPage {
     }
   }
 
-  public boolean isHotNetworkQuestionsHidden(boolean hidden) {
-    if (hidden) {
-      if (driver.findElement(getUiElement("Recent-badges")).isDisplayed()) {
-        return driver.findElement(getUiElement("Recent-badges")).isDisplayed();
-      } else {
-        return driver.findElement(getUiElement("Recent-tags")).isDisplayed();
-      }
-    } else {
-      return driver.findElement(getUiElement("Hot-network-questions")).isDisplayed();
-    }
+  public boolean isHotNetworkQuestionsEmpty() {
+    return driver.findElements(getUiElement("Hot-network-questions")).isEmpty();
   }
 }
