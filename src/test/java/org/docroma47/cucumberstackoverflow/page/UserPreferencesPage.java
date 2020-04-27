@@ -26,7 +26,9 @@ public class UserPreferencesPage {
       entry("Start-download-button", "//button[text()='Start download']"),
       entry("Real-name", "//*[@id='RealName']"),
       entry("hide-Hot-network-questions", "//input[@id='hotNetworkQuestions']"),
-      entry("Hot-network-questions", "//div[@id='sidebar']/div[8]/h4")
+      entry("Hot-network-questions", "//*[@id='sidebar']//*[@id='hot-network-questions']"),
+      entry("Recent-tags", "//*[@id='sidebar']//*[@id='h-recent-tags']"),
+      entry("Recent-badges", "//*[@id='sidebar']//*[@id='h-recent-badges']")
   );
 
   public UserPreferencesPage(WebDriver driver) {
@@ -83,14 +85,22 @@ public class UserPreferencesPage {
     return driver.findElement(getUiElement("Top-bar-xpath")).getAttribute("class").contains("fixed");
   }
 
-  public void setHideHotNetworkQuestions(boolean enabled) {
+  public void setHotNetworkQuestions(boolean enabled) {
     WebElement keyboard = driver.findElement(getUiElement("hide-Hot-network-questions"));
     if (!keyboard.isSelected() && enabled || keyboard.isSelected() && !enabled) {
       keyboard.click();
     }
   }
 
-  public Boolean isHotNetworkQuestionsHidden() {
-    return driver.findElement(getUiElement("Hot-network-questions")).isDisplayed();
+  public WebElement isHotNetworkQuestionsHidden(boolean enable) {
+    if (!enable) {
+      return driver.findElement(getUiElement("Hot-network-questions"));
+    } else {
+      if (driver.findElement(getUiElement("Recent-badges")).isDisplayed()) {
+        return driver.findElement(getUiElement("Recent-badges"));
+      } else {
+        return driver.findElement(getUiElement("Recent-tags"));
+      }
+    }
   }
 }

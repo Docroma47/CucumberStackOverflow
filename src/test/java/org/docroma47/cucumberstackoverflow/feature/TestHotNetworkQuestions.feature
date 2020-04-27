@@ -6,7 +6,7 @@ Feature: Show/hide hot network questions.
     When I enable hide hot network questions.
     And I navigate to the main page.
     And I scroll to the middle page.
-    Then hot network questions is shown.
+    Then hot network questions is hidden.
 
   Scenario: Hot network questions changes from hide to show.
     Given I am logged in as a "regular" user.
@@ -14,4 +14,4 @@ Feature: Show/hide hot network questions.
     When I diasble hide hot network questions.
     And I navigate to the main page.
     And I scroll to the middle page.
-    Then hot network questions is not shown.
+    Then hot network questions is shown.

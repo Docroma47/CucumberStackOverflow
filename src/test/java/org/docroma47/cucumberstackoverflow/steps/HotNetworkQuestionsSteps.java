@@ -8,7 +8,6 @@ import org.docroma47.cucumberstackoverflow.page.UserPreferencesPage;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class HotNetworkQuestionsSteps {
@@ -22,28 +21,22 @@ public class HotNetworkQuestionsSteps {
 
   @When("I diasble hide hot network questions.")
   public void i_diasble_hide_hot_network_questions() {
-    userPreferencesPage.setHideHotNetworkQuestions(false);
-  }
-
-  @Then("hot network questions is not shown.")
-  public void hot_network_questions_is_not_shown() {
-    WebElement element = driver.findElement(userPreferencesPage.getUiElement("Hot-network-questions"));
-    Assert.assertEquals("Hot Network Questions", element.getText());
-  }
-
-  @When("I enable hide hot network questions.")
-  public void i_enable_hide_hot_network_questions() {
-    userPreferencesPage.setHideHotNetworkQuestions(true);
+    userPreferencesPage.setHotNetworkQuestions(false);
   }
 
   @Then("hot network questions is shown.")
   public void hot_network_questions_is_shown() {
-    WebElement element = driver.findElement(userPreferencesPage.getUiElement("Hot-network-questions"));
-    if (element.getText().equals("Recent Badges")) {
-      Assert.assertEquals("Recent Badges", element.getText());
-    } else {
-      Assert.assertEquals("Recent Tags", element.getText());
-    }
+    Assert.assertTrue(userPreferencesPage.isHotNetworkQuestionsHidden(false).isDisplayed());
+  }
+
+  @When("I enable hide hot network questions.")
+  public void i_enable_hide_hot_network_questions() {
+    userPreferencesPage.setHotNetworkQuestions(true);
+  }
+
+  @Then("hot network questions is hidden.")
+  public void hot_network_questions_is_hidden() {
+    Assert.assertTrue(userPreferencesPage.isHotNetworkQuestionsHidden(true).isDisplayed());
   }
 
   @And("I navigate to the main page.")
