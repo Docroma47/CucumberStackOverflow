@@ -18,12 +18,9 @@ public class ApplicationsPage {
       "Jobs", "//*[@id='nav-jobs']",
       "Applications", "//*[@id='TabApplication']",
       "Label-display-jobs", "//*[@id='content']//*[contains (@class, 's-label')]",
-      "Display-jobs-checkbox", "//*[@id='content']//*[@id='includeExternals']"
+      "Display-jobs-checkbox", "//*[@id='content']//*[@id='includeExternals']",
+      "Breadcrumb", "//*[@id='content']//*[@id='TabApplication']"
   );
-
-  public ApplicationsPage(WebDriver driver) {
-    this.driver = driver;
-  }
 
   private By getUiElement(String key) {
     return By.xpath(uiElements.get(key));
@@ -41,4 +38,9 @@ public class ApplicationsPage {
   public boolean isJobsCheckboxDisplayed() {
     return driver.findElement(getUiElement("Display-jobs-checkbox")).isDisplayed();
   }
+
+  public boolean isBreadcrumbSelected() {
+    return driver.findElement(getUiElement("Breadcrumb")).getAttribute("class").contains("is-selected");
+  }
+
 }

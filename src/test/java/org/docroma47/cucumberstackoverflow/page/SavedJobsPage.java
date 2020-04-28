@@ -1,6 +1,7 @@
 package org.docroma47.cucumberstackoverflow.page;
 import java.util.Map;
 
+import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +14,16 @@ public class SavedJobsPage {
 
   @Autowired
   private WebDriver driver;
+  @Autowired
+  private StackoverflowProperties properties;
 
   private Map<String, String> uiElements = of(
       "Jobs", "//*[@id='nav-jobs']",
       "SavedJobs", "//*[@id='TabSavedJobs']",
       "Svg-icon", "//*[@id='content']//*[@class='svg-icon native ']",
-      "Button-browse-jobs", "//*[@id='content']//*[@class='s-btn s-btn__filled']"
+      "Button-browse-jobs", "//*[@id='content']//*[@class='s-btn s-btn__filled']",
+      "Breadcrumb", "//*[@id='content']//*[@id='TabSavedJobs']"
   );
-
-  public SavedJobsPage(WebDriver driver) {
-    this.driver = driver;
-  }
 
   private By getUiElement(String key) {
     return By.xpath(uiElements.get(key));
@@ -34,11 +34,11 @@ public class SavedJobsPage {
     driver.findElement(getUiElement("SavedJobs")).click();
   }
 
-  public boolean isSvgIconDisplayed() {
-    return driver.findElement(getUiElement("Svg-icon")).isDisplayed();
+  public String getUrl() {
+    return properties.getBaseUrl() + "jobs/saved";
   }
 
-  public boolean isBrowseJobsDisplayed() {
-    return driver.findElement(getUiElement("Button-browse-jobs")).isDisplayed();
+  public boolean isBreadcrumbSelected() {
+    return driver.findElement(getUiElement("Breadcrumb")).getAttribute("class").contains("is-selected");
   }
 }

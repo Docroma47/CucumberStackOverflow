@@ -17,12 +17,9 @@ public class SavedJobSearchesPage {
   private Map<String, String> uiElements = of(
       "Jobs", "//*[@id='nav-jobs']",
       "SavedJobsSearches", "//*[@id='TabSavedSearches']",
-      "Title", "//*[@id='content']//*[contains(@class, 'fs-headline1')]"
+      "Title", "//*[@id='content']//*[contains(@class, 'fs-headline1')]",
+      "Breadcrumb", "//*[@id='content']//*[@id='TabSavedSearches']"
   );
-
-  public SavedJobSearchesPage(WebDriver driver) {
-    this.driver = driver;
-  }
 
   private By getUiElement(String key) {
     return By.xpath(uiElements.get(key));
@@ -35,5 +32,9 @@ public class SavedJobSearchesPage {
   public void navigateToSavedJobsSearches() {
     driver.findElement(getUiElement("Jobs")).click();
     driver.findElement(getUiElement("SavedJobsSearches")).click();
+  }
+
+  public boolean isBreadcrumbSelected() {
+    return driver.findElement(getUiElement("Breadcrumb")).getAttribute("class").contains("is-selected");
   }
 }

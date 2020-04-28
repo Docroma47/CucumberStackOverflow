@@ -19,10 +19,6 @@ public class TagsPage {
       "Title", "//*[@id='content']//*[contains (@class, 'fs-headline1')]"
   );
 
-  public TagsPage(WebDriver driver) {
-    this.driver = driver;
-  }
-
   private By getUiElement(String key) {
     return By.xpath(uiElements.get(key));
   }

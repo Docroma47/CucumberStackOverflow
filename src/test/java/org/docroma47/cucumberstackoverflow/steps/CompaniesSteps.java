@@ -20,8 +20,9 @@ public class CompaniesSteps {
 
   @Then("current page is 'Jobs Companies' page.")
   public void current_page_is_jobs_companies_page() {
-    Assert.assertTrue(companiesPage.isTextFieldLeftDisplayed());
-    Assert.assertTrue(companiesPage.isTextFieldRightDisplayed());
-    Assert.assertEquals(companiesPage.getCompaniesUrl(), driver.getCurrentUrl());
+    Assert.assertTrue(companiesPage.isSearchFieldDisplayed());
+    Assert.assertTrue(companiesPage.isLocationFilterFieldDisplayed());
+    Assert.assertEquals(companiesPage.getUrl(), driver.getCurrentUrl());
+    Assert.assertTrue(companiesPage.isBreadcrumbSelected());
   }
 }

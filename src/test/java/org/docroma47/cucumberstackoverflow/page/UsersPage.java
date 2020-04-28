@@ -19,10 +19,6 @@ public class UsersPage {
       "Title", "//*[@id='content']//*[contains (@class, 'fs-headline1')]"
   );
 
-  public UsersPage(WebDriver driver) {
-    this.driver = driver;
-  }
-
   private By getUiElement(String key) {
     return By.xpath(uiElements.get(key));
   }

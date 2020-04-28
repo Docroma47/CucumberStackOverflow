@@ -17,7 +17,8 @@ public class MessagesPage {
   private Map<String, String> uiElements = of(
       "Jobs", "//*[@id='nav-jobs']",
       "Messages", "//*[@id='TabMessages']",
-      "Title", "//*[@id='content']//*[contains (@class, 'fs-headline1')]"
+      "Title", "//*[@id='content']//*[contains (@class, 'fs-headline1')]",
+      "Breadcrumb", "//*[@id='content']//*[@id='TabMessages']"
   );
 
   public MessagesPage(WebDriver driver) {
@@ -35,5 +36,9 @@ public class MessagesPage {
   public void navigateToMessages() {
     driver.findElement(getUiElement("Jobs")).click();
     driver.findElement(getUiElement("Messages")).click();
+  }
+
+  public boolean isBreadcrumbSelected() {
+    return driver.findElement(getUiElement("Breadcrumb")).getAttribute("class").contains("is-selected");
   }
 }

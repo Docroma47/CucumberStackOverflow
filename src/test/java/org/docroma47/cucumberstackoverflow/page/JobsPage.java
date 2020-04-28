@@ -19,13 +19,10 @@ public class JobsPage {
 
   private Map<String, String> uiElements = of(
       "Jobs", "//*[@id='left-sidebar']//*[@id='nav-jobs']",
-      "Text-field-left", "//*[@id='content']//*[@id='q']",
-      "Text-field-right", "//*[@id='content']//*[@id='l']"
+      "Search-Field", "//*[@id='content']//*[@id='q']",
+      "Location-Filter-Field", "//*[@id='content']//*[@id='l']",
+      "Breadcrumb", "//*[@id='content']//*[@id='TabJobs']"
   );
-
-  public JobsPage(WebDriver driver) {
-    this.driver = driver;
-  }
 
   private By getUiElement(String key) {
     return By.xpath(uiElements.get(key));
@@ -35,15 +32,19 @@ public class JobsPage {
     driver.findElement(getUiElement("Jobs")).click();
   }
 
-  public boolean isTextFieldLeftDisplayed() {
-    return driver.findElement(getUiElement("Text-field-left")).isDisplayed();
+  public boolean isSearchFieldDisplayed() {
+    return driver.findElement(getUiElement("Search-Field")).isDisplayed();
   }
 
-  public boolean isTextFieldRightDisplayed() {
-    return driver.findElement(getUiElement("Text-field-right")).isDisplayed();
+  public boolean isLocationFilterFieldDisplayed() {
+    return driver.findElement(getUiElement("Location-Filter-Field")).isDisplayed();
   }
 
-  public String getJobsUrl() {
+  public String getUrl() {
     return properties.getBaseUrl() + "jobs";
+  }
+
+  public boolean isBreadcrumbSelected() {
+    return driver.findElement(getUiElement("Breadcrumb")).getAttribute("class").contains("is-selected");
   }
 }

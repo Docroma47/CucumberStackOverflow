@@ -21,5 +21,6 @@ public class SavedJobSearchesSteps {
   @Then("current page is 'Jobs Saved Jobs Searches' page.")
   public void current_page_is_jobs_saved_job_searches_page() {
     Assert.assertEquals("Saved job searches", savedJobSearchesPage.getTitle());
+    Assert.assertTrue(savedJobSearchesPage.isBreadcrumbSelected());
   }
 }

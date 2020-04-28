@@ -22,5 +22,6 @@ public class ApplicationsSteps {
   public void current_page_is_jobs_applications_page() {
     Assert.assertEquals("Display jobs you may have applied to", applicationsPage.getLabel());
     Assert.assertTrue(applicationsPage.isJobsCheckboxDisplayed());
+    Assert.assertTrue(applicationsPage.isBreadcrumbSelected());
   }
 }
