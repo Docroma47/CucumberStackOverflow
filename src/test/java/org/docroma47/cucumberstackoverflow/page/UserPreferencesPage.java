@@ -90,11 +90,11 @@ public class UserPreferencesPage {
     }
   }
 
-  public boolean isHideHotNetworkQuestionsDisplayed(boolean displayed) {
-    if (displayed) {
-      return driver.findElement(getUiElement("Hot-network-questions")).isDisplayed();
+  public boolean isHotNetworkQuestionsDisplayed() {
+    if (driver.findElements(getUiElement("Hot-network-questions")).isEmpty()) {
+      return false;
     } else {
-      return driver.findElements(getUiElement("Hot-network-questions")).isEmpty();
+      return driver.findElement(getUiElement("Hot-network-questions")).isDisplayed();
     }
   }
 }
