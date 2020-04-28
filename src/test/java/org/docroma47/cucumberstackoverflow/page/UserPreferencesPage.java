@@ -103,6 +103,7 @@ public class UserPreferencesPage {
     wait.until(ExpectedConditions.visibilityOf(driver.findElement(getUiElement("Real-name"))));
     return driver.findElement(getUiElement("Real-name")).getAttribute("value");
   }
+
   public void setHideLeftNavigation(boolean enabled) {
     WebElement hideLeftNavigation = driver.findElement(getUiElement("hide-Left-navigation"));
     if (!hideLeftNavigation.isSelected() && enabled || hideLeftNavigation.isSelected() && !enabled) {
