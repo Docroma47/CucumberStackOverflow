@@ -26,11 +26,7 @@ public class LogInPage {
       "Logout", "//button[text()='Log out']"
   );
 
-  public LogInPage(WebDriver driver) {
-    this.driver = driver;
-  }
-
-  public By getUiElement(String key) {
+  private By getUiElement(String key) {
     return By.xpath(uiElements.get(key));
   }
 
