@@ -7,7 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import static java.util.Map.of;
+import static java.util.Map.entry;
+import static java.util.Map.ofEntries;
 
 @Component
 public class UserPreferencesPage {
@@ -15,17 +16,21 @@ public class UserPreferencesPage {
   @Autowired
   private WebDriver driver;
 
-  private Map<String, String> uiElements = of(
-      "Preference", "//a[text()='preferences']",
-      "Edit-profile", "//a[text()='Edit profile and settings']",
-      "Profile", "//a[@class='my-profile js-gps-track']",
-      "Dark-theme", "//input[@id='enableForcedDarkmode']",
-      "Light-theme", "//input[@id='enableForcedLightmode']",
-      "Keyboard-shortcuts", "//input[@id='keyboardShortcuts']",
-      "Top-bar-xpath", "/html/body/header",
-      "Top-bar-stickiness", "//*[@id='fixedHeader']",
-      "Start-download-button", "//button[text()='Start download']",
-      "Real-name", "//*[@id='RealName']"
+  private Map<String, String> uiElements = ofEntries(
+      entry("Preference", "//a[text()='preferences']"),
+      entry("Edit-profile", "//a[text()='Edit profile and settings']"),
+      entry("Profile", "//a[@class='my-profile js-gps-track']"),
+      entry("Dark-theme", "//input[@id='enableForcedDarkmode']"),
+      entry("Light-theme", "//input[@id='enableForcedLightmode']"),
+      entry("Keyboard-shortcuts", "//input[@id='keyboardShortcuts']"),
+      entry("Top-bar-xpath", "/html/body/header"),
+      entry("Top-bar-stickiness", "//*[@id='fixedHeader']"),
+      entry("Start-download-button", "//button[text()='Start download']"),
+      entry("Real-name", "//*[@id='RealName']"),
+      entry("hide-Hot-network-questions", "//input[@id='hotNetworkQuestions']"),
+      entry("Hot-network-questions", "//*[@id='sidebar']//*[@id='hot-network-questions']"),
+      entry("hide-Left-navigation", "//*[@id='content']//*[@id='flag-leftnav']"),
+      entry("Left-navigation-panel", "//*[@id='left-sidebar']")
   );
 
   private By getUiElement(String key) {
@@ -78,10 +83,36 @@ public class UserPreferencesPage {
     return driver.findElement(getUiElement("Top-bar-xpath")).getAttribute("class").contains("fixed");
   }
 
+  public void setHideHotNetworkQuestions(boolean enabled) {
+    WebElement keyboard = driver.findElement(getUiElement("hide-Hot-network-questions"));
+    if (!keyboard.isSelected() && enabled || keyboard.isSelected() && !enabled) {
+      keyboard.click();
+    }
+  }
+
+  public boolean isHotNetworkQuestionsDisplayed() {
+    if (driver.findElements(getUiElement("Hot-network-questions")).isEmpty()) {
+      return false;
+    } else {
+      return driver.findElement(getUiElement("Hot-network-questions")).isDisplayed();
+    }
+  }
+
   public String getRealName() {
     WebDriverWait wait = new WebDriverWait(driver, 2);
     wait.until(ExpectedConditions.visibilityOf(driver.findElement(getUiElement("Real-name"))));
     return driver.findElement(getUiElement("Real-name")).getAttribute("value");
+  }
+
+  public void setHideLeftNavigation(boolean enabled) {
+    WebElement hideLeftNavigation = driver.findElement(getUiElement("hide-Left-navigation"));
+    if (!hideLeftNavigation.isSelected() && enabled || hideLeftNavigation.isSelected() && !enabled) {
+      hideLeftNavigation.click();
+    }
+  }
+
+  public Boolean isLeftNavigationPanelDisplayed() {
+    return driver.findElement(getUiElement("Left-navigation-panel")).isDisplayed();
   }
 
 }
