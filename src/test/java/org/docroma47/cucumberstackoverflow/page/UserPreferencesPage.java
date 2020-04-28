@@ -2,6 +2,8 @@ package org.docroma47.cucumberstackoverflow.page;
 import java.util.Map;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,11 +31,7 @@ public class UserPreferencesPage {
       entry("Hot-network-questions", "//*[@id='sidebar']//*[@id='hot-network-questions']")
   );
 
-  public UserPreferencesPage(WebDriver driver) {
-    this.driver = driver;
-  }
-
-  public By getUiElement(String key) {
+  private By getUiElement(String key) {
     return By.xpath(uiElements.get(key));
   }
 
@@ -96,5 +94,11 @@ public class UserPreferencesPage {
     } else {
       return driver.findElement(getUiElement("Hot-network-questions")).isDisplayed();
     }
+  }
+
+  public String getRealName() {
+    WebDriverWait wait = new WebDriverWait(driver, 2);
+    wait.until(ExpectedConditions.visibilityOf(driver.findElement(getUiElement("Real-name"))));
+    return driver.findElement(getUiElement("Real-name")).getAttribute("value");
   }
 }

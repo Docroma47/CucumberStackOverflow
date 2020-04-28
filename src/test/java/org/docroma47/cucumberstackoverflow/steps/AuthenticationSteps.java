@@ -7,9 +7,6 @@ import org.docroma47.cucumberstackoverflow.page.LogInPage;
 import org.docroma47.cucumberstackoverflow.page.UserPreferencesPage;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class AuthenticationSteps {
@@ -28,10 +25,7 @@ public class AuthenticationSteps {
 
   @Then("current full name is {string}.")
   public void current_username_is(String username) {
-    WebDriverWait wait = new WebDriverWait(driver, 2);
-    WebElement realName = driver.findElement(userPreferencesPage.getUiElement("Real-name"));
-    wait.until(ExpectedConditions.visibilityOf(driver.findElement(userPreferencesPage.getUiElement("Real-name"))));
-    Assert.assertEquals(username, realName.getAttribute("value"));
+    Assert.assertEquals(username, userPreferencesPage.getRealName());
   }
 
   @After(value = "@LogoutRequired")
