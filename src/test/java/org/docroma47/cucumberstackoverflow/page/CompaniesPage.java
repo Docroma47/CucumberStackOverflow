@@ -37,11 +37,15 @@ public class CompaniesPage {
     driver.findElement(getUiElement("Companies")).click();
   }
 
-  public boolean isTextFieldDisplayed(String keyXpath) {
-    return driver.findElement(getUiElement(keyXpath)).isDisplayed();
+  public boolean isTextFieldLeftDisplayed() {
+    return driver.findElement(getUiElement("Text-field-left")).isDisplayed();
   }
 
-  public String getBaseUrlCompanies() {
+  public boolean isTextFieldRightDisplayed() {
+    return driver.findElement(getUiElement("Text-field-right")).isDisplayed();
+  }
+
+  public String getCompaniesUrl() {
     return properties.getBaseUrl() + "jobs/companies";
   }
 }

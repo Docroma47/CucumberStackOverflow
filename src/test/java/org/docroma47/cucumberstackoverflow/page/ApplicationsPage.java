@@ -38,7 +38,7 @@ public class ApplicationsPage {
     driver.findElement(getUiElement("Applications")).click();
   }
 
-  public boolean isCheckboxSelected() {
-    return driver.findElement(getUiElement("Display-jobs-checkbox")).isSelected();
+  public boolean isJobsCheckboxDisplayed() {
+    return driver.findElement(getUiElement("Display-jobs-checkbox")).isDisplayed();
   }
 }

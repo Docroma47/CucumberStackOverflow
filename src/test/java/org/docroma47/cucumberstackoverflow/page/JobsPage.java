@@ -35,11 +35,15 @@ public class JobsPage {
     driver.findElement(getUiElement("Jobs")).click();
   }
 
-  public boolean isTextFieldDisplayed(String keyXpath) {
-    return driver.findElement(getUiElement(keyXpath)).isDisplayed();
+  public boolean isTextFieldLeftDisplayed() {
+    return driver.findElement(getUiElement("Text-field-left")).isDisplayed();
   }
 
-  public String getBaseUrlJobs() {
+  public boolean isTextFieldRightDisplayed() {
+    return driver.findElement(getUiElement("Text-field-right")).isDisplayed();
+  }
+
+  public String getJobsUrl() {
     return properties.getBaseUrl() + "jobs";
   }
 }

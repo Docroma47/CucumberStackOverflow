@@ -13,15 +13,15 @@ public class CompaniesSteps {
   @Autowired
   private CompaniesPage companiesPage;
 
-  @When("I navigate to the 'Jobs' 'Companies' page.")
+  @When("I navigate to the 'Jobs Companies' page.")
   public void i_navigate_to_the_jobs_companies_page() {
     companiesPage.navigateToCompanies();
   }
 
-  @Then("current page is 'Jobs' 'Companies' page.")
+  @Then("current page is 'Jobs Companies' page.")
   public void current_page_is_jobs_companies_page() {
-    Assert.assertTrue(companiesPage.isTextFieldDisplayed("Text-field-left"));
-    Assert.assertTrue(companiesPage.isTextFieldDisplayed("Text-field-right"));
-    Assert.assertEquals(companiesPage.getBaseUrlCompanies(), driver.getCurrentUrl());
+    Assert.assertTrue(companiesPage.isTextFieldLeftDisplayed());
+    Assert.assertTrue(companiesPage.isTextFieldRightDisplayed());
+    Assert.assertEquals(companiesPage.getCompaniesUrl(), driver.getCurrentUrl());
   }
 }

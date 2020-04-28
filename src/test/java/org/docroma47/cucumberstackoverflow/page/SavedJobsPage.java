@@ -34,7 +34,11 @@ public class SavedJobsPage {
     driver.findElement(getUiElement("SavedJobs")).click();
   }
 
-  public boolean isElementDisplayed(String keyXpath) {
-    return driver.findElement(getUiElement(keyXpath)).isDisplayed();
+  public boolean isSvgIconDisplayed() {
+    return driver.findElement(getUiElement("Svg-icon")).isDisplayed();
+  }
+
+  public boolean isBrowseJobsDisplayed() {
+    return driver.findElement(getUiElement("Button-browse-jobs")).isDisplayed();
   }
 }

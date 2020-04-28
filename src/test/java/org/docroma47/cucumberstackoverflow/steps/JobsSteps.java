@@ -23,8 +23,8 @@ public class JobsSteps {
 
   @Then("current page is 'Jobs' page.")
   public void current_page_is_jobs_page() {
-    Assert.assertTrue(jobsPage.isTextFieldDisplayed("Text-field-left"));
-    Assert.assertTrue(jobsPage.isTextFieldDisplayed("Text-field-right"));
-    Assert.assertEquals(jobsPage.getBaseUrlJobs(), driver.getCurrentUrl());
+    Assert.assertTrue(jobsPage.isTextFieldLeftDisplayed());
+    Assert.assertTrue(jobsPage.isTextFieldRightDisplayed());
+    Assert.assertEquals(jobsPage.getJobsUrl(), driver.getCurrentUrl());
   }
 }
