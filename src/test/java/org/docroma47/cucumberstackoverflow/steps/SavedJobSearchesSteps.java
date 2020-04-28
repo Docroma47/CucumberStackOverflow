@@ -13,13 +13,13 @@ public class SavedJobSearchesSteps {
   @Autowired
   private SavedJobSearchesPage savedJobSearchesPage;
 
-  @When("I navigate to the 'Saved Jobs Searches'.")
-  public void i_navigate_to_the_saved_job_searches() {
+  @When("I navigate to the 'Jobs' 'Saved Jobs Searches' page.")
+  public void i_navigate_to_the_job_saved_job_searches_page() {
     savedJobSearchesPage.navigateToSavedJobsSearches();
   }
 
-  @Then("current page is 'Saved Jobs Searches'.")
-  public void current_page_is_saved_job_searches() {
+  @Then("current page is 'Jobs' 'Saved Jobs Searches' page.")
+  public void current_page_is_jobs_saved_job_searches_page() {
     Assert.assertEquals("Saved job searches", savedJobSearchesPage.getTitle());
   }
 }

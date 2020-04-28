@@ -25,7 +25,7 @@ public class ApplicationsPage {
     this.driver = driver;
   }
 
-  public By getUiElement(String key) {
+  private By getUiElement(String key) {
     return By.xpath(uiElements.get(key));
   }
 
@@ -36,5 +36,9 @@ public class ApplicationsPage {
   public void navigateToApplications() {
     driver.findElement(getUiElement("Jobs")).click();
     driver.findElement(getUiElement("Applications")).click();
+  }
+
+  public boolean isCheckboxSelected() {
+    return driver.findElement(getUiElement("Display-jobs-checkbox")).isSelected();
   }
 }

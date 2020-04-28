@@ -16,15 +16,15 @@ public class JobsSteps {
   @Autowired
   private StackoverflowProperties properties;
 
-  @When("I navigate to the 'Jobs'.")
-  public void i_navigate_to_the_jobs() {
+  @When("I navigate to the 'Jobs' page.")
+  public void i_navigate_to_the_jobs_page() {
     jobsPage.navigateToJobs();
   }
 
-  @Then("current page is 'Jobs'.")
-  public void current_page_is_jobs() {
-    Assert.assertTrue(driver.findElement(jobsPage.getUiElement("Text-field-left")).isDisplayed());
-    Assert.assertTrue(driver.findElement(jobsPage.getUiElement("Text-field-right")).isDisplayed());
-    Assert.assertEquals(properties.getBaseUrl() + "jobs", driver.getCurrentUrl());
+  @Then("current page is 'Jobs' page.")
+  public void current_page_is_jobs_page() {
+    Assert.assertTrue(jobsPage.isTextFieldDisplayed("Text-field-left"));
+    Assert.assertTrue(jobsPage.isTextFieldDisplayed("Text-field-right"));
+    Assert.assertEquals(jobsPage.getBaseUrlJobs(), driver.getCurrentUrl());
   }
 }

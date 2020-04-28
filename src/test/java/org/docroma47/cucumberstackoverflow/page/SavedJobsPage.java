@@ -25,12 +25,16 @@ public class SavedJobsPage {
     this.driver = driver;
   }
 
-  public By getUiElement(String key) {
+  private By getUiElement(String key) {
     return By.xpath(uiElements.get(key));
   }
 
   public void navigateToSavedJobs() {
     driver.findElement(getUiElement("Jobs")).click();
     driver.findElement(getUiElement("SavedJobs")).click();
+  }
+
+  public boolean isElementDisplayed(String keyXpath) {
+    return driver.findElement(getUiElement(keyXpath)).isDisplayed();
   }
 }

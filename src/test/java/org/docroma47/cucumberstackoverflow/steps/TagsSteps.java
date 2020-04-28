@@ -13,13 +13,13 @@ public class TagsSteps {
   @Autowired
   private TagsPage tagsPage;
 
-  @When("I navigate to the 'Tags'.")
-  public void i_navigate_to_the_tags() {
+  @When("I navigate to the 'Tags' page.")
+  public void i_navigate_to_the_tags_page() {
     tagsPage.navigateToTags();
   }
 
-  @Then("current page is 'Tags'.")
-  public void current_page_is_tags() {
+  @Then("current page is 'Tags' page.")
+  public void current_page_is_tags_page() {
     Assert.assertEquals("Tags", tagsPage.getTitle());
   }
 }

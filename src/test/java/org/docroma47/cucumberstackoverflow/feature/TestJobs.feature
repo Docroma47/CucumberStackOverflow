@@ -1,6 +1,6 @@
 Feature: Jobs.
 
-  Scenario: Navigate to the jobs.
+  Scenario: Navigate to the 'Jobs' page.
     Given I am logged in as a "regular" user.
-    And I navigate to the 'Jobs'.
-    Then current page is 'Jobs'.
+    And I navigate to the 'Jobs' page.
+    Then current page is 'Jobs' page.

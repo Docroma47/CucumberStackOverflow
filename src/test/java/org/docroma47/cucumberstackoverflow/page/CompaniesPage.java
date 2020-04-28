@@ -1,6 +1,7 @@
 package org.docroma47.cucumberstackoverflow.page;
 import java.util.Map;
 
+import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ public class CompaniesPage {
 
   @Autowired
   private WebDriver driver;
+  @Autowired
+  private StackoverflowProperties properties;
 
   private Map<String, String> uiElements = of(
       "Jobs", "//*[@id='nav-jobs']",
@@ -25,12 +28,20 @@ public class CompaniesPage {
     this.driver = driver;
   }
 
-  public By getUiElement(String key) {
+  private By getUiElement(String key) {
     return By.xpath(uiElements.get(key));
   }
 
   public void navigateToCompanies() {
     driver.findElement(getUiElement("Jobs")).click();
     driver.findElement(getUiElement("Companies")).click();
+  }
+
+  public boolean isTextFieldDisplayed(String keyXpath) {
+    return driver.findElement(getUiElement(keyXpath)).isDisplayed();
+  }
+
+  public String getBaseUrlCompanies() {
+    return properties.getBaseUrl() + "jobs/companies";
   }
 }
