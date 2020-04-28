@@ -2,10 +2,14 @@ package org.docroma47.cucumberstackoverflow.page;
 import java.util.Map;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import static java.util.Map.of;
+import static java.util.Map.entry;
+import static java.util.Map.ofEntries;
+
 
 @Component
 public class UserPreferencesPage {
@@ -13,24 +17,22 @@ public class UserPreferencesPage {
   @Autowired
   private WebDriver driver;
 
-  private Map<String, String> uiElements = of(
-      "Preference", "//a[text()='preferences']",
-      "Edit-profile", "//a[text()='Edit profile and settings']",
-      "Profile", "//a[@class='my-profile js-gps-track']",
-      "Dark-theme", "//input[@id='enableForcedDarkmode']",
-      "Light-theme", "//input[@id='enableForcedLightmode']",
-      "Keyboard-shortcuts", "//input[@id='keyboardShortcuts']",
-      "Top-bar-xpath", "/html/body/header",
-      "Top-bar-stickiness", "//*[@id='fixedHeader']",
-      "Start-download-button", "//button[text()='Start download']",
-      "Real-name", "//*[@id='RealName']"
+  private Map<String, String> uiElements = ofEntries(
+      entry("Preference", "//a[text()='preferences']"),
+      entry("Edit-profile", "//a[text()='Edit profile and settings']"),
+      entry("Profile", "//a[@class='my-profile js-gps-track']"),
+      entry("Dark-theme", "//input[@id='enableForcedDarkmode']"),
+      entry("Light-theme", "//input[@id='enableForcedLightmode']"),
+      entry("Keyboard-shortcuts", "//input[@id='keyboardShortcuts']"),
+      entry("Top-bar-xpath", "/html/body/header"),
+      entry("Top-bar-stickiness", "//*[@id='fixedHeader']"),
+      entry("Start-download-button", "//button[text()='Start download']"),
+      entry("Real-name", "//*[@id='RealName']"),
+      entry("hide-Left-navigation", "//*[@id='content']//*[@id='flag-leftnav']"),
+      entry("Left-navigation-panel", "//*[@id='left-sidebar']")
   );
 
-  public UserPreferencesPage(WebDriver driver) {
-    this.driver = driver;
-  }
-
-  public By getUiElement(String key) {
+  private By getUiElement(String key) {
     return By.xpath(uiElements.get(key));
   }
 
@@ -80,4 +82,20 @@ public class UserPreferencesPage {
     return driver.findElement(getUiElement("Top-bar-xpath")).getAttribute("class").contains("fixed");
   }
 
+  public void setHideLeftNavigation(boolean enabled) {
+    WebElement hideLeftNavigation = driver.findElement(getUiElement("hide-Left-navigation"));
+    if (!hideLeftNavigation.isSelected() && enabled || hideLeftNavigation.isSelected() && !enabled) {
+      hideLeftNavigation.click();
+    }
+  }
+
+  public Boolean isLeftNavigationPanelDisplayed() {
+    return driver.findElement(getUiElement("Left-navigation-panel")).isDisplayed();
+  }
+
+  public String getRealName() {
+    WebDriverWait wait = new WebDriverWait(driver, 2);
+    wait.until(ExpectedConditions.visibilityOf(driver.findElement(getUiElement("Real-name"))));
+    return driver.findElement(getUiElement("Real-name")).getAttribute("value");
+  }
 }
