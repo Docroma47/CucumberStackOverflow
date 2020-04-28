@@ -28,7 +28,9 @@ public class UserPreferencesPage {
       entry("Start-download-button", "//button[text()='Start download']"),
       entry("Real-name", "//*[@id='RealName']"),
       entry("hide-Hot-network-questions", "//input[@id='hotNetworkQuestions']"),
-      entry("Hot-network-questions", "//*[@id='sidebar']//*[@id='hot-network-questions']")
+      entry("Hot-network-questions", "//*[@id='sidebar']//*[@id='hot-network-questions']"),
+      entry("hide-Left-navigation", "//*[@id='content']//*[@id='flag-leftnav']"),
+      entry("Left-navigation-panel", "//*[@id='left-sidebar']")
   );
 
   private By getUiElement(String key) {
@@ -101,4 +103,15 @@ public class UserPreferencesPage {
     wait.until(ExpectedConditions.visibilityOf(driver.findElement(getUiElement("Real-name"))));
     return driver.findElement(getUiElement("Real-name")).getAttribute("value");
   }
+  public void setHideLeftNavigation(boolean enabled) {
+    WebElement hideLeftNavigation = driver.findElement(getUiElement("hide-Left-navigation"));
+    if (!hideLeftNavigation.isSelected() && enabled || hideLeftNavigation.isSelected() && !enabled) {
+      hideLeftNavigation.click();
+    }
+  }
+
+  public Boolean isLeftNavigationPanelDisplayed() {
+    return driver.findElement(getUiElement("Left-navigation-panel")).isDisplayed();
+  }
+
 }
