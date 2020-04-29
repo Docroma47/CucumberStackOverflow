@@ -5,12 +5,15 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
 import static java.util.Map.entry;
 import static java.util.Map.ofEntries;
 
 @Component
+@Scope(SCOPE_CUCUMBER_GLUE)
 public class UserPreferencesPage {
 
   @Autowired
