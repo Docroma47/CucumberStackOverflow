@@ -19,6 +19,8 @@ public class SavedJobsPage {
   private WebDriver driver;
   @Autowired
   private StackoverflowProperties properties;
+  @Autowired
+  private JobsPage jobsPage;
 
   private Map<String, String> uiElements = of(
       "Jobs", "//*[@id='nav-jobs']",
@@ -43,5 +45,15 @@ public class SavedJobsPage {
 
   public boolean isBreadcrumbSelected() {
     return driver.findElement(getUiElement("Breadcrumb")).getAttribute("class").contains("is-selected");
+  }
+
+  public void deleteAd() {
+    driver.findElement(By.xpath(jobsPage.getPathAd() + "//a[@class='s-link stretched-link']")).click();
+    driver.findElement(By.xpath(jobsPage.getPathSaveButton())).click();
+    driver.navigate().refresh();
+  }
+
+  public boolean isAdDeleted() {
+    return driver.findElements(By.xpath(jobsPage.getPathAd())).isEmpty();
   }
 }
