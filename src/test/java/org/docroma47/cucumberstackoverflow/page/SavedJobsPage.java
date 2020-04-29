@@ -4,6 +4,7 @@ import java.util.Map;
 import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -19,8 +20,6 @@ public class SavedJobsPage {
   private WebDriver driver;
   @Autowired
   private StackoverflowProperties properties;
-  @Autowired
-  private JobsPage jobsPage;
 
   private Map<String, String> uiElements = of(
       "Jobs", "//*[@id='nav-jobs']",
@@ -47,13 +46,26 @@ public class SavedJobsPage {
     return driver.findElement(getUiElement("Breadcrumb")).getAttribute("class").contains("is-selected");
   }
 
-  public void deleteAd() {
-    driver.findElement(By.xpath(jobsPage.getPathAd() + "//a[@class='s-link stretched-link']")).click();
-    driver.findElement(By.xpath(jobsPage.getPathSaveButton())).click();
+  public void deleteJob(String jobID) {
+    String path = "//*[@class='listResults']//*[@data-result-id='" + jobID + "']";
+    if (!driver.findElement(By.xpath(path)).getAttribute("class").contains("_selected")) {
+      driver.findElement(By.xpath(path + "//a[@class='s-link stretched-link']")).click();
+    }
+    driver.findElement(By.xpath("//a[@data-jobid=" + jobID + "]")).click();
     driver.navigate().refresh();
   }
 
-  public boolean isAdDeleted() {
-    return driver.findElements(By.xpath(jobsPage.getPathAd())).isEmpty();
+  public String findJob(String jobID) {
+    WebElement jobAd;
+    Boolean isEmpty;
+    String path;
+    path = "//*[@class='listResults']//*[@data-result-id='" + jobID + "']" + "//a[@class='s-link stretched-link']";
+    isEmpty = driver.findElements(By.xpath(path)).isEmpty();
+    if (isEmpty) {
+      return "empty";
+    } else {
+      jobAd = driver.findElement(By.xpath(path));
+      return jobAd.getText();
+    }
   }
 }

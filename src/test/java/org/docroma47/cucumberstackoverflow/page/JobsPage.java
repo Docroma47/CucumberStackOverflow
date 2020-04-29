@@ -6,8 +6,6 @@ import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -23,8 +21,7 @@ public class JobsPage {
   private WebDriver driver;
   @Autowired
   private StackoverflowProperties properties;
-  private String saveButtonPath;
-  private String adPath;
+  private String jobId;
 
   private Map<String, String> uiElements = of(
       "Jobs", "//*[@id='left-sidebar']//*[@id='nav-jobs']",
@@ -39,20 +36,8 @@ public class JobsPage {
     return By.xpath(uiElements.get(key));
   }
 
-  private void setPathSaveButton(String idJob) {
-    saveButtonPath = "//a[@data-jobid='" + idJob + "']";
-  }
-
-  private void setPathAd(String idJob) {
-    adPath = "//*[@class='listResults']//*[@data-result-id='" + idJob + "']";
-  }
-
-  public String getPathSaveButton() {
-    return saveButtonPath;
-  }
-
-  public String getPathAd() {
-    return adPath;
+  public String getJobID() {
+    return jobId;
   }
 
   public void navigateToJobs() {
@@ -75,26 +60,30 @@ public class JobsPage {
     return driver.findElement(getUiElement("Breadcrumb")).getAttribute("class").contains("is-selected");
   }
 
-  public void inputJava() {
-    WebDriverWait wait = new WebDriverWait(driver, 2, 5000);
-    driver.findElement(getUiElement("Search-Field")).sendKeys("java");
-    wait.until(ExpectedConditions.elementToBeClickable(getUiElement("Search")));
+  public void inputInSearchField(String text) {
+    driver.findElement(getUiElement("Search-Field")).sendKeys(text);
+  }
+
+  public void clickOnSearchButton() {
     driver.findElement(getUiElement("Search")).click();
   }
 
-  private String idAd() {
+  public void setJobID(String index) {
     List<WebElement> listAd = driver.findElements(getUiElement("ListJob"));
-    return listAd.get(3).getAttribute("data-jobid");
+    jobId = listAd.get(Integer.valueOf(index)).getAttribute("data-jobid");
   }
 
-  public void saveJob() {
-    setPathSaveButton(idAd());
-    driver.findElement(By.xpath(getPathSaveButton())).click();
+  public void saveJobAd() {
+    By xpath = By.xpath("//a[@data-jobid='" + getJobID() + "']");
+    if (driver.findElement(xpath).getText().equals("Save")) {
+      driver.findElement(xpath).click();
+    }
   }
 
-  public void clickAd() {
-    setPathAd(idAd());
-    driver.findElement(By.xpath(getPathAd() + "//a[@class='s-link stretched-link']")).click();
+  public void clickOnJobAd() {
+    String path;
+    path = "//*[@class='listResults']//*[@data-result-id='" + getJobID() + "']" + "//a[@class='s-link stretched-link']";
+    driver.findElement(By.xpath(path)).click();
   }
 
 }
