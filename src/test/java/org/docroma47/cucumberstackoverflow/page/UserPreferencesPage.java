@@ -1,10 +1,12 @@
 package org.docroma47.cucumberstackoverflow.page;
 import java.util.Map;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -14,10 +16,10 @@ import static java.util.Map.ofEntries;
 
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
-public class UserPreferencesPage {
+public class UserPreferencesPage extends AbstractPage {
 
-  @Autowired
-  private WebDriver driver;
+  @FindBy(id = "left-sidebar")
+  private WebElement leftSidebar;
 
   private Map<String, String> uiElements = ofEntries(
       entry("Preference", "//a[text()='preferences']"),
@@ -115,7 +117,7 @@ public class UserPreferencesPage {
   }
 
   public Boolean isLeftNavigationPanelDisplayed() {
-    return driver.findElement(getUiElement("Left-navigation-panel")).isDisplayed();
+    return leftSidebar.isDisplayed();
   }
 
 }
