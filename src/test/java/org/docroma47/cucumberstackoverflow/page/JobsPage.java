@@ -64,23 +64,23 @@ public class JobsPage {
     driver.findElement(getUiElement("Search-Field")).sendKeys(text);
   }
 
-  public void clickOnSearchButton() {
+  public void clickSearchButton() {
     driver.findElement(getUiElement("Search")).click();
   }
 
-  public void setJobID(String index) {
+  public void selectJob(String index) {
     List<WebElement> listAd = driver.findElements(getUiElement("ListJob"));
     jobId = listAd.get(Integer.valueOf(index)).getAttribute("data-jobid");
   }
 
-  public void saveJobAd() {
+  public void clickSaveInSelectedJobAd() {
     By xpath = By.xpath("//a[@data-jobid='" + getJobID() + "']");
     if (driver.findElement(xpath).getText().equals("Save")) {
       driver.findElement(xpath).click();
     }
   }
 
-  public void clickOnJobAd() {
+  public void clickSelectedJobAd() {
     String path;
     path = "//*[@class='listResults']//*[@data-result-id='" + getJobID() + "']" + "//a[@class='s-link stretched-link']";
     driver.findElement(By.xpath(path)).click();

@@ -1,9 +1,9 @@
-Feature: Save ad about job.
+Feature: Saved jobs ad.
 
-  Scenario: A job ad saves and delete.
+  Scenario: The selected job ad is saved and deleted.
     Given I am logged in as a "regular" user.
     And I navigate to the 'Jobs' page.
-    When I input "Java" on the search field.
+    When I input "Java" on the search field and click search button.
     And I select a job ad with index number "3".
     And I add the selected job ad to the saved jobs.
     And I navigate to the 'Saved Jobs' page.

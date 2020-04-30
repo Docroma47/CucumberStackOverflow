@@ -62,7 +62,7 @@ public class SavedJobsPage {
     path = "//*[@class='listResults']//*[@data-result-id='" + jobID + "']" + "//a[@class='s-link stretched-link']";
     isEmpty = driver.findElements(By.xpath(path)).isEmpty();
     if (isEmpty) {
-      return "empty";
+      return null;
     } else {
       jobAd = driver.findElement(By.xpath(path));
       return jobAd.getText();

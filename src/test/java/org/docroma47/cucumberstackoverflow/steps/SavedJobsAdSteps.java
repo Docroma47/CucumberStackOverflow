@@ -9,7 +9,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class SearchAndSaveJobAdSteps {
+public class SavedJobsAdSteps {
 
   @Autowired
   private WebDriver driver;
@@ -18,26 +18,26 @@ public class SearchAndSaveJobAdSteps {
   @Autowired
   private JobsPage jobsPage;
 
-  @When("I input {string} on the search field.")
-  public void i_input_java_on_the_search_field(String text) {
+  @When("I input {string} on the search field and click search button.")
+  public void i_input_on_the_search_field_and_click_search_button(String text) {
     jobsPage.inputInSearchField(text);
-    jobsPage.clickOnSearchButton();
+    jobsPage.clickSearchButton();
   }
 
   @And("I select a job ad with index number {string}.")
-  public void i_press_save(String index) {
-    jobsPage.setJobID(index);
-    jobsPage.clickOnJobAd();
+  public void i_select_a_job_ad_with_index(String index) {
+    jobsPage.selectJob(index);
+    jobsPage.clickSelectedJobAd();
   }
 
   @And("I delete the selected job ad.")
-  public void i_delete_new_ad() {
+  public void i_delete_the_selected_job_ad() {
     savedJobsPage.deleteJob(jobsPage.getJobID());
   }
 
   @And("I add the selected job ad to the saved jobs.")
-  public void i_click_on_the_ad() {
-    jobsPage.saveJobAd();
+  public void i_add_the_selected_job_ad_to_the_saved_jobs() {
+    jobsPage.clickSaveInSelectedJobAd();
   }
 
   @And("I navigate to the 'Saved Jobs' page.")
@@ -46,8 +46,8 @@ public class SearchAndSaveJobAdSteps {
   }
 
   @Then("the selected job ad is deleted.")
-  public void the_ad_is_deleted() {
-    if (savedJobsPage.findJob(jobsPage.getJobID()).equals("empty")) {
+  public void the_selected_job_ad_is_deleted() {
+    if (savedJobsPage.findJob(jobsPage.getJobID()) == null) {
       Assert.assertTrue(true);
     } else {
       Assert.assertTrue(false);
