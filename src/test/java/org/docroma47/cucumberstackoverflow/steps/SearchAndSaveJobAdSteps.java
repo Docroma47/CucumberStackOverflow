@@ -9,7 +9,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class SearchAndSaveSteps {
+public class SearchAndSaveJobAdSteps {
 
   @Autowired
   private WebDriver driver;
