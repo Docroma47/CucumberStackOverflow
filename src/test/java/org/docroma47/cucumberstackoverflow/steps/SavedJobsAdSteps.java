@@ -37,7 +37,7 @@ public class SavedJobsAdSteps {
 
   @And("I add the selected job ad to the saved jobs.")
   public void i_add_the_selected_job_ad_to_the_saved_jobs() {
-    jobsPage.clickSaveInSelectedJobAd();
+    jobsPage.saveSelectedJobAdd();
   }
 
   @And("I navigate to the 'Saved Jobs' page.")
