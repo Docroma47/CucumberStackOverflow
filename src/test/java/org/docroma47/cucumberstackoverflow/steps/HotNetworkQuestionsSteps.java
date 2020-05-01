@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
 import org.docroma47.cucumberstackoverflow.page.UserPreferencesPage;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class HotNetworkQuestionsSteps {
   @And("I scroll to the middle page.")
   public void i_scroll_to_the_middle_page() {
     JavascriptExecutor jse = (JavascriptExecutor) driver;
-    jse.executeScript("window.scrollBy(0, 1500)", "");
+    jse.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("//*[@id='sidebar']/div[8]")));
   }
 
 }
