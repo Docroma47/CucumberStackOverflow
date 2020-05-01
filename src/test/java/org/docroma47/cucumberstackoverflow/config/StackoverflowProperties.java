@@ -10,15 +10,21 @@ import org.springframework.boot.context.properties.ConstructorBinding;
 public class StackoverflowProperties {
 
   private final String baseUrl;
+  private final int timeout;
   private final Map<String, User> users;
 
-  public StackoverflowProperties(String baseUrl, Map<String, User> users) {
+  public StackoverflowProperties(String baseUrl, int timeout, Map<String, User> users) {
     this.baseUrl = baseUrl;
+    this.timeout = timeout;
     this.users = users;
   }
 
   public String getBaseUrl() {
     return baseUrl;
+  }
+
+  public int getTimeout() {
+    return timeout;
   }
 
   public Map<String, User> getUsers() {

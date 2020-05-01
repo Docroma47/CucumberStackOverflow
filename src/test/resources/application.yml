@@ -1,5 +1,6 @@
 stackoverflow:
   baseUrl: https://stackoverflow.com/
+  timeout: 15
   users:
     regular:
       username: romakolotov47@gmail.com
