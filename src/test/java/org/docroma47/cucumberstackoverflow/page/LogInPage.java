@@ -19,7 +19,7 @@ public class LogInPage extends AbstractPage {
   @Autowired
   private StackoverflowProperties properties;
 
-  @FindBy(xpath = "//*[text()='Log in']")
+  @FindBy(xpath = "//div[@role='menubar']//a[contains(@class, 'login-link') and text() = 'Log in']")
   private WebElement loginLink;
   @FindBy(id = "email")
   private WebElement emailField;
