@@ -19,8 +19,8 @@ public class LogInPage extends AbstractPage {
   @Autowired
   private StackoverflowProperties properties;
 
-  @FindBy(xpath = "//*[contains (@class, 's-btn__filled')]")
-  private WebElement loginButton;
+  @FindBy(xpath = "//*[text()='Log in']")
+  private WebElement loginLink;
   @FindBy(id = "email")
   private WebElement emailField;
   @FindBy(id = "password")
@@ -44,7 +44,7 @@ public class LogInPage extends AbstractPage {
   }
 
   public void navigateToLogin() {
-    loginButton.click();
+    loginLink.click();
   }
 
   public void clickSubmitButton() {
