@@ -1,57 +1,54 @@
 package org.docroma47.cucumberstackoverflow.page;
 
-import java.util.Map;
-
 import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
-import static java.util.Map.of;
 
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
-public class LogInPage {
+public class LogInPage extends AbstractPage {
 
   @Autowired
   private WebDriver driver;
   @Autowired
   private StackoverflowProperties properties;
 
-  private Map<String, String> uiElements = of(
-      "Log_in", "//header//li[@class='-ctas']//a[1]",
-      "Field_email", "//input[@id='email']",
-      "Field_password", "//input[@id='password']",
-      "Submit", "//*[@id='submit-button']",
-      "Logout", "//button[text()='Log out']"
-  );
+  @FindBy(xpath = "//header//li[@class='-ctas']//a[1]")
+  private WebElement loginButton;
+  @FindBy(id = "email")
+  private WebElement emailField;
+  @FindBy(id = "password")
+  private WebElement passwordField;
+  @FindBy(id = "submit-button")
+  private WebElement submitButton;
+  @FindBy(xpath = "//button[text()='Log out']")
+  private WebElement logoutButton;
 
-  private By getUiElement(String key) {
-    return By.xpath(uiElements.get(key));
-  }
-
-  private void inputText(By xpath, String text) {
-    driver.findElement(xpath).sendKeys(text);
+  private void inputText(WebElement element, String text) {
+    element.sendKeys(text);
   }
 
   public void inputLoginDetails(String email, String password) {
-    inputText(getUiElement("Field_email"), email);
-    inputText(getUiElement("Field_password"), password);
+    inputText(emailField, email);
+    inputText(passwordField, password);
   }
 
-  private void clickOn(By xpath) {
-    driver.findElement(xpath).click();
+  private void clickOn(WebElement element) {
+    element.click();
   }
 
   public void navigateToLogin() {
-    driver.findElement(getUiElement("Log_in")).click();
+    loginButton.click();
   }
 
   public void clickSubmitButton() {
-    driver.findElement(getUiElement("Submit")).click();
+    submitButton.click();
   }
 
   public void login(String whichUser) {
@@ -62,7 +59,7 @@ public class LogInPage {
 
   public void logout() {
     driver.get(properties.getBaseUrl() + "/users/logout");
-    clickOn(getUiElement("Logout"));
+    clickOn(logoutButton);
   }
 
 }
