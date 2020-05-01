@@ -15,39 +15,37 @@ import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
 @Scope(SCOPE_CUCUMBER_GLUE)
 public class UserPreferencesPage extends AbstractPage {
 
-  @FindBy(xpath = "//*[@id='left-sidebar']")
+  @FindBy(id = "left-sidebar")
   private WebElement leftNavigationPanel;
-  @FindBy(xpath = "//*[@id='content']//*[@id='flag-leftnav']")
-  private WebElement hideLeftNavigationPanel;
-  @FindBy(xpath = "//*[@id='sidebar']//*[@id='hot-network-questions']")
-  private WebElement hotNetwordkQuestions;
-  @FindBy(xpath = "//input[@id='hotNetworkQuestions']")
-  private WebElement hideHotNetwordkQuestions;
-  @FindBy(xpath = "//*[@id='RealName']")
-  private WebElement realName;
-  @FindBy(xpath = "//button[text()='Start download']")
-  private WebElement startDownloadButton;
-  @FindBy(xpath = "//*[@id='fixedHeader']")
-  private WebElement topBarStickness;
+  @FindBy(id = "flag-leftnav")
+  private WebElement hideLeftNavigationPanelCheckbox;
+  @FindBy(id = "hot-network-questions")
+  private WebElement hotNetwordkQuestionsPanel;
+  @FindBy(id = "hotNetworkQuestions")
+  private WebElement hideHotNetwordkQuestionsCheckbox;
+  @FindBy(id = "RealName")
+  private WebElement realNameInputField;
+  @FindBy(id = "fixedHeader")
+  private WebElement topBarSticknessCheckbox;
   @FindBy(xpath = "/html/body/header")
   private WebElement topBar;
-  @FindBy(xpath = "//input[@id='keyboardShortcuts']")
-  private WebElement keyboardShortcats;
-  @FindBy(xpath = "//input[@id='enableForcedLightmode']")
-  private WebElement lightTheme;
-  @FindBy(xpath = "//input[@id='enableForcedDarkmode']")
-  private WebElement darkTheme;
+  @FindBy(id = "keyboardShortcuts")
+  private WebElement keyboardShortcatsCheckbox;
+  @FindBy(id = "enableForcedLightmode")
+  private WebElement lightThemeRadioButton;
+  @FindBy(id = "enableForcedDarkmode")
+  private WebElement darkThemeRadioButton;
   @FindBy(xpath = "//a[@class='my-profile js-gps-track']")
-  private WebElement profile;
-  @FindBy(xpath = "//a[text()='Edit profile and settings']")
-  private WebElement editProfile;
-  @FindBy(xpath = "//a[text()='preferences']")
-  private WebElement preference;
+  private WebElement profileLink;
+  @FindBy(linkText = "Edit profile and settings")
+  private WebElement editProfileLink;
+  @FindBy(linkText = "preferences")
+  private WebElement preferenceLink;
   @FindBy(xpath = "//body")
   private WebElement body;
 
   public void navigateToPreferences() {
-    preference.click();
+    preferenceLink.click();
   }
 
   public String getPageColor() {
@@ -55,8 +53,8 @@ public class UserPreferencesPage extends AbstractPage {
   }
 
   public void navigateToProfile() {
-    profile.click();
-    editProfile.click();
+    profileLink.click();
+    editProfileLink.click();
   }
 
   public void inputHotKeysGAndH() {
@@ -66,22 +64,22 @@ public class UserPreferencesPage extends AbstractPage {
   }
 
   public void setKeyboardShortcuts(boolean enabled) {
-    if (!keyboardShortcats.isSelected() && enabled || keyboardShortcats.isSelected() && !enabled) {
-      keyboardShortcats.click();
+    if (!keyboardShortcatsCheckbox.isSelected() && enabled || keyboardShortcatsCheckbox.isSelected() && !enabled) {
+      keyboardShortcatsCheckbox.click();
     }
   }
 
   public void setTopBarStickiness(boolean enabled) {
-    if (!topBarStickness.isSelected() && enabled || topBarStickness.isSelected() && !enabled) {
-      topBarStickness.click();
+    if (!topBarSticknessCheckbox.isSelected() && enabled || topBarSticknessCheckbox.isSelected() && !enabled) {
+      topBarSticknessCheckbox.click();
     }
   }
 
   public void setTheme(String theme) {
     if (theme.equals("Dark-theme")) {
-      darkTheme.click();
+      darkThemeRadioButton.click();
     } else if (theme.equals("Light-theme")){
-      lightTheme.click();
+      lightThemeRadioButton.click();
     }
   }
 
@@ -90,8 +88,8 @@ public class UserPreferencesPage extends AbstractPage {
   }
 
   public void setHideHotNetworkQuestions(boolean enabled) {
-    if (!hideHotNetwordkQuestions.isSelected() && enabled || hideHotNetwordkQuestions.isSelected() && !enabled) {
-      hideHotNetwordkQuestions.click();
+    if (!hideHotNetwordkQuestionsCheckbox.isSelected() && enabled || hideHotNetwordkQuestionsCheckbox.isSelected() && !enabled) {
+      hideHotNetwordkQuestionsCheckbox.click();
     }
   }
 
@@ -99,19 +97,19 @@ public class UserPreferencesPage extends AbstractPage {
     if (driver.findElements(By.xpath("//*[@id='sidebar']//*[@id='hot-network-questions']")).isEmpty()) {
       return false;
     } else {
-      return hotNetwordkQuestions.isDisplayed();
+      return hotNetwordkQuestionsPanel.isDisplayed();
     }
   }
 
   public String getRealName() {
     WebDriverWait wait = new WebDriverWait(driver, 2);
-    wait.until(ExpectedConditions.visibilityOf(realName));
-    return realName.getAttribute("value");
+    wait.until(ExpectedConditions.visibilityOf(realNameInputField));
+    return realNameInputField.getAttribute("value");
   }
 
   public void setHideLeftNavigation(boolean enabled) {
-    if (!hideLeftNavigationPanel.isSelected() && enabled || hideLeftNavigationPanel.isSelected() && !enabled) {
-      hideLeftNavigationPanel.click();
+    if (!hideLeftNavigationPanelCheckbox.isSelected() && enabled || hideLeftNavigationPanelCheckbox.isSelected() && !enabled) {
+      hideLeftNavigationPanelCheckbox.click();
     }
   }
 
