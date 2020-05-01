@@ -1,49 +1,45 @@
 package org.docroma47.cucumberstackoverflow.page;
-import java.util.Map;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
-import static java.util.Map.of;
 
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
-public class ApplicationsPage {
+public class ApplicationsPage extends AbstractPage {
 
   @Autowired
   private WebDriver driver;
 
-  private Map<String, String> uiElements = of(
-      "Jobs", "//*[@id='nav-jobs']",
-      "Applications", "//*[@id='TabApplication']",
-      "Label-display-jobs", "//*[@id='content']//*[contains (@class, 's-label')]",
-      "Display-jobs-checkbox", "//*[@id='content']//*[@id='includeExternals']",
-      "Breadcrumb", "//*[@id='content']//*[@id='TabApplication']"
-  );
-
-  private By getUiElement(String key) {
-    return By.xpath(uiElements.get(key));
-  }
+  @FindBy(id = "nav-jobs")
+  private WebElement jobsLink;
+  @FindBy(id = "TabApplication")
+  private WebElement applicationsBreadcrumb;
+  @FindBy(xpath = "//*[@id='content']//*[contains (@class, 's-label')]")
+  private WebElement labelDisplayJobs;
+  @FindBy(id = "includeExternals")
+  private WebElement displayJobsCheckbox;
 
   public String getLabel() {
-    return driver.findElement(getUiElement("Label-display-jobs")).getText();
+    return labelDisplayJobs.getText();
   }
 
   public void navigateToApplications() {
-    driver.findElement(getUiElement("Jobs")).click();
-    driver.findElement(getUiElement("Applications")).click();
+    jobsLink.click();
+    applicationsBreadcrumb.click();
   }
 
   public boolean isJobsCheckboxDisplayed() {
-    return driver.findElement(getUiElement("Display-jobs-checkbox")).isDisplayed();
+    return displayJobsCheckbox.isDisplayed();
   }
 
   public boolean isBreadcrumbSelected() {
-    return driver.findElement(getUiElement("Breadcrumb")).getAttribute("class").contains("is-selected");
+    return applicationsBreadcrumb.getAttribute("class").contains("is-selected");
   }
 
 }
