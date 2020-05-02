@@ -1,24 +1,20 @@
 package org.docroma47.cucumberstackoverflow.page;
-import java.util.List;
 
 import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
-import static java.util.Map.*;
 
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
 public class JobsPage extends AbstractPage {
 
-  @Autowired
-  private WebDriver driver;
   @Autowired
   private StackoverflowProperties properties;
   private String jobId;
@@ -33,6 +29,8 @@ public class JobsPage extends AbstractPage {
   private WebElement locationFilterField;
   @FindBy(xpath = "//*[@id='content']//*[contains (@class, 'js-search-btn')]")
   private WebElement searchButton;
+  @FindBy(xpath = "//span[text() = 'featured']")
+  private WebElement featured;
 
   public String getJobID() {
     return jobId;
@@ -67,21 +65,21 @@ public class JobsPage extends AbstractPage {
   }
 
   public void selectJob(String index) {
-    List<WebElement> listAd = driver.findElements(By.xpath("//*[@id='content']//*[@class='listResults']/div"));
-    jobId = listAd.get(Integer.valueOf(index)).getAttribute("data-jobid");
+    retry(ExpectedConditions.visibilityOf(featured));
+    By jobAdItemPath = By.xpath("//*[@id = 'content']//*[@class = 'listResults']/div[" + index + "]");
+    jobId = retry(ExpectedConditions.presenceOfElementLocated(jobAdItemPath)).getAttribute("data-jobid");
   }
 
   public void saveSelectedJobAdd() {
-    By xpath = By.xpath("//a[@data-jobid='" + getJobID() + "']");
-    if (driver.findElement(xpath).getText().equals("Save")) {
-      driver.findElement(xpath).click();
+    By jobAdSaveButtonPath = By.xpath("//a[@data-jobid = '" + getJobID() + "']");
+    if (!retry(ExpectedConditions.presenceOfElementLocated(jobAdSaveButtonPath)).getText().equals("Saved")) {
+      retry(ExpectedConditions.elementToBeClickable(jobAdSaveButtonPath)).click();
     }
   }
 
   public void clickSelectedJobAd() {
-    String path;
-    path = "//*[@class='listResults']//*[@data-result-id='" + getJobID() + "']" + "//a[@class='s-link stretched-link']";
-    driver.findElement(By.xpath(path)).click();
+    By jobAdPath = By.xpath("//*[@class = 'listResults']//*[@data-result-id = '" + getJobID() + "']" + "//a[@class = 's-link stretched-link']");
+    retry(ExpectedConditions.elementToBeClickable(jobAdPath)).click();
   }
 
 }
