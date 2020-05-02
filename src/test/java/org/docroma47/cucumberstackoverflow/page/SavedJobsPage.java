@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -24,11 +25,11 @@ public class SavedJobsPage extends AbstractPage {
   private WebElement jobsLink;
   @FindBy(id = "TabSavedJobs")
   private WebElement savedJobsBreadcrumb;
-  @FindBy(xpath = "//*[@id='content']//*[@class='s-btn s-btn__filled']")
-  private WebElement browseJobsButton;
 
   public void navigateToSavedJobs() {
-    jobsLink.click();
+    if (!savedJobsBreadcrumb.isDisplayed()) {
+      jobsLink.click();
+    }
     savedJobsBreadcrumb.click();
   }
 
@@ -41,25 +42,10 @@ public class SavedJobsPage extends AbstractPage {
   }
 
   public void deleteJob(String jobID) {
-    String path = "//*[@class='listResults']//*[@data-result-id='" + jobID + "']";
-    if (!driver.findElement(By.xpath(path)).getAttribute("class").contains("_selected")) {
-      driver.findElement(By.xpath(path + "//a[@class='s-link stretched-link']")).click();
-    }
-    driver.findElement(By.xpath("//a[@data-jobid=" + jobID + "]")).click();
-    driver.navigate().refresh();
+    retry(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@data-id = '" + jobID + "' and @title = 'Unfavorite job']"))).click();
   }
 
-  public String findJob(String jobID) {
-    WebElement jobAd;
-    Boolean isEmpty;
-    String path;
-    path = "//*[@class='listResults']//*[@data-result-id='" + jobID + "']" + "//a[@class='s-link stretched-link']";
-    isEmpty = driver.findElements(By.xpath(path)).isEmpty();
-    if (isEmpty) {
-      return null;
-    } else {
-      jobAd = driver.findElement(By.xpath(path));
-      return jobAd.getText();
-    }
+  public boolean isJobAdPresent(String jobID) {
+    return !driver.findElements(By.xpath("//*[@class = 'listResults']//div[@data-jobid = '" + jobID + "']")).isEmpty();
   }
 }
