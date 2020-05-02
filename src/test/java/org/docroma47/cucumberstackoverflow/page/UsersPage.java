@@ -18,7 +18,7 @@ public class UsersPage extends AbstractPage {
 
   @FindBy(id = "nav-users")
   private WebElement usersLink;
-  @FindBy(id = "//*[@id='content']//*[contains (@class, 'fs-headline1')]")
+  @FindBy(xpath = "//*[@id='content']//*[contains (@class, 'fs-headline1')]")
   private WebElement title;
 
   public String getTitle() {
