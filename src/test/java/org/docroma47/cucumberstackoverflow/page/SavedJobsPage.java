@@ -28,6 +28,7 @@ public class SavedJobsPage extends AbstractPage {
 
   public void navigateToSavedJobs() {
     jobsLink.click();
+    savedJobsBreadcrumb.click();
   }
 
   public String getUrl() {
