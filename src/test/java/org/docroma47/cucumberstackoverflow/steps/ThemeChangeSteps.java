@@ -68,6 +68,10 @@ public class ThemeChangeSteps {
       logInPage.login(whichUser);
     }
 
+    if (driver.getCurrentUrl().startsWith(properties.getBaseUrl() + "nocaptcha")) {
+      System.out.println("Captcha validation");
+    }
+
     wait.until(ExpectedConditions.urlToBe(properties.getBaseUrl()));
     authCookie = driver.manage().getCookieNamed("acct");
     Assert.assertNotNull(authCookie);
