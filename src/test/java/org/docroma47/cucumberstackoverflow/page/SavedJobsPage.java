@@ -27,10 +27,7 @@ public class SavedJobsPage extends AbstractPage {
   private WebElement savedJobsBreadcrumb;
 
   public void navigateToSavedJobs() {
-    if (!savedJobsBreadcrumb.isDisplayed()) {
-      jobsLink.click();
-    }
-    savedJobsBreadcrumb.click();
+    jobsLink.click();
   }
 
   public String getUrl() {
