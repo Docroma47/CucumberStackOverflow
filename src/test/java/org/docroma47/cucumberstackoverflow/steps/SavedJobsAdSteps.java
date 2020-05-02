@@ -6,13 +6,10 @@ import io.cucumber.java.en.When;
 import org.docroma47.cucumberstackoverflow.page.JobsPage;
 import org.docroma47.cucumberstackoverflow.page.SavedJobsPage;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class SavedJobsAdSteps {
 
-  @Autowired
-  private WebDriver driver;
   @Autowired
   private SavedJobsPage savedJobsPage;
   @Autowired
@@ -33,6 +30,7 @@ public class SavedJobsAdSteps {
   @And("I delete the selected job ad.")
   public void i_delete_the_selected_job_ad() {
     savedJobsPage.deleteJob(jobsPage.getJobID());
+    savedJobsPage.navigateToSavedJobs();
   }
 
   @And("I add the selected job ad to the saved jobs.")
@@ -47,10 +45,6 @@ public class SavedJobsAdSteps {
 
   @Then("the selected job ad is deleted.")
   public void the_selected_job_ad_is_deleted() {
-    if (savedJobsPage.findJob(jobsPage.getJobID()) == null) {
-      Assert.assertTrue(true);
-    } else {
-      Assert.assertTrue(false);
-    }
+    Assert.assertFalse(savedJobsPage.isJobAdPresent(jobsPage.getJobID()));
   }
 }
