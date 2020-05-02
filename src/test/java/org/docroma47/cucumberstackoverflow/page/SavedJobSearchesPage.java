@@ -20,7 +20,7 @@ public class SavedJobSearchesPage extends AbstractPage {
   private WebElement jobsLink;
   @FindBy(id = "TabSavedSearches")
   private WebElement savedJobsSearchesBreadcrumb;
-  @FindBy(id = "//*[@id='content']//*[contains(@class, 'fs-headline1')]")
+  @FindBy(xpath = "//*[@id='content']//*[contains(@class, 'fs-headline1')]")
   private WebElement title;
 
   public String getTitle() {
