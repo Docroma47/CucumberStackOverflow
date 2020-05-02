@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-
 @EnableConfigurationProperties({ StackoverflowProperties.class })
 @ComponentScan(basePackages = "org.docroma47.cucumberstackoverflow")
 @Configuration
@@ -32,7 +30,6 @@ public class CucumberConfiguration {
     FirefoxOptions firefoxOptions = new FirefoxOptions();
     firefoxOptions.setBinary(firefoxBinary);
     WebDriver driver = new FirefoxDriver(firefoxOptions);
-    driver.manage().timeouts().implicitlyWait(15, SECONDS);
     driver.manage().window().maximize();
     Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
     return driver;
