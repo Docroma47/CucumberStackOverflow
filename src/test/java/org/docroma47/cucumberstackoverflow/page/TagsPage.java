@@ -18,7 +18,7 @@ public class TagsPage extends AbstractPage {
 
   @FindBy(id = "nav-tags")
   private WebElement tagsLink;
-  @FindBy(id = "//*[@id='content']//*[contains (@class, 'fs-headline1')]")
+  @FindBy(xpath = "//*[@id='content']//*[contains (@class, 'fs-headline1')]")
   private WebElement title;
 
   public String getTitle() {
