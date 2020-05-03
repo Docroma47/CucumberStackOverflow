@@ -31,7 +31,7 @@ public class KeyboardShortcutsSteps {
 
   @Then("current page is changed to home page.")
   public void current_page_is_changed_to_home_page() {
-    userPreferencesPage.retry(ExpectedConditions.urlToBe(properties.getBaseUrl()));
+    Assert.assertTrue(userPreferencesPage.retry(ExpectedConditions.urlContains(properties.getBaseUrl())).booleanValue());
   }
 
   @Then("current page is preferences page.")

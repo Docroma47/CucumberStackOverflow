@@ -1,8 +1,9 @@
 package org.docroma47.cucumberstackoverflow.page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+//import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -58,9 +59,9 @@ public class UserPreferencesPage extends AbstractPage {
   }
 
   public void inputHotKeysGAndH() {
-    new Actions(driver).moveToElement(body).perform();
-    body.sendKeys("g");
-    body.sendKeys("h");
+    body.sendKeys(Keys.SHIFT + "?");
+    body.sendKeys("G");
+    body.sendKeys("H");
   }
 
   public void setKeyboardShortcuts(boolean enabled) {
@@ -84,7 +85,7 @@ public class UserPreferencesPage extends AbstractPage {
   }
 
   public Boolean isTopBarFixed() {
-    return topBar.getAttribute("class").contains("fixed");
+    return retry(ExpectedConditions.attributeContains(topBar, "class", "fixed")).booleanValue();
   }
 
   public void setHideHotNetworkQuestions(boolean enabled) {
@@ -114,7 +115,7 @@ public class UserPreferencesPage extends AbstractPage {
   }
 
   public Boolean isLeftNavigationPanelDisplayed() {
-    return leftNavigationPanel.isDisplayed();
+    return retry(ExpectedConditions.visibilityOf(leftNavigationPanel)).isDisplayed();
   }
 
 }
