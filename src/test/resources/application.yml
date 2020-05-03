@@ -4,14 +4,14 @@ stackoverflow:
   network:
     offline: false
     latency: 500
-    download-throughput: 0
-    upload-throughput: 0
+    downloadThroughput: 0
+    uploadThroughput: 0
 
   selenium:
     headless: true
-    global-wait-timeout: 5
-    local-wait-timeout: 6
-    poll-rate: 2
+    globalWaitTimeout: 15
+    localWaitTimout: 15
+    pollRate: 2
 
   users:
     regular:

@@ -37,7 +37,7 @@ public class JobsPage extends AbstractPage {
   }
 
   public void navigateToJobs() {
-    jobsLink.click();
+    retry(ExpectedConditions.elementToBeClickable(jobsLink)).click();
   }
 
   public boolean isSearchFieldDisplayed() {

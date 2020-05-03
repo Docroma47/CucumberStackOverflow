@@ -29,7 +29,7 @@ public class TopBarStickinessSteps {
 
   @Then("Top bar is not fixed.")
   public void top_bar_is_not_fixed() {
-    Assert.assertFalse(userPreferencesPage.isTopBarFixed());
+    Assert.assertFalse(!userPreferencesPage.isTopBarFixed());
   }
 
   @Then("Top bar is fixed.")
