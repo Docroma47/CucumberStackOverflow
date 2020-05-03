@@ -32,7 +32,7 @@ public abstract class AbstractPage {
 
   public <T> T retry(@Nonnull ExpectedCondition<T> action) {
     Wait<WebDriver> stubbornWait = new FluentWait<>(driver)
-        .withTimeout(Duration.ofSeconds(properties.getSelenium().getLocalWaitTimout()))
+        .withTimeout(Duration.ofSeconds(properties.getSelenium().getLocalWaitTimeout()))
         .pollingEvery(Duration.ofSeconds(properties.getSelenium().getPollRate()))
         .ignoring(NoSuchElementException.class)
         .ignoring(StaleElementReferenceException.class);

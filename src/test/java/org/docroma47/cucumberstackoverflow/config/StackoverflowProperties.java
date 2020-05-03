@@ -94,13 +94,13 @@ public class StackoverflowProperties {
 
     private final boolean headless;
     private final int globalWaitTimeout;
-    private final int localWaitTimout;
+    private final int localWaitTimeout;
     private final int pollRate;
 
-    public SeleniumProperties(boolean headless, int globalWaitTimeout, int localWaitTimout, int pollRate) {
+    public SeleniumProperties(boolean headless, int globalWaitTimeout, int localWaitTimeout, int pollRate) {
       this.headless = headless;
       this.globalWaitTimeout = globalWaitTimeout;
-      this.localWaitTimout = localWaitTimout;
+      this.localWaitTimeout = localWaitTimeout;
       this.pollRate = pollRate;
     }
 
@@ -112,8 +112,8 @@ public class StackoverflowProperties {
       return globalWaitTimeout;
     }
 
-    public int getLocalWaitTimout() {
-      return localWaitTimout;
+    public int getLocalWaitTimeout() {
+      return localWaitTimeout;
     }
 
     public int getPollRate() {
