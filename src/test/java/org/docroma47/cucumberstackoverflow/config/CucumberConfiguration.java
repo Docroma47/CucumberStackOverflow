@@ -1,9 +1,17 @@
 package org.docroma47.cucumberstackoverflow.config;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.google.common.collect.ImmutableMap;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxBinary;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.Command;
+import org.openqa.selenium.remote.CommandExecutor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,23 +22,29 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CucumberConfiguration {
 
+  @Autowired
+  private StackoverflowProperties properties;
+
   @Bean(destroyMethod = "quit")
-  public WebDriver webDriver() {
-    if ((System.getProperty("os.name").substring(0, 3)).equals("Lin")) {
-      System.setProperty("webdriver.gecko.driver", "Drivers/Linux/geckodriver");
-    } else if ((System.getProperty("os.name").substring(0, 3)).equals("Mac")){
-      System.setProperty("webdriver.gecko.driver", "Drivers/MacOs/geckodriver");
-    } else {
-      System.setProperty("webdriver.gecko.driver", "Drivers\\Windows\\geckodriver.exe");
+  public WebDriver webDriver() throws IOException {
+    WebDriverManager.chromedriver().setup();
+    ChromeOptions chromeOptions = new ChromeOptions();
+    chromeOptions.addArguments("--no-sandbox");
+    if (properties.getSelenium().isHeadless()) {
+      chromeOptions.addArguments("--headless");
     }
-
-    FirefoxBinary firefoxBinary = new FirefoxBinary();
-    firefoxBinary.addCommandLineOptions("--headless");
-
-    FirefoxOptions firefoxOptions = new FirefoxOptions();
-    firefoxOptions.setBinary(firefoxBinary);
-    WebDriver driver = new FirefoxDriver(firefoxOptions);
+    chromeOptions.addArguments("disable-gpu");
+    ChromeDriver driver = new ChromeDriver(chromeOptions);
     driver.manage().window().maximize();
+
+    Map<String, Object> map = new HashMap<>();
+    map.put("offline", properties.getNetwork().isOffline());
+    map.put("latency", properties.getNetwork().getLatency());
+    map.put("download_throughput", properties.getNetwork().getDownloadThroughput());
+    map.put("upload_throughput", properties.getNetwork().getUploadThroughput());
+
+    CommandExecutor executor = driver.getCommandExecutor();
+    executor.execute(new Command(driver.getSessionId(), "setNetworkConditions", ImmutableMap.of("network_conditions", ImmutableMap.copyOf(map))));
     Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
     return driver;
   }

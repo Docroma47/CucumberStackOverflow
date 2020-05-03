@@ -1,8 +1,8 @@
 package org.docroma47.cucumberstackoverflow.page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -48,8 +48,8 @@ public class UserPreferencesPage extends AbstractPage {
     preferenceLink.click();
   }
 
-  public String getPageColor() {
-    return body.getCssValue("background-color");
+  public Boolean isDarkThemeSet() {
+    return body.getAttribute("class").contains("theme-dark");
   }
 
   public void navigateToProfile() {
@@ -58,9 +58,9 @@ public class UserPreferencesPage extends AbstractPage {
   }
 
   public void inputHotKeysGAndH() {
-    driver.findElement(By.tagName("body")).sendKeys(Keys.SHIFT + "?");
-    driver.findElement(By.tagName("body")).sendKeys("G");
-    driver.findElement(By.tagName("body")).sendKeys("H");
+    new Actions(driver).moveToElement(body).perform();
+    body.sendKeys("g");
+    body.sendKeys("h");
   }
 
   public void setKeyboardShortcuts(boolean enabled) {

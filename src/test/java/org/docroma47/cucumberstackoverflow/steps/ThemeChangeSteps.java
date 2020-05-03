@@ -7,10 +7,8 @@ import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
 import org.docroma47.cucumberstackoverflow.page.LogInPage;
 import org.docroma47.cucumberstackoverflow.page.UserPreferencesPage;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,18 +36,12 @@ public class ThemeChangeSteps {
 
   @Then("current theme is changed to Dark theme.")
   public void current_theme_is_changed_to_dark_theme() {
-    WebDriverWait wait = new WebDriverWait(driver, 10);
-    WebElement webElement = driver.findElement(By.xpath("//body"));
-    wait.until(ExpectedConditions.attributeToBe(webElement, "background-color", "rgb(45, 45, 45)"));
-    Assert.assertEquals("rgb(45, 45, 45)", userPreferencesPage.getPageColor());
+    Assert.assertTrue(userPreferencesPage.retry(driver -> userPreferencesPage.isDarkThemeSet()));
   }
 
   @Then("current theme is changed to Light theme.")
   public void current_theme_is_changed_to_light_theme() {
-    WebDriverWait wait = new WebDriverWait(driver, 10);
-    WebElement webElement = driver.findElement(By.xpath("//body"));
-    wait.until(ExpectedConditions.attributeToBe(webElement, "background-color", "rgb(255, 255, 255)"));
-    Assert.assertEquals("rgb(255, 255, 255)", userPreferencesPage.getPageColor());
+  Assert.assertTrue(userPreferencesPage.retry(driver -> !userPreferencesPage.isDarkThemeSet()));
   }
 
   @When("I navigate to the user preferences page.")

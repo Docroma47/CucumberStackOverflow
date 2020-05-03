@@ -8,7 +8,6 @@ import org.docroma47.cucumberstackoverflow.page.UserPreferencesPage;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class KeyboardShortcutsSteps {
@@ -32,9 +31,7 @@ public class KeyboardShortcutsSteps {
 
   @Then("current page is changed to home page.")
   public void current_page_is_changed_to_home_page() {
-    WebDriverWait wait = new WebDriverWait(driver, 2);
-    wait.until(ExpectedConditions.urlToBe(properties.getBaseUrl()));
-    Assert.assertEquals(properties.getBaseUrl(), driver.getCurrentUrl());
+    userPreferencesPage.retry(ExpectedConditions.urlToBe(properties.getBaseUrl()));
   }
 
   @Then("current page is preferences page.")

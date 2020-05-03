@@ -27,13 +27,13 @@ public abstract class AbstractPage {
 
   @PostConstruct
   private void initElements() {
-    PageFactory.initElements(new AjaxElementLocatorFactory(driver, properties.getTimeout()), this);
+    PageFactory.initElements(new AjaxElementLocatorFactory(driver, properties.getSelenium().getGlobalWaitTimeout()), this);
   }
 
   public <T> T retry(@Nonnull ExpectedCondition<T> action) {
     Wait<WebDriver> stubbornWait = new FluentWait<>(driver)
-        .withTimeout(Duration.ofSeconds(16))
-        .pollingEvery(Duration.ofSeconds(2))
+        .withTimeout(Duration.ofSeconds(properties.getSelenium().getLocalWaitTimout()))
+        .pollingEvery(Duration.ofSeconds(properties.getSelenium().getPollRate()))
         .ignoring(NoSuchElementException.class)
         .ignoring(StaleElementReferenceException.class);
     return stubbornWait.until(action);

@@ -10,12 +10,14 @@ import org.springframework.boot.context.properties.ConstructorBinding;
 public class StackoverflowProperties {
 
   private final String baseUrl;
-  private final int timeout;
+  private final SeleniumProperties selenium;
+  private final NetworkProperties network;
   private final Map<String, User> users;
 
-  public StackoverflowProperties(String baseUrl, int timeout, Map<String, User> users) {
+  public StackoverflowProperties(String baseUrl, SeleniumProperties selenium, NetworkProperties network, Map<String, User> users) {
     this.baseUrl = baseUrl;
-    this.timeout = timeout;
+    this.selenium = selenium;
+    this.network = network;
     this.users = users;
   }
 
@@ -23,8 +25,12 @@ public class StackoverflowProperties {
     return baseUrl;
   }
 
-  public int getTimeout() {
-    return timeout;
+  public SeleniumProperties getSelenium() {
+    return selenium;
+  }
+
+  public NetworkProperties getNetwork() {
+    return network;
   }
 
   public Map<String, User> getUsers() {
@@ -47,6 +53,71 @@ public class StackoverflowProperties {
 
     public String getPassword() {
       return password;
+    }
+
+  }
+
+  @ConstructorBinding
+  public static class NetworkProperties {
+
+    private final boolean offline;
+    private final int latency;
+    private final int downloadThroughput;
+    private final int uploadThroughput;
+
+    public NetworkProperties(boolean offline, int latency, int downloadThroughput, int uploadThroughput) {
+      this.offline = offline;
+      this.latency = latency;
+      this.downloadThroughput = downloadThroughput;
+      this.uploadThroughput = uploadThroughput;
+    }
+
+    public boolean isOffline() {
+      return offline;
+    }
+
+    public int getLatency() {
+      return latency;
+    }
+
+    public int getDownloadThroughput() {
+      return downloadThroughput;
+    }
+
+    public int getUploadThroughput() {
+      return uploadThroughput;
+    }
+  }
+
+  @ConstructorBinding
+  public static class SeleniumProperties {
+
+    private final boolean headless;
+    private final int globalWaitTimeout;
+    private final int localWaitTimout;
+    private final int pollRate;
+
+    public SeleniumProperties(boolean headless, int globalWaitTimeout, int localWaitTimout, int pollRate) {
+      this.headless = headless;
+      this.globalWaitTimeout = globalWaitTimeout;
+      this.localWaitTimout = localWaitTimout;
+      this.pollRate = pollRate;
+    }
+
+    public boolean isHeadless() {
+      return headless;
+    }
+
+    public int getGlobalWaitTimeout() {
+      return globalWaitTimeout;
+    }
+
+    public int getLocalWaitTimout() {
+      return localWaitTimout;
+    }
+
+    public int getPollRate() {
+      return pollRate;
     }
   }
 

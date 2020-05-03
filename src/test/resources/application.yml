@@ -1,6 +1,18 @@
 stackoverflow:
   baseUrl: https://stackoverflow.com/
-  timeout: 15
+
+  network:
+    offline: false
+    latency: 500
+    download-throughput: 0
+    upload-throughput: 0
+
+  selenium:
+    headless: true
+    global-wait-timeout: 5
+    local-wait-timeout: 6
+    poll-rate: 2
+
   users:
     regular:
       username: romakolotov47@gmail.com
