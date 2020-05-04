@@ -4,7 +4,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.docroma47.cucumberstackoverflow.page.UserPreferencesPage;
-import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +28,12 @@ public class TopBarStickinessSteps {
 
   @Then("Top bar is not fixed.")
   public void top_bar_is_not_fixed() {
-    Assert.assertFalse(userPreferencesPage.isTopBarFixed());
+    userPreferencesPage.assertTopBarIsFixed(false);
   }
 
   @Then("Top bar is fixed.")
   public void top_bar_is_fixed() {
-    Assert.assertTrue(userPreferencesPage.isTopBarFixed());
+    userPreferencesPage.assertTopBarIsFixed(true);
   }
 
   @And("I scroll to the bottom.")

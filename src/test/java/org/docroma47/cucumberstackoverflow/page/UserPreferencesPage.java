@@ -48,8 +48,8 @@ public class UserPreferencesPage extends AbstractPage {
     preferenceLink.click();
   }
 
-  public Boolean isDarkThemeSet() {
-    return body.getAttribute("class").contains("theme-dark");
+  public void assertThemeIsDark(boolean expected) {
+    assertAttributeContains(body, "class", "theme-dark", expected);
   }
 
   public void navigateToProfile() {
@@ -113,8 +113,12 @@ public class UserPreferencesPage extends AbstractPage {
     }
   }
 
-  public Boolean isLeftNavigationPanelDisplayed() {
-    return retry(ExpectedConditions.visibilityOf(leftNavigationPanel)).isDisplayed();
+  public void assertLeftNavigationVisible(boolean expected) {
+    assertElementVisible(leftNavigationPanel, expected);
+  }
+
+  public void assertTopBarIsFixed(boolean expected) {
+    assertAttributeContains(topBar, "class", "fixed", expected);
   }
 
 }

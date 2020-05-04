@@ -36,12 +36,12 @@ public class ThemeChangeSteps {
 
   @Then("current theme is changed to Dark theme.")
   public void current_theme_is_changed_to_dark_theme() {
-    Assert.assertTrue(userPreferencesPage.retry(driver -> userPreferencesPage.isDarkThemeSet()));
+    userPreferencesPage.assertThemeIsDark(true);
   }
 
   @Then("current theme is changed to Light theme.")
   public void current_theme_is_changed_to_light_theme() {
-    Assert.assertTrue(userPreferencesPage.retry(driver -> !userPreferencesPage.isDarkThemeSet()));
+    userPreferencesPage.assertThemeIsDark(false);
   }
 
   @When("I navigate to the user preferences page.")
