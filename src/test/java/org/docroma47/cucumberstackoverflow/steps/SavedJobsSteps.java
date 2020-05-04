@@ -20,7 +20,7 @@ public class SavedJobsSteps {
 
   @Then("current page is 'Jobs Saved Jobs' page.")
   public void current_page_is_saved_jobs_page() {
-    Assert.assertEquals(savedJobsPage.getUrl(), driver.getCurrentUrl());
+    Assert.assertTrue(driver.getCurrentUrl().startsWith(savedJobsPage.getUrl()));
     Assert.assertTrue(savedJobsPage.isBreadcrumbSelected());
   }
 }

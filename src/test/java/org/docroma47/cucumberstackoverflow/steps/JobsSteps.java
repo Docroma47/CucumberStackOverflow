@@ -22,7 +22,8 @@ public class JobsSteps {
   public void current_page_is_jobs_page() {
     Assert.assertTrue(jobsPage.isSearchFieldDisplayed());
     Assert.assertTrue(jobsPage.isLocationFilterFieldDisplayed());
-    Assert.assertEquals(jobsPage.getUrl(), driver.getCurrentUrl());
+    Assert.assertTrue(driver.getCurrentUrl().startsWith(jobsPage.getUrl()));
     Assert.assertTrue(jobsPage.isBreadcrumbSelected());
+
   }
 }

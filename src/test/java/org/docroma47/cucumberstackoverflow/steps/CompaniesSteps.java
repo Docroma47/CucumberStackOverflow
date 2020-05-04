@@ -22,7 +22,7 @@ public class CompaniesSteps {
   public void current_page_is_jobs_companies_page() {
     Assert.assertTrue(companiesPage.isSearchFieldDisplayed());
     Assert.assertTrue(companiesPage.isLocationFilterFieldDisplayed());
-    Assert.assertEquals(companiesPage.getUrl(), driver.getCurrentUrl());
+    Assert.assertTrue(driver.getCurrentUrl().startsWith(companiesPage.getUrl()));
     Assert.assertTrue(companiesPage.isBreadcrumbSelected());
   }
 }
