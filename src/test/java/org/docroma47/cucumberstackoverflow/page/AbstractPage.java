@@ -50,11 +50,11 @@ public abstract class AbstractPage {
     }
   }
 
-  public void assertAttributeContains(WebElement element, String attributeName, String value, boolean expected) {
+  protected void assertAttributeContains(WebElement element, String attributeName, String value, boolean expected) {
     if (expected) {
-      Assert.assertTrue(retry(ExpectedConditions.not(ExpectedConditions.attributeContains(element, attributeName, value))));
-    } else {
       Assert.assertTrue(retry(ExpectedConditions.attributeContains(element, attributeName, value)));
+    } else {
+      Assert.assertTrue(retry(ExpectedConditions.not(ExpectedConditions.attributeContains(element, attributeName, value))));
     }
   }
 
