@@ -44,9 +44,9 @@ public abstract class AbstractPage {
 
   protected void assertElementVisible(WebElement element, boolean expected) {
     if (expected) {
-      Assert.assertTrue(retry(ExpectedConditions.invisibilityOf(element)));
-    } else {
       Assert.assertTrue(retry(ExpectedConditions.visibilityOf(element)).isDisplayed());
+    } else {
+      Assert.assertTrue(retry(ExpectedConditions.invisibilityOf(element)));
     }
   }
 

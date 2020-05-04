@@ -49,8 +49,7 @@ public class UserPreferencesPage extends AbstractPage {
   }
 
   public void assertThemeIsDark(boolean expected) {
-    String value = "user-page unified-theme theme-dark";
-    assertAttributeContains(body, "class", value, expected);
+    assertAttributeContains(body, "class", "theme-dark", expected);
   }
 
   public void navigateToProfile() {
@@ -119,8 +118,7 @@ public class UserPreferencesPage extends AbstractPage {
   }
 
   public void assertTopBarIsFixed(boolean expected) {
-    String value = "top-bar js-top-bar top-bar__network _fixed";
-    assertAttributeContains(topBar, "class", value, expected);
+    assertAttributeContains(topBar, "class", "_fixed", expected);
   }
 
 }
