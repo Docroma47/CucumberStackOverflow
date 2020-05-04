@@ -4,12 +4,10 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.docroma47.cucumberstackoverflow.page.MessagesPage;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class MessagesSteps {
-  @Autowired
-  private WebDriver driver;
+
   @Autowired
   private MessagesPage messagesPage;
 
