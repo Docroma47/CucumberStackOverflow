@@ -8,10 +8,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
-public class TagsPage extends AbstractPage {
+public class TagsPage extends UIComponent {
 
   @Autowired
   private WebDriver driver;
@@ -26,6 +27,6 @@ public class TagsPage extends AbstractPage {
   }
 
   public void navigateToTags() {
-    tagsLink.click();
+    assertThatAndPerform(elementToBeClickable(tagsLink)).click();
   }
 }

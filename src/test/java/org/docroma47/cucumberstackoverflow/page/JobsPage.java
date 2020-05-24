@@ -4,16 +4,19 @@ import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
+import static org.openqa.selenium.support.ui.ExpectedConditions.attributeContains;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
-public class JobsPage extends AbstractPage {
+public class JobsPage extends UIComponent {
 
   @Autowired
   private StackoverflowProperties properties;
@@ -37,15 +40,15 @@ public class JobsPage extends AbstractPage {
   }
 
   public void navigateToJobs() {
-    retry(ExpectedConditions.elementToBeClickable(jobsLink)).click();
+    assertThatAndPerform(elementToBeClickable(jobsLink)).click();
   }
 
   public boolean isSearchFieldDisplayed() {
-    return searchField.isDisplayed();
+    return assertThatAndPerform(visibilityOf(searchField)).isDisplayed();
   }
 
   public boolean isLocationFilterFieldDisplayed() {
-    return locationFilterField.isDisplayed();
+    return assertThatAndPerform(visibilityOf(locationFilterField)).isDisplayed();
   }
 
   public String getUrl() {
@@ -53,7 +56,7 @@ public class JobsPage extends AbstractPage {
   }
 
   public boolean isBreadcrumbSelected() {
-    return jobsBreadcrumb.getAttribute("class").contains("is-selected");
+    return assertThatAndPerform(attributeContains(jobsBreadcrumb, "class", "is-selected"));
   }
 
   public void inputInSearchField(String text) {
@@ -61,25 +64,25 @@ public class JobsPage extends AbstractPage {
   }
 
   public void clickSearchButton() {
-    searchButton.click();
+    assertThatAndPerform(elementToBeClickable(searchButton)).click();
   }
 
   public void selectJob(String index) {
-    retry(ExpectedConditions.visibilityOf(featured));
+    assertThatAndPerform(visibilityOf(featured));
     By jobAdItemPath = By.xpath("//*[@id = 'content']//*[@class = 'listResults']/div[" + index + "]");
-    jobId = retry(ExpectedConditions.presenceOfElementLocated(jobAdItemPath)).getAttribute("data-jobid");
+    jobId = assertThatAndPerform(presenceOfElementLocated(jobAdItemPath)).getAttribute("data-jobid");
   }
 
   public void saveSelectedJobAdd() {
     By jobAdSaveButtonPath = By.xpath("//a[@data-jobid = '" + getJobID() + "']");
-    if (!retry(ExpectedConditions.presenceOfElementLocated(jobAdSaveButtonPath)).getText().equals("Saved")) {
-      retry(ExpectedConditions.elementToBeClickable(jobAdSaveButtonPath)).click();
+    if (!assertThatAndPerform(presenceOfElementLocated(jobAdSaveButtonPath)).getText().equals("Saved")) {
+      assertThatAndPerform(elementToBeClickable(jobAdSaveButtonPath)).click();
     }
   }
 
   public void clickSelectedJobAd() {
     By jobAdPath = By.xpath("//*[@class = 'listResults']//*[@data-result-id = '" + getJobID() + "']" + "//a[@class = 's-link stretched-link']");
-    retry(ExpectedConditions.elementToBeClickable(jobAdPath)).click();
+    assertThatAndPerform(elementToBeClickable(jobAdPath)).click();
   }
 
 }

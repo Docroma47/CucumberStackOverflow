@@ -8,10 +8,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
+import static org.openqa.selenium.support.ui.ExpectedConditions.attributeContains;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
-public class ApplicationsPage extends AbstractPage {
+public class ApplicationsPage extends UIComponent {
 
   @Autowired
   private WebDriver driver;
@@ -30,16 +33,16 @@ public class ApplicationsPage extends AbstractPage {
   }
 
   public void navigateToApplications() {
-    jobsLink.click();
-    applicationsBreadcrumb.click();
+    assertThatAndPerform(elementToBeClickable(jobsLink)).click();
+    assertThatAndPerform(elementToBeClickable(applicationsBreadcrumb)).click();
   }
 
   public boolean isJobsCheckboxDisplayed() {
-    return displayJobsCheckbox.isDisplayed();
+    return assertThatAndPerform(visibilityOf(displayJobsCheckbox)).isDisplayed();
   }
 
   public boolean isBreadcrumbSelected() {
-    return applicationsBreadcrumb.getAttribute("class").contains("is-selected");
+    return assertThatAndPerform(attributeContains(applicationsBreadcrumb, "class", "is-selected"));
   }
 
 }

@@ -2,6 +2,7 @@ package org.docroma47.cucumberstackoverflow.config;
 
 import java.util.Map;
 
+import org.openqa.selenium.Dimension;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
 
@@ -93,32 +94,33 @@ public class StackoverflowProperties {
   public static class SeleniumProperties {
 
     private final boolean headless;
-    private final int globalWaitTimeout;
-    private final int localWaitTimeout;
+    private final int waitTimeout;
     private final int pollRate;
+    private final Dimension windowSize;
 
-    public SeleniumProperties(boolean headless, int globalWaitTimeout, int localWaitTimeout, int pollRate) {
+    public SeleniumProperties(boolean headless, int waitTimeout, int pollRate, Dimension windowSize) {
       this.headless = headless;
-      this.globalWaitTimeout = globalWaitTimeout;
-      this.localWaitTimeout = localWaitTimeout;
+      this.waitTimeout = waitTimeout;
       this.pollRate = pollRate;
+      this.windowSize = windowSize;
     }
 
     public boolean isHeadless() {
       return headless;
     }
 
-    public int getGlobalWaitTimeout() {
-      return globalWaitTimeout;
-    }
-
-    public int getLocalWaitTimeout() {
-      return localWaitTimeout;
+    public int getWaitTimeout() {
+      return waitTimeout;
     }
 
     public int getPollRate() {
       return pollRate;
     }
+
+    public Dimension getWindowSize() {
+      return windowSize;
+    }
+
   }
 
 }

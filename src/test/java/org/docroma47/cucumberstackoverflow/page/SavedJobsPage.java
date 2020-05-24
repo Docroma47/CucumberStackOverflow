@@ -5,16 +5,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
+import static org.openqa.selenium.support.ui.ExpectedConditions.attributeContains;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfAllElementsLocatedBy;
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
-public class SavedJobsPage extends AbstractPage {
+public class SavedJobsPage extends UIComponent {
 
   @Autowired
   private WebDriver driver;
@@ -27,8 +30,8 @@ public class SavedJobsPage extends AbstractPage {
   private WebElement savedJobsBreadcrumb;
 
   public void navigateToSavedJobs() {
-    jobsLink.click();
-    savedJobsBreadcrumb.click();
+    assertThatAndPerform(elementToBeClickable(jobsLink)).click();
+    assertThatAndPerform(elementToBeClickable(savedJobsBreadcrumb)).click();
   }
 
   public String getUrl() {
@@ -36,14 +39,14 @@ public class SavedJobsPage extends AbstractPage {
   }
 
   public boolean isBreadcrumbSelected() {
-    return savedJobsBreadcrumb.getAttribute("class").contains("is-selected");
+    return assertThatAndPerform(attributeContains(savedJobsBreadcrumb, "class", "is-selected"));
   }
 
   public void deleteJob(String jobID) {
-    retry(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@data-id = '" + jobID + "' and @title = 'Unfavorite job']"))).click();
+    assertThatAndPerform(presenceOfElementLocated(By.xpath("//button[@data-id = '" + jobID + "' and @title = 'Unfavorite job']"))).click();
   }
 
   public boolean isJobAdPresent(String jobID) {
-    return !driver.findElements(By.xpath("//*[@class = 'listResults']//div[@data-jobid = '" + jobID + "']")).isEmpty();
+    return !assertThatAndPerform(presenceOfAllElementsLocatedBy(By.xpath("//*[@class = 'listResults']//div[@data-jobid = '" + jobID + "']"))).isEmpty();
   }
 }
