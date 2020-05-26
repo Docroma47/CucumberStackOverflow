@@ -1,7 +1,6 @@
 package org.docroma47.cucumberstackoverflow.page;
 
 import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,6 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
 @Scope(SCOPE_CUCUMBER_GLUE)
 public class LogInPage extends UIComponent {
 
-  @Autowired
-  private WebDriver driver;
   @Autowired
   private StackoverflowProperties properties;
 

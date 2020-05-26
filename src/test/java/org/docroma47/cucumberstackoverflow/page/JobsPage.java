@@ -12,6 +12,7 @@ import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
 import static org.openqa.selenium.support.ui.ExpectedConditions.attributeContains;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
+import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 @Component
@@ -20,6 +21,7 @@ public class JobsPage extends UIComponent {
 
   @Autowired
   private StackoverflowProperties properties;
+
   private String jobId;
 
   @FindBy(id = "nav-jobs")
@@ -43,20 +45,24 @@ public class JobsPage extends UIComponent {
     assertThatAndPerform(elementToBeClickable(jobsLink)).click();
   }
 
-  public boolean isSearchFieldDisplayed() {
-    return assertThatAndPerform(visibilityOf(searchField)).isDisplayed();
+  public void isSearchFieldDisplayed() {
+    assertThatAndPerform(visibilityOf(searchField));
   }
 
-  public boolean isLocationFilterFieldDisplayed() {
-    return assertThatAndPerform(visibilityOf(locationFilterField)).isDisplayed();
+  public void isLocationFilterFieldDisplayed() {
+    assertThatAndPerform(visibilityOf(locationFilterField));
   }
 
-  public String getUrl() {
+  private String getUrl() {
     return properties.getBaseUrl() + "jobs";
   }
 
-  public boolean isBreadcrumbSelected() {
-    return assertThatAndPerform(attributeContains(jobsBreadcrumb, "class", "is-selected"));
+  public void isUrlJobsPage() {
+    assertThatAndPerform(urlContains(getUrl()));
+  }
+
+  public void isBreadcrumbSelected() {
+    assertThatAndPerform(attributeContains(jobsBreadcrumb, "class", "is-selected"));
   }
 
   public void inputInSearchField(String text) {

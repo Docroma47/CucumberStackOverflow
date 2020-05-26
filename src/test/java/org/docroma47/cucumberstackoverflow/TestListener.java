@@ -1,4 +1,4 @@
-package com.landy.sesame;
+package org.docroma47.cucumberstackoverflow;
 
 import java.nio.file.Path;
 
@@ -14,33 +14,6 @@ public class TestListener {
 
   @Autowired
   private WebDriver driver;
-  private String currentFeature;
-  private String currentScenario;
-
-  private void beforeFeature(String feature) {
-    driver.manage().deleteAllCookies();
-  }
-
-  private void beforeScenarioOnce(Scenario scenario) {
-    if (scenario.getSourceTagNames().contains("@CleanOnceBefore")) {
-      driver.manage().deleteAllCookies();
-    }
-  }
-
-  public void beforeScenario(Scenario scenario) {
-    String feature = Path.of(scenario.getUri()).getFileName().toString();
-    if (this.currentFeature == null || !this.currentFeature.equals(feature)) {
-      this.beforeFeature(feature);
-      this.currentFeature = feature;
-    }
-    if (this.currentScenario == null || !this.currentScenario.equals(scenario.getName())) {
-      this.beforeScenarioOnce(scenario);
-      this.currentScenario = scenario.getName();
-    }
-    if (scenario.getSourceTagNames().contains("@CleanBefore")) {
-      driver.manage().deleteAllCookies();
-    }
-  }
 
   public void afterScenario(Scenario scenario) {
     embedScreenshot(scenario);

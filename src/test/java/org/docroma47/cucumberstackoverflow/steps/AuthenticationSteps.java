@@ -6,13 +6,10 @@ import io.cucumber.java.en.When;
 import org.docroma47.cucumberstackoverflow.page.LogInPage;
 import org.docroma47.cucumberstackoverflow.page.UserPreferencesPage;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class AuthenticationSteps {
 
-  @Autowired
-  private WebDriver driver;
   @Autowired
   private UserPreferencesPage userPreferencesPage;
   @Autowired

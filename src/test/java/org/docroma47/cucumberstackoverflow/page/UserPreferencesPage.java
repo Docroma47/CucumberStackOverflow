@@ -1,22 +1,24 @@
 package org.docroma47.cucumberstackoverflow.page;
 
+import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
-import static org.openqa.selenium.support.ui.ExpectedConditions.attributeContains;
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
-import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfAllElementsLocatedBy;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
 public class UserPreferencesPage extends UIComponent {
+
+  @Autowired
+  private StackoverflowProperties properties;
 
   @FindBy(id = "left-sidebar")
   private WebElement leftNavigationPanel;
@@ -108,7 +110,6 @@ public class UserPreferencesPage extends UIComponent {
   }
 
   public String getRealName() {
-    WebDriverWait wait = new WebDriverWait(driver, 2);
     return assertThatAndPerform(visibilityOf(realNameInputField)).getAttribute("value");
   }
 
@@ -127,4 +128,21 @@ public class UserPreferencesPage extends UIComponent {
     assertAttributeContains(topBar, "class", "_fixed", expected);
   }
 
+  public void scrollToTheMiddlePage() {
+    JavascriptExecutor jse = (JavascriptExecutor) driver;
+    jse.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("//*[@id='sidebar']/div[8]")));
+  }
+
+  public void scrollToTheBottom() {
+    JavascriptExecutor js = ((JavascriptExecutor) driver);
+    js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+  }
+
+  public void isChangedToHomePage() {
+    assertThatAndPerform(urlContains(properties.getBaseUrl()));
+  }
+
+  public void isPreferencesPage() {
+    assertThatAndPerform(urlContains("preferences"));
+  }
 }

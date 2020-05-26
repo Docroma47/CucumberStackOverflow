@@ -28,7 +28,6 @@ public abstract class UIComponent {
 
   @Autowired
   private StackoverflowProperties properties;
-
   @Autowired
   protected WebDriver driver;
 

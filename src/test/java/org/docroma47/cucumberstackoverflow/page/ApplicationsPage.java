@@ -1,23 +1,19 @@
 package org.docroma47.cucumberstackoverflow.page;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
 import static org.openqa.selenium.support.ui.ExpectedConditions.attributeContains;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElement;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
 public class ApplicationsPage extends UIComponent {
-
-  @Autowired
-  private WebDriver driver;
 
   @FindBy(id = "nav-jobs")
   private WebElement jobsLink;
@@ -28,8 +24,8 @@ public class ApplicationsPage extends UIComponent {
   @FindBy(id = "includeExternals")
   private WebElement displayJobsCheckbox;
 
-  public String getLabel() {
-    return labelDisplayJobs.getText();
+  public void getLabel(String textValue) {
+    assertThatAndPerform(textToBePresentInElement(labelDisplayJobs, textValue));
   }
 
   public void navigateToApplications() {
@@ -37,12 +33,12 @@ public class ApplicationsPage extends UIComponent {
     assertThatAndPerform(elementToBeClickable(applicationsBreadcrumb)).click();
   }
 
-  public boolean isJobsCheckboxDisplayed() {
-    return assertThatAndPerform(visibilityOf(displayJobsCheckbox)).isDisplayed();
+  public void isJobsCheckboxDisplayed() {
+    assertThatAndPerform(visibilityOf(displayJobsCheckbox));
   }
 
-  public boolean isBreadcrumbSelected() {
-    return assertThatAndPerform(attributeContains(applicationsBreadcrumb, "class", "is-selected"));
+  public void isBreadcrumbSelected() {
+    assertThatAndPerform(attributeContains(applicationsBreadcrumb, "class", "is-selected"));
   }
 
 }

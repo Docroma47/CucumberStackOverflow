@@ -1,7 +1,6 @@
 package org.docroma47.cucumberstackoverflow.page;
 
 import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +10,13 @@ import org.springframework.stereotype.Component;
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
 import static org.openqa.selenium.support.ui.ExpectedConditions.attributeContains;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
 public class CompaniesPage extends UIComponent {
 
-  @Autowired
-  private WebDriver driver;
   @Autowired
   private StackoverflowProperties properties;
 
@@ -36,19 +34,23 @@ public class CompaniesPage extends UIComponent {
     assertThatAndPerform(elementToBeClickable(companiesBreadcrumb)).click();
   }
 
-  public boolean isSearchFieldDisplayed() {
-    return assertThatAndPerform(visibilityOf(searchField)).isDisplayed();
+  public void isSearchFieldDisplayed() {
+    assertThatAndPerform(visibilityOf(searchField));
   }
 
-  public boolean isLocationFilterFieldDisplayed() {
-    return assertThatAndPerform(visibilityOf(locationFilterField)).isDisplayed();
+  public void isLocationFilterFieldDisplayed() {
+    assertThatAndPerform(visibilityOf(locationFilterField));
   }
 
-  public String getUrl() {
+  private String getUrl() {
     return properties.getBaseUrl() + "jobs/companies";
   }
 
-  public boolean isBreadcrumbSelected() {
-    return assertThatAndPerform(attributeContains(companiesBreadcrumb, "class", "is-selected"));
+  public void isUrlCompamiesPage() {
+    assertThatAndPerform(urlContains(getUrl()));
+  }
+
+  public void isBreadcrumbSelected() {
+    assertThatAndPerform(attributeContains(companiesBreadcrumb, "class", "is-selected"));
   }
 }

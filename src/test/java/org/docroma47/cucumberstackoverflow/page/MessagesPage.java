@@ -1,9 +1,7 @@
 package org.docroma47.cucumberstackoverflow.page;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +12,6 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
 public class MessagesPage extends UIComponent {
-
-  @Autowired
-  private WebDriver driver;
 
   @FindBy(id = "nav-jobs")
   private WebElement jobsLink;
@@ -34,7 +29,7 @@ public class MessagesPage extends UIComponent {
     assertThatAndPerform(elementToBeClickable(messagesBreadcrumb)).click();
   }
 
-  public boolean isBreadcrumbSelected() {
-    return assertThatAndPerform(attributeContains(messagesBreadcrumb, "class", "is-selected"));
+  public void isBreadcrumbSelected() {
+    assertThatAndPerform(attributeContains(messagesBreadcrumb, "class", "is-selected"));
   }
 }

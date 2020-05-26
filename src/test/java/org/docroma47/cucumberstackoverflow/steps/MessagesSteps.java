@@ -19,6 +19,6 @@ public class MessagesSteps {
   @Then("current page is 'Jobs Messages' page.")
   public void current_page_is_jobs_messages_page() {
     Assert.assertEquals("Messages", messagesPage.getTitle());
-    Assert.assertTrue(messagesPage.isBreadcrumbSelected());
+    messagesPage.isBreadcrumbSelected();
   }
 }
