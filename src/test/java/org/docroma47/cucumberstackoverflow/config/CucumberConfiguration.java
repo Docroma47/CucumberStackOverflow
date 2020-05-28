@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -26,9 +27,12 @@ public class CucumberConfiguration {
 
   @Bean(destroyMethod = "quit")
   public WebDriver webDriver() throws IOException {
+    WebDriverManager.chromedriver().setup();
     ChromeOptions chromeOptions = new ChromeOptions();
     chromeOptions.addArguments("--no-sandbox");
-    chromeOptions.setHeadless(properties.getSelenium().isHeadless());
+    if (properties.getSelenium().isHeadless()) {
+      chromeOptions.addArguments("--headless");
+    }
     chromeOptions.addArguments("disable-gpu");
     ChromeDriver driver = new ChromeDriver(chromeOptions);
     driver.manage().window().setSize(properties.getSelenium().getWindowSize());

@@ -37,7 +37,7 @@ public class JobsPage extends UIComponent {
   @FindBy(xpath = "//span[text() = 'featured']")
   private WebElement featured;
 
-  public String getJobID() {
+  public String getJobId() {
     return jobId;
   }
 
@@ -45,11 +45,11 @@ public class JobsPage extends UIComponent {
     assertThatAndPerform(elementToBeClickable(jobsLink)).click();
   }
 
-  public void isSearchFieldDisplayed() {
+  public void assertSearchFieldIsDisplayed() {
     assertThatAndPerform(visibilityOf(searchField));
   }
 
-  public void isLocationFilterFieldDisplayed() {
+  public void assertLocationFilterFieldIsDisplayed() {
     assertThatAndPerform(visibilityOf(locationFilterField));
   }
 
@@ -57,11 +57,11 @@ public class JobsPage extends UIComponent {
     return properties.getBaseUrl() + "jobs";
   }
 
-  public void isUrlJobsPage() {
+  public void assertUrlJobsPage() {
     assertThatAndPerform(urlContains(getUrl()));
   }
 
-  public void isBreadcrumbSelected() {
+  public void assertBreadcrumbIsSelected() {
     assertThatAndPerform(attributeContains(jobsBreadcrumb, "class", "is-selected"));
   }
 
@@ -80,15 +80,19 @@ public class JobsPage extends UIComponent {
   }
 
   public void saveSelectedJobAdd() {
-    By jobAdSaveButtonPath = By.xpath("//a[@data-jobid = '" + getJobID() + "']");
+    By jobAdSaveButtonPath = By.xpath("//a[@data-jobid = '" + getJobId() + "']");
     if (!assertThatAndPerform(presenceOfElementLocated(jobAdSaveButtonPath)).getText().equals("Saved")) {
       assertThatAndPerform(elementToBeClickable(jobAdSaveButtonPath)).click();
     }
   }
 
   public void clickSelectedJobAd() {
-    By jobAdPath = By.xpath("//*[@class = 'listResults']//*[@data-result-id = '" + getJobID() + "']" + "//a[@class = 's-link stretched-link']");
-    assertThatAndPerform(elementToBeClickable(jobAdPath)).click();
+    String id = getJobId();
+    By jobAdPath = By.xpath("//*[@class = 'listResults']//*[@data-result-id = '" + id + "']" + "//a[@class = 's-link stretched-link']");
+    if (!assertThatAndPerform(presenceOfElementLocated(By.xpath("//*[@class = 'listResults']//*[@data-result-id = '" + id + "']"))).getAttribute("class")
+        .contains("selected")) {
+      assertThatAndPerform(elementToBeClickable(jobAdPath)).click();
+    }
   }
 
 }

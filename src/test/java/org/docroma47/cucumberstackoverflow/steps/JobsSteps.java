@@ -18,10 +18,10 @@ public class JobsSteps {
 
   @Then("current page is 'Jobs' page.")
   public void current_page_is_jobs_page() {
-    jobsPage.isSearchFieldDisplayed();
-    jobsPage.isLocationFilterFieldDisplayed();
-    jobsPage.isUrlJobsPage();
-    jobsPage.isBreadcrumbSelected();
+    jobsPage.assertSearchFieldIsDisplayed();
+    jobsPage.assertLocationFilterFieldIsDisplayed();
+    jobsPage.assertUrlJobsPage();
+    jobsPage.assertBreadcrumbIsSelected();
 
   }
 

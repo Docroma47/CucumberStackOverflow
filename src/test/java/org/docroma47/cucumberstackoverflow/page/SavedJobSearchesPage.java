@@ -29,7 +29,7 @@ public class SavedJobSearchesPage extends UIComponent {
     assertThatAndPerform(elementToBeClickable(savedJobsSearchesBreadcrumb)).click();
   }
 
-  public void isBreadcrumbSelected() {
+  public void assertBreadcrumbIsSelected() {
     assertThatAndPerform(attributeContains(savedJobsSearchesBreadcrumb, "class", "is-selected"));
   }
 }

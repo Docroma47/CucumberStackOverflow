@@ -34,11 +34,11 @@ public class CompaniesPage extends UIComponent {
     assertThatAndPerform(elementToBeClickable(companiesBreadcrumb)).click();
   }
 
-  public void isSearchFieldDisplayed() {
+  public void assertSearchFieldIsDisplayed() {
     assertThatAndPerform(visibilityOf(searchField));
   }
 
-  public void isLocationFilterFieldDisplayed() {
+  public void assertLocationFilterFieldIsDisplayed() {
     assertThatAndPerform(visibilityOf(locationFilterField));
   }
 
@@ -46,11 +46,11 @@ public class CompaniesPage extends UIComponent {
     return properties.getBaseUrl() + "jobs/companies";
   }
 
-  public void isUrlCompamiesPage() {
+  public void assertUrlCompamiesPage() {
     assertThatAndPerform(urlContains(getUrl()));
   }
 
-  public void isBreadcrumbSelected() {
+  public void assertBreadcrumbIsSelected() {
     assertThatAndPerform(attributeContains(companiesBreadcrumb, "class", "is-selected"));
   }
 }

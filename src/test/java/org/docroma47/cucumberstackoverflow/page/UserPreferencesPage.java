@@ -90,7 +90,7 @@ public class UserPreferencesPage extends UIComponent {
     }
   }
 
-  public Boolean isTopBarFixed() {
+  public Boolean assertTopBarIsFixed() {
     return assertThatAndPerform(attributeContains(topBar, "class", "fixed"));
   }
 
@@ -101,12 +101,12 @@ public class UserPreferencesPage extends UIComponent {
     }
   }
 
-  public boolean isHotNetworkQuestionsDisplayed() {
-    if (assertThatAndPerform(presenceOfAllElementsLocatedBy(By.xpath("//*[@id='sidebar']//*[@id='hot-network-questions']"))).isEmpty()) {
-      return false;
-    } else {
-      return assertThatAndPerform(visibilityOf(hotNetwordkQuestionsPanel)).isDisplayed();
-    }
+  public void assertHotNetworkQuestionsInvisibility() {
+    assertThatAndPerform(invisibilityOfElementLocated(By.xpath("//*[@id='sidebar']//*[@id='hot-network-questions']")));
+  }
+
+  public void assertHotNetworkQuestionsVisibility() {
+    assertThatAndPerform(visibilityOf(hotNetwordkQuestionsPanel));
   }
 
   public String getRealName() {
@@ -138,11 +138,11 @@ public class UserPreferencesPage extends UIComponent {
     js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
   }
 
-  public void isChangedToHomePage() {
+  public void assertUrlHomePage() {
     assertThatAndPerform(urlContains(properties.getBaseUrl()));
   }
 
-  public void isPreferencesPage() {
+  public void assertUrlPreferencesPage() {
     assertThatAndPerform(urlContains("preferences"));
   }
 }

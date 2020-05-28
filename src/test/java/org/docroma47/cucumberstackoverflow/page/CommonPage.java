@@ -1,13 +1,8 @@
 package org.docroma47.cucumberstackoverflow.page;
 
-import java.nio.file.Path;
-
-import io.cucumber.java.Scenario;
 import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
 import org.junit.Assert;
 import org.openqa.selenium.Cookie;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -30,16 +25,6 @@ public class CommonPage extends UIComponent {
 
   public void refreshPage() {
     driver.navigate().refresh();
-  }
-
-  public void screenshotOnFail(Scenario scenario) {
-    if (scenario.isFailed()) {
-      TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
-      byte[] screenshot = takesScreenshot.getScreenshotAs(OutputType.BYTES);
-      scenario.embed(screenshot, "image/png", "Failure screenshot: " + scenario.getName());
-      takesScreenshot.getScreenshotAs(OutputType.FILE).renameTo(
-          Path.of("results/" + scenario.getName() + ".png").toFile());
-    }
   }
 
   public void logInAs (String whichUser) {

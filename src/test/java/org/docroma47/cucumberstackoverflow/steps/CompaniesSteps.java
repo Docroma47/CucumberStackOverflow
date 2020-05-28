@@ -17,9 +17,9 @@ public class CompaniesSteps {
 
   @Then("current page is 'Jobs Companies' page.")
   public void current_page_is_jobs_companies_page() {
-    companiesPage.isSearchFieldDisplayed();
-    companiesPage.isLocationFilterFieldDisplayed();
-    companiesPage.isUrlCompamiesPage();
-    companiesPage.isBreadcrumbSelected();
+    companiesPage.assertSearchFieldIsDisplayed();
+    companiesPage.assertLocationFilterFieldIsDisplayed();
+    companiesPage.assertUrlCompamiesPage();
+    companiesPage.assertBreadcrumbIsSelected();
   }
 }

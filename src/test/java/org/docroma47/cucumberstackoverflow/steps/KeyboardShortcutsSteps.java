@@ -23,12 +23,12 @@ public class KeyboardShortcutsSteps {
 
   @Then("current page is changed to home page.")
   public void current_page_is_changed_to_home_page() {
-    userPreferencesPage.isChangedToHomePage();
+    userPreferencesPage.assertUrlHomePage();
   }
 
   @Then("current page is preferences page.")
   public void current_page_is_preferences_page() {
-    userPreferencesPage.isPreferencesPage();
+    userPreferencesPage.assertUrlPreferencesPage();
   }
 
   @And("I press hot keys G and H.")

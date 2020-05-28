@@ -1,7 +1,6 @@
 package org.docroma47.cucumberstackoverflow.page;
 
 import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,21 +34,19 @@ public class SavedJobsPage extends UIComponent {
     return properties.getBaseUrl() + "jobs/saved";
   }
 
-  public void isUrlSavedJobsPage() {
+  public void assertUrlSavedJobsPage() {
     assertThatAndPerform(urlContains(getUrl()));
   }
 
-  public void isBreadcrumbSelected() {
+  public void assertBreadcrumbIsSelected() {
     assertThatAndPerform(attributeContains(savedJobsBreadcrumb, "class", "is-selected"));
   }
 
-  public void deleteJob() {
-    assertThatAndPerform(presenceOfElementLocated(By.xpath("//button[@data-id = '" + jobsPage.getJobID() + "' and @title = 'Unfavorite job']"))).click();
+  public void deleteJob(String jobId) {
+    assertThatAndPerform(presenceOfElementLocated(By.xpath("//button[@data-id = '" + jobId + "' and @title = 'Unfavorite job']"))).click();
   }
 
-  public void isJobAdPresent() {
-    if (!assertThatAndPerform(presenceOfAllElementsLocatedBy(By.xpath("//*[@class = 'listResults']//div[@data-jobid = '" + jobsPage.getJobID() + "']"))).isEmpty()) {
-      Assert.fail("Selected job ad is not deleted");
-    }
+  public void assertJobAdIsPresent(String jobId) {
+    assertThatAndPerform(invisibilityOfElementLocated(By.xpath("//*[@class = 'listResults']//div[@data-jobid = '" + jobId + "']")));
   }
 }

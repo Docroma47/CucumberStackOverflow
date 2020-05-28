@@ -18,7 +18,7 @@ public class HotNetworkQuestionsSteps {
 
   @Then("'Hot Network Questions' is not hidden.")
   public void hot_network_questions_is_not_hidden() {
-    userPreferencesPage.isHotNetworkQuestionsDisplayed();
+    userPreferencesPage.assertHotNetworkQuestionsVisibility();
   }
 
   @When("I enable 'Hide hot network questions'.")
@@ -28,7 +28,7 @@ public class HotNetworkQuestionsSteps {
 
   @Then("'Hot Network Questions' is hidden.")
   public void hot_network_questions_is_hidden() {
-    userPreferencesPage.isHotNetworkQuestionsDisplayed();
+    userPreferencesPage.assertHotNetworkQuestionsInvisibility();
   }
 
   @And("I scroll to the middle page.")

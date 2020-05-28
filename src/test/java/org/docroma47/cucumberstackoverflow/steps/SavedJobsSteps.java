@@ -17,7 +17,7 @@ public class SavedJobsSteps {
 
   @Then("current page is 'Jobs Saved Jobs' page.")
   public void current_page_is_saved_jobs_page() {
-    savedJobsPage.isUrlSavedJobsPage();
-    savedJobsPage.isBreadcrumbSelected();
+    savedJobsPage.assertUrlSavedJobsPage();
+    savedJobsPage.assertBreadcrumbIsSelected();
   }
 }

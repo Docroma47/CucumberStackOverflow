@@ -18,7 +18,7 @@ public class ApplicationsSteps {
   @Then("current page is 'Jobs Applications' page.")
   public void current_page_is_jobs_applications_page() {
     applicationsPage.getLabel("Display jobs you may have applied to");
-    applicationsPage.isJobsCheckboxDisplayed();
-    applicationsPage.isBreadcrumbSelected();
+    applicationsPage.assertJobsCheckboxIsDisplayed();
+    applicationsPage.assertBreadcrumbIsSelected();
   }
 }

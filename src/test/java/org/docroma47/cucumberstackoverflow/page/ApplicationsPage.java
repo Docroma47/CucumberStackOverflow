@@ -33,11 +33,11 @@ public class ApplicationsPage extends UIComponent {
     assertThatAndPerform(elementToBeClickable(applicationsBreadcrumb)).click();
   }
 
-  public void isJobsCheckboxDisplayed() {
+  public void assertJobsCheckboxIsDisplayed() {
     assertThatAndPerform(visibilityOf(displayJobsCheckbox));
   }
 
-  public void isBreadcrumbSelected() {
+  public void assertBreadcrumbIsSelected() {
     assertThatAndPerform(attributeContains(applicationsBreadcrumb, "class", "is-selected"));
   }
 

@@ -29,7 +29,7 @@ public class MessagesPage extends UIComponent {
     assertThatAndPerform(elementToBeClickable(messagesBreadcrumb)).click();
   }
 
-  public void isBreadcrumbSelected() {
+  public void assertBreadcrumbIsSelected() {
     assertThatAndPerform(attributeContains(messagesBreadcrumb, "class", "is-selected"));
   }
 }
