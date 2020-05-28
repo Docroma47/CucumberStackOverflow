@@ -1,6 +1,5 @@
 package org.docroma47.cucumberstackoverflow.steps;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.docroma47.cucumberstackoverflow.page.UserPreferencesPage;
@@ -29,11 +28,6 @@ public class HotNetworkQuestionsSteps {
   @Then("'Hot Network Questions' is hidden.")
   public void hot_network_questions_is_hidden() {
     userPreferencesPage.assertHotNetworkQuestionsInvisibility();
-  }
-
-  @And("I scroll to the middle page.")
-  public void i_scroll_to_the_middle_page() {
-    userPreferencesPage.scrollToTheMiddlePage();
   }
 
 }

@@ -128,11 +128,6 @@ public class UserPreferencesPage extends UIComponent {
     assertAttributeContains(topBar, "class", "_fixed", expected);
   }
 
-  public void scrollToTheMiddlePage() {
-    JavascriptExecutor jse = (JavascriptExecutor) driver;
-    jse.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("//*[@id='sidebar']/div[8]")));
-  }
-
   public void scrollToTheBottom() {
     JavascriptExecutor js = ((JavascriptExecutor) driver);
     js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
