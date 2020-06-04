@@ -1,7 +1,6 @@
 package org.docroma47.cucumberstackoverflow.page;
 
 import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +8,12 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
-public class LogInPage extends AbstractPage {
+public class LogInPage extends UIComponent {
 
-  @Autowired
-  private WebDriver driver;
   @Autowired
   private StackoverflowProperties properties;
 
@@ -40,15 +38,15 @@ public class LogInPage extends AbstractPage {
   }
 
   private void clickOn(WebElement element) {
-    element.click();
+    assertThatAndPerform(elementToBeClickable(element)).click();
   }
 
   public void navigateToLogin() {
-    loginLink.click();
+    assertThatAndPerform(elementToBeClickable(loginLink)).click();
   }
 
   public void clickSubmitButton() {
-    submitButton.click();
+    assertThatAndPerform(elementToBeClickable(submitButton)).click();
   }
 
   public void login(String whichUser) {

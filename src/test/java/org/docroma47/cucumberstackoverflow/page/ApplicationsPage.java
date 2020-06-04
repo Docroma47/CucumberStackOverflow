@@ -1,20 +1,19 @@
 package org.docroma47.cucumberstackoverflow.page;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
+import static org.openqa.selenium.support.ui.ExpectedConditions.attributeContains;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElement;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
-public class ApplicationsPage extends AbstractPage {
-
-  @Autowired
-  private WebDriver driver;
+public class ApplicationsPage extends UIComponent {
 
   @FindBy(id = "nav-jobs")
   private WebElement jobsLink;
@@ -25,21 +24,21 @@ public class ApplicationsPage extends AbstractPage {
   @FindBy(id = "includeExternals")
   private WebElement displayJobsCheckbox;
 
-  public String getLabel() {
-    return labelDisplayJobs.getText();
+  public void getLabel(String textValue) {
+    assertThatAndPerform(textToBePresentInElement(labelDisplayJobs, textValue));
   }
 
   public void navigateToApplications() {
-    jobsLink.click();
-    applicationsBreadcrumb.click();
+    assertThatAndPerform(elementToBeClickable(jobsLink)).click();
+    assertThatAndPerform(elementToBeClickable(applicationsBreadcrumb)).click();
   }
 
-  public boolean isJobsCheckboxDisplayed() {
-    return displayJobsCheckbox.isDisplayed();
+  public void assertJobsCheckboxIsDisplayed() {
+    assertThatAndPerform(visibilityOf(displayJobsCheckbox));
   }
 
-  public boolean isBreadcrumbSelected() {
-    return applicationsBreadcrumb.getAttribute("class").contains("is-selected");
+  public void assertBreadcrumbIsSelected() {
+    assertThatAndPerform(attributeContains(applicationsBreadcrumb, "class", "is-selected"));
   }
 
 }

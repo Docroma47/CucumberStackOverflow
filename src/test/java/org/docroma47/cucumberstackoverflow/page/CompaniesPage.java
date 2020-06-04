@@ -1,7 +1,6 @@
 package org.docroma47.cucumberstackoverflow.page;
 
 import org.docroma47.cucumberstackoverflow.config.StackoverflowProperties;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +8,15 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
+import static org.openqa.selenium.support.ui.ExpectedConditions.attributeContains;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
-public class CompaniesPage extends AbstractPage {
+public class CompaniesPage extends UIComponent {
 
-  @Autowired
-  private WebDriver driver;
   @Autowired
   private StackoverflowProperties properties;
 
@@ -29,23 +30,27 @@ public class CompaniesPage extends AbstractPage {
   private WebElement locationFilterField;
 
   public void navigateToCompanies() {
-    jobsLink.click();
-    companiesBreadcrumb.click();
+    assertThatAndPerform(elementToBeClickable(jobsLink)).click();
+    assertThatAndPerform(elementToBeClickable(companiesBreadcrumb)).click();
   }
 
-  public boolean isSearchFieldDisplayed() {
-    return searchField.isDisplayed();
+  public void assertSearchFieldIsDisplayed() {
+    assertThatAndPerform(visibilityOf(searchField));
   }
 
-  public boolean isLocationFilterFieldDisplayed() {
-    return locationFilterField.isDisplayed();
+  public void assertLocationFilterFieldIsDisplayed() {
+    assertThatAndPerform(visibilityOf(locationFilterField));
   }
 
-  public String getUrl() {
+  private String getUrl() {
     return properties.getBaseUrl() + "jobs/companies";
   }
 
-  public boolean isBreadcrumbSelected() {
-    return companiesBreadcrumb.getAttribute("class").contains("is-selected");
+  public void assertUrlCompamiesPage() {
+    assertThatAndPerform(urlContains(getUrl()));
+  }
+
+  public void assertBreadcrumbIsSelected() {
+    assertThatAndPerform(attributeContains(companiesBreadcrumb, "class", "is-selected"));
   }
 }

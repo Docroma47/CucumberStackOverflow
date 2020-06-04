@@ -3,13 +3,10 @@ package org.docroma47.cucumberstackoverflow.steps;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.docroma47.cucumberstackoverflow.page.SavedJobsPage;
-import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class SavedJobsSteps {
-  @Autowired
-  private WebDriver driver;
+
   @Autowired
   private SavedJobsPage savedJobsPage;
 
@@ -20,7 +17,7 @@ public class SavedJobsSteps {
 
   @Then("current page is 'Jobs Saved Jobs' page.")
   public void current_page_is_saved_jobs_page() {
-    Assert.assertTrue(driver.getCurrentUrl().startsWith(savedJobsPage.getUrl()));
-    Assert.assertTrue(savedJobsPage.isBreadcrumbSelected());
+    savedJobsPage.assertUrlSavedJobsPage();
+    savedJobsPage.assertBreadcrumbIsSelected();
   }
 }

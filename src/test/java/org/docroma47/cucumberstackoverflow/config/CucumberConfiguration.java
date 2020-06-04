@@ -35,7 +35,7 @@ public class CucumberConfiguration {
     }
     chromeOptions.addArguments("disable-gpu");
     ChromeDriver driver = new ChromeDriver(chromeOptions);
-    driver.manage().window().maximize();
+    driver.manage().window().setSize(properties.getSelenium().getWindowSize());
 
     Map<String, Object> map = new HashMap<>();
     map.put("offline", properties.getNetwork().isOffline());

@@ -1,20 +1,16 @@
 package org.docroma47.cucumberstackoverflow.page;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
-public class UsersPage extends AbstractPage {
-
-  @Autowired
-  private WebDriver driver;
+public class UsersPage extends UIComponent {
 
   @FindBy(id = "nav-users")
   private WebElement usersLink;
@@ -26,6 +22,6 @@ public class UsersPage extends AbstractPage {
   }
 
   public void navigateToUsers() {
-    usersLink.click();
+    assertThatAndPerform(elementToBeClickable(usersLink)).click();
   }
 }
