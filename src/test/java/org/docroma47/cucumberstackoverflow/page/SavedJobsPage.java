@@ -46,7 +46,7 @@ public class SavedJobsPage extends UIComponent {
     assertThatAndPerform(presenceOfElementLocated(By.xpath("//button[@data-id = '" + jobId + "' and @title = 'Unfavorite job']"))).click();
   }
 
-  public void assertJobAdIsPresent(String jobId) {
+  public void assertJobAdInvisibility(String jobId) {
     assertThatAndPerform(invisibilityOfElementLocated(By.xpath("//*[@class = 'listResults']//div[@data-jobid = '" + jobId + "']")));
   }
 }
