@@ -45,6 +45,6 @@ steps:
   inputs:
     jsonDir: ./results
     outputPath: ./results
-    name: 'Functional Tests'
+    name: 'Automated Tests'
     title: Cucumber tests
-    theme: 'simple'
+    theme: 'bootstrap'
