@@ -6,7 +6,10 @@ This project is a demonstration of Cucumber framework using StackOverflow websit
 The following features have been tested (functional tests):
 * User settings
     - Show/hide hot network questions
-    - ...
+    - Show/hide left navigation panel
+    - Changing theme.
+    - Enable/Disable keyboard shortcuts.
+    - Enable/Disable top bar stickiness.
 * Jobs module
     - Search
     - Save job
@@ -14,4 +17,5 @@ The following features have been tested (functional tests):
 A standard smoke test have been implemented with the following coverage:
 * Questions
 * Tags
-* ...
+* Users
+* Messages
