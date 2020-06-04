@@ -15,12 +15,12 @@ public class AuthenticationSteps {
   @Autowired
   private LogInPage logInPage;
 
-  @When("I navigate to the user profile page.")
+  @When("I navigate to the user profile page")
   public void i_navigate_to_the_user_profile_page() {
     userPreferencesPage.navigateToProfile();
   }
 
-  @Then("current full name is {string}.")
+  @Then("current full name is {string}")
   public void current_username_is(String username) {
     Assert.assertEquals(username, userPreferencesPage.getRealName());
   }

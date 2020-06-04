@@ -10,22 +10,22 @@ public class HotNetworkQuestionsSteps {
   @Autowired
   private UserPreferencesPage userPreferencesPage;
 
-  @When("I diasble 'Hide hot network questions'.")
+  @When("I diasble 'Hide hot network questions'")
   public void i_diasble_hide_hot_network_questions() {
     userPreferencesPage.setHideHotNetworkQuestions(false);
   }
 
-  @Then("'Hot Network Questions' is not hidden.")
+  @Then("'Hot Network Questions' is not hidden")
   public void hot_network_questions_is_not_hidden() {
     userPreferencesPage.assertHotNetworkQuestionsVisibility();
   }
 
-  @When("I enable 'Hide hot network questions'.")
+  @When("I enable 'Hide hot network questions'")
   public void i_enable_hide_hot_network_questions() {
     userPreferencesPage.setHideHotNetworkQuestions(true);
   }
 
-  @Then("'Hot Network Questions' is hidden.")
+  @Then("'Hot Network Questions' is hidden")
   public void hot_network_questions_is_hidden() {
     userPreferencesPage.assertHotNetworkQuestionsInvisibility();
   }
