@@ -14,6 +14,7 @@ The following features have been tested (functional tests):
     - Search
     - Save job
     - Delete saved job
+    
 A standard smoke test have been implemented with the following coverage:
 * Questions
 * Tags
