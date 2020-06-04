@@ -26,6 +26,6 @@ public class SavedJobsAdSteps {
 
   @Then("the selected job ad is deleted.")
   public void the_selected_job_ad_is_deleted() {
-    savedJobsPage.assertJobAdIsPresent(jobsPage.getJobId());
+    savedJobsPage.assertJobAdInvisibility(jobsPage.getJobId());
   }
 }
