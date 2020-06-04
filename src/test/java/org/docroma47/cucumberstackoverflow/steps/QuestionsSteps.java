@@ -11,12 +11,12 @@ public class QuestionsSteps {
   @Autowired
   private QuestionsPage questionsPage;
 
-  @When("I navigate to the 'Questions' page.")
+  @When("I navigate to the 'Questions' page")
   public void i_navigate_to_the_questions_page() {
     questionsPage.navigateToQuestions();
   }
 
-  @Then("current page is 'Questions' page.")
+  @Then("current page is 'Questions' page")
   public void current_page_is_questions_page() {
     Assert.assertEquals("All Questions", questionsPage.getTitle());
   }

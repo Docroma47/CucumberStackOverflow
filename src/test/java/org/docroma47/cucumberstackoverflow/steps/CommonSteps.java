@@ -13,22 +13,22 @@ public class CommonSteps {
   @Autowired
   private CommonPage commonPage;
 
-  @Given("I am on the main page.")
+  @Given("I am on the main page")
   public void i_am_on_the_main_page() {
     commonPage.navigateToMainPage();
   }
 
-  @Given("I am logged in as a {string} user.")
+  @Given("I am logged in as a {string} user")
   public void i_am_logged_in_as_a_regular_user(String whichUser) {
     commonPage.logInAs(whichUser);
   }
 
-  @And("I navigate to the main page.")
+  @And("I navigate to the main page")
   public void i_navigate_to_the_main_page() {
     commonPage.navigateToMainPage();
   }
 
-  @And("I refresh page.")
+  @And("I refresh page")
   public void i_refresh_page() {
     commonPage.refreshPage();
   }

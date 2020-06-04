@@ -13,18 +13,18 @@ public class SavedJobsAdSteps {
   @Autowired
   private JobsPage jobsPage;
 
-  @And("I delete the selected job ad.")
+  @And("I delete the selected job ad")
   public void i_delete_the_selected_job_ad() {
     savedJobsPage.deleteJob(jobsPage.getJobId());
     savedJobsPage.navigateToSavedJobs();
   }
 
-  @And("I navigate to the 'Saved Jobs' page.")
+  @And("I navigate to the 'Saved Jobs' page")
   public void i_navigate_to_the_saved_jobs_page() {
     savedJobsPage.navigateToSavedJobs();
   }
 
-  @Then("the selected job ad is deleted.")
+  @Then("the selected job ad is deleted")
   public void the_selected_job_ad_is_deleted() {
     savedJobsPage.assertJobAdInvisibility(jobsPage.getJobId());
   }
